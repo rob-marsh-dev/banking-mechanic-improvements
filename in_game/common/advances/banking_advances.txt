@@ -1,0 +1,66 @@
+﻿bank_embed_diplomats_in_court = {
+	age = age_2_renaissance
+	icon = spy_construction_renaissance
+	potential = {
+		has_reform = government_reform:banking_country
+	}
+	requires = banking_advance
+	spy_network_construction = 1
+}
+
+bank_cultural_phenomon = {
+	age = age_2_renaissance
+	icon = scholasticism
+	potential = {
+		has_reform = government_reform:banking_country
+	}
+	requires = bank_embed_diplomats_in_court
+
+	cultural_influence = 2
+	cultural_influence_modifier = 0.5
+}
+
+bank_art_imporium = {
+	age = age_2_renaissance
+	icon = renaissance_advance
+	potential = {
+		has_reform = government_reform:banking_country
+	}
+	requires = bank_cultural_phenomon
+
+	unlock_building = banker_art_imporium
+}
+
+bank_head_of_the_family = {
+	age = age_2_renaissance
+	icon = crown_power_advance_renaissance
+	potential = {
+		has_reform = government_reform:banking_country
+	}
+	requires = banking_advance
+
+	global_crown_estate_power = 0.50
+}
+
+bank_decentralized_branches = {
+	age = age_2_renaissance
+	icon = ship_building_advance
+	potential = {
+		has_reform = government_reform:banking_country
+	}
+	requires = bank_head_of_the_family
+
+	monthly_diplomats = 0.3
+}
+
+bank_mining_interests = {
+	age = age_2_renaissance
+	icon = fine_metals_mining
+	potential = {
+		has_reform = government_reform:banking_country
+	}
+	requires = bank_decentralized_branches
+    
+	unlock_building = banking_mining_interest
+}
+

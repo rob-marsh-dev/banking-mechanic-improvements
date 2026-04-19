@@ -1,0 +1,54 @@
+﻿pressure_into_loan =  {
+	category = CATEGORY_ECONOMY_ACTIONS
+	type = diplomacy
+
+	diplomatic_cost = pressure_into_loan_cost
+	
+	potential = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	allow = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+
+		}
+        enabled = {
+
+		}
+	}
+
+	effect = {
+		scope:actor = {
+			give_loan = {
+				target = scope:recipient
+				amount = {
+					value = scope:recipient.monthly_income_total
+					multiply = 4
+				}
+				interest = scope:actor.modifier:bank_interest
+				months = 60
+			}
+		}
+	}
+
+	diplo_chance = {
+		base = -25
+		opinion = 0.2
+		diplomatic_reputation = 3
+		trust_in_actor = 0.2
+	}
+}	

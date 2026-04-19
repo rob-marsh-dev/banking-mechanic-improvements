@@ -1,0 +1,7 @@
+﻿bankers_kontor_maintenance = {
+	lumber = 0.1
+	tools = 0.1
+	paper = 0.25
+
+	category = building_maintenance
+}

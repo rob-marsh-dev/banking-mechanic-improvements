@@ -1,0 +1,53 @@
+﻿strongarm_into_fees =  {
+	category = CATEGORY_COVERT_ACTIONS
+	type = diplomacy
+
+	diplomatic_cost = strongarm_into_fees_cost
+	
+	potential = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	allow = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			scope:recipient = {
+				any_loan = { owner ?= scope:actor }
+			}
+		}
+        enabled = {
+			scope:recipient = {
+				any_loan = { owner ?= scope:actor }
+			}
+		}
+	}
+
+	effect = {
+		scope:recipient = {
+			every_loan = {
+				limit = { owner ?= scope:actor }
+				change_loan_amount = {
+					value = loan_amount
+					multiply = 1
+				}
+				change_loan_interest = {
+					value = loan_interest
+					multiply = 0.2
+				}
+			}
+		}
+	}
+}	

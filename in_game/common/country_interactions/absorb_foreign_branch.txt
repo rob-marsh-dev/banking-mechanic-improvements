@@ -1,0 +1,57 @@
+﻿absorb_foreign_branch =  {
+	category = CATEGORY_SUBJECT_ACTIONS
+	type = diplomacy
+
+	potential = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	allow = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			scope:recipient = {
+				is_subject_of = scope:actor
+				is_subject_type = realm_in_arrears
+				has_reform = government_reform:banking_country
+			}
+		}
+        enabled = {
+			scope:recipient = {
+				subject_loyalty > 50
+			}
+		}
+	}
+
+	effect = {
+		scope:recipient = {
+			every_owned_foreign_building = {
+				location = {
+					destroy_building = prev
+				}
+			}
+		}
+		scope:actor = {
+			annex_country = {
+				country = scope:recipient
+				reason = Diplomatic
+			}
+			add_country_modifier = {
+				modifier = absorbed_foreign_branch
+				years = -1
+				mode = add }
+		}
+	}
+}	

@@ -1,0 +1,50 @@
+﻿REPLACE_OR_CREATE:initiate_hostile_takeover =  {
+	category = CATEGORY_HOSTILE_ACTIONS
+	type = diplomacy
+	
+	potential = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	allow = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			scope:recipient = {
+				any_loan = { owner ?= scope:actor }
+			}
+		}
+        enabled = {
+			scope:recipient = {
+				total_debt >
+				{
+					value = monthly_income_trade_and_tax
+					multiply = 48
+				}
+			}
+			scope:actor.gold > scope:recipient.total_debt
+		}
+	}
+
+	effect = {
+		scope:recipient = {
+			make_subject_of = {
+				target = scope:actor
+				type = subject_type:realm_in_arrears
+			}
+			every_loan = { change_loan_borrower = scope:actor  }
+		}
+	}
+}	

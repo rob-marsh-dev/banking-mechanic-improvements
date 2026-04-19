@@ -1,0 +1,8 @@
+﻿strongarm_into_fees_cost = {
+	spy_network = 20
+}
+
+pressure_into_loan_cost = {
+	favors = 10
+}
+

@@ -1,0 +1,7 @@
+Hi! This is my first mod I hope to develop over time. The
+
+Changes included are:
+
+Added a way for banking nations to get manpower and recruit regiments
+Added a way for banking nations to get sailors and build ships
+Change take over loan to purchase only principal of a loan, not just intrest

@@ -1,0 +1,34 @@
+﻿trading_focused_bank = {
+
+	government = republic
+	potential = {
+		has_reform = government_reform:banking_country
+		country_type = building
+		NOT = { has_reform = government_reform:financial_focus_bank }
+	}
+	country_modifier = {
+		trade_income = 0.25
+		merchant_maintenance_cost = -0.25
+		trade_efficiency = medium_trade_efficiency_bonus
+		subject_income_modifier = -0.2
+		global_burghers_estate_power = -1
+		government_reform_slots = 1
+	}
+	years = 2
+}
+
+financial_focus_bank = {
+
+	government = republic
+	potential = {
+		has_reform = government_reform:banking_country
+		country_type = building
+		NOT = { has_reform = government_reform:trading_focused_bank }
+	}
+	country_modifier = {
+		global_foreign_build_buildings_cost = -0.25
+		building_upkeep_costs = -0.15
+		government_reform_slots = 1
+	}
+	years = 2
+}

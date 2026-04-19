@@ -1,0 +1,7 @@
+﻿realm_in_arrears_cost = {
+	scaled_gold = 0.1
+	scaled_manpower = 0.2
+	scaled_sailors = 0.2
+	ignore_inflation = yes
+}
+
