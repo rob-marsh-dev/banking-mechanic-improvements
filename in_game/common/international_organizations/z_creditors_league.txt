@@ -1,0 +1,212 @@
+creditors_league = {
+	has_target = no
+	unique = no
+	has_leader_country = yes
+	leader_type = country
+	leader_change_method = none
+	leader_change_trigger_type = none
+	disband_if_no_leader = yes
+	has_parliament = yes
+	parliament_type = creditors_league_assembly
+	subject_limited = no
+	show_on_diplomatic_map = yes
+	leader_color = define:NMapColors|INTERNATIONAL_ORGANIZATION_LEADER_COLOR
+	custom_name = creditors_league_name
+
+	expel_members_who_are_targets_of_other_members = no
+	expel_members_who_are_attackers_at_war_with_other_members = no
+	expel_members_who_are_defenders_at_war_with_other_members = no
+
+	create_visible_trigger = {
+		has_reform = government_reform:banking_country
+		NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+	}
+
+	create_enabled_trigger = {
+		has_reform = government_reform:banking_country
+		NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+	}
+
+	invite_visible_trigger = {
+		is_leader_of_international_organization = scope:recipient
+	}
+
+	join_visible_trigger = {
+		always = no
+	}
+
+	can_join_trigger = {
+		always = yes
+	}
+
+	can_leave_trigger = {
+		always = yes
+	}
+
+	auto_leave_trigger = {
+		always = no
+	}
+
+	auto_disband_trigger = {
+		OR = {
+			total_members < 2
+			NOT = {
+				leader_country ?= {
+					has_reform = government_reform:banking_country
+				}
+			}
+		}
+	}
+
+	on_creation = {
+		add_policy_to_international_organization = policy:cl_subsidy_policy
+		add_policy_to_international_organization = policy:cl_con_no_build_policy
+		add_policy_to_international_organization = policy:cl_mil_no_access_policy
+		add_policy_to_international_organization = policy:cl_intel_closed_policy
+		add_policy_to_international_organization = policy:cl_int_open_policy
+		add_policy_to_international_organization = policy:cl_ext_free_policy
+	}
+
+	on_joined = {
+	}
+
+	on_left = {
+	}
+
+	# Base member benefits - small economic bonuses at all tiers
+	modifier = {
+		bank_interest = -0.01
+		trade_efficiency = 0.02
+	}
+
+	# Base leader benefit - scales with membership
+	leader_modifier = {
+		scale = {
+			value = scope:recipient.total_members
+			subtract = 1
+		}
+		global_merchant_capacity_modifier = 0.01
+		max_diplomats = 0.5
+		monthly_diplomats = 0.05
+	}
+
+	ai_desire_to_join = {
+
+		# Base appeal of membership
+		add = {
+			desc = "CREDITORS_LEAGUE_ECONOMIC_APPEAL"
+			value = 15
+		}
+
+		# Malus per existing member — larger leagues mean more entanglement
+		if = {
+			limit = { exists = scope:recipient }
+			add = {
+				desc = "CREDITORS_LEAGUE_TOO_MANY_MEMBERS"
+				value = scope:recipient.total_members
+				multiply = -3
+			}
+		}
+
+		# Payment law — how much is the bank extracting?
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_subsidy_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_SUBSIDY" value = 15 }
+		}
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_small_levy_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_SMALL_LEVY" value = -10 }
+		}
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_large_levy_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_LARGE_LEVY" value = -20 }
+		}
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_full_levy_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_FULL_LEVY" value = -35 }
+		}
+
+		# Construction law — can the bank build in our territory?
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_con_build_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_BUILD_RIGHTS" value = -5 }
+		}
+
+		# Military law — can the bank recruit our people?
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_mil_recruit_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_RECRUIT_RIGHTS" value = -10 }
+		}
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_mil_navy_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_NAVY_RIGHTS" value = -20 }
+		}
+
+		# Internal law — peace within the league is reassuring
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_int_peace_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_INTERNAL_PEACE" value = 10 }
+		}
+
+		# External law — are we being dragged into the bank's wars?
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_ext_defensive_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_DEFENSIVE" value = -5 }
+		}
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_ext_offensive_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_OFFENSIVE" value = -15 }
+		}
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_ext_restricted_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_RESTRICTED" value = -25 }
+		}
+		if = {
+			limit = {
+				exists = scope:recipient
+				scope:recipient = { international_organization_has_policy = policy:cl_ext_sovereignty_policy }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_SOVEREIGNTY" value = -40 }
+		}
+	}
+
+	ai_desire_to_allow_new_member = {
+		add = {
+			desc = "CREDITORS_LEAGUE_GROW_LEAGUE"
+			value = 20
+		}
+	}
+}

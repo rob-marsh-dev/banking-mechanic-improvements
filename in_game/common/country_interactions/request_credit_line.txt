@@ -1,0 +1,77 @@
+request_credit_line = {
+	type = diplomacy
+	category = CATEGORY_ECONOMY_ACTIONS
+
+	potential = {
+		scope:actor = {
+			is_member_of_international_organization_of_type = { type = creditors_league }
+			NOT = { has_reform = government_reform:banking_country }
+		}
+	}
+
+	allow = {
+		scope:recipient = {
+			has_reform = government_reform:banking_country
+			is_leader_of_international_organization = scope:actor
+		}
+	}
+
+	effect = {
+		custom_tooltip = request_credit_line_tooltip
+		hidden_effect = {
+			scope:recipient = {
+				give_loan = {
+					target = scope:actor
+					amount = {
+						value = scope:actor.monthly_income_trade_and_tax
+						multiply = 6
+					}
+					interest = scope:recipient.modifier:bank_lending_rate
+					months = 60
+				}
+			}
+		}
+	}
+
+	diplo_chance = {
+		base = 40
+		opinion = 0.2
+		trust_in_actor = 0.3
+	}
+
+	ai_will_do = {
+		value = 5
+		if = {
+			limit = {
+				scope:actor = {
+					monthly_balance < 0
+				}
+			}
+			add = 40
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					gold < 0
+				}
+			}
+			add = 50
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					gold < scope:actor.monthly_income_total
+				}
+			}
+			add = 20
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					num_loans > 0
+				}
+			}
+			subtract = 30
+		}
+	}
+}

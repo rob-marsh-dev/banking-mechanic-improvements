@@ -7,6 +7,9 @@
  realm_in_arrears: "Realm in Arrears"
  realm_in_arrears_desc: "Through politicking and brazen threat, we have leveraged this realms financial weakness to assume control of its government and coinage systems."
  create_realm_in_arrears: "Demand that [TARGET_COUNTRY.GetName] makes good on all we have lent them."
+ construction_rights: "Construction Rights"
+ construction_rights_desc: "This nation has granted the banking family the right to build within their territory. In exchange, they benefit from a small reduction in borrowing costs."
+ create_construction_rights: "Negotiate Construction Rights with [TARGET_COUNTRY.GetName]"
  currency_exchange: "Currency Exchange"
  currency_exchange_desc: "Here, our bankers swap and change money for a fee. This allows to influence trade in ways that grow our coffers, while collecting a tidy profit."
  currency_exchange_maintenance: "Needs of Currency Exchanges"
@@ -17,6 +20,13 @@
  bankers_kontor: "Bankers Kontor"
  bankers_kontor_desc: "By investing in local infrastructure, we can hire our own merchants to trade for us."
  bankers_kontor_maintenance: "Bankers Kontor"
+ #cabinet actions
+ bank_expand_diplomat_network: "Expand Diplomatic Network"
+ bank_expand_diplomat_network_desc: "By dispatching trusted agents and family members to courts across the continent, we can grow our network of diplomatic contacts."
+ bank_expand_diplomat_network_active: "Expanding our Diplomatic Network"
+ bank_expand_diplomat_network_action: "Expand our Diplomatic Network"
+
+
  #advances
  bank_embed_diplomats_in_court: "Embeded Diplomats In Court"
  bank_embed_diplomats_in_court_desc: "By sending trusted sons and cousins to our client realms, we can quickly gain information to leverage against our foes."
@@ -30,6 +40,14 @@
  bank_decentralized_branches_desc: "As the family grows both in power and number, by sending off our distant cousins and nephews, we can spread our family, and therefore reach, even further."
  bank_mining_interests: "Mining Interests"
  bank_mining_interests_desc: "Our world turns on a florin for gold and silver. While we stick to the cities, we would be fools not to attempt to expand our influence were these precious metals are mined."
+
+ #effect localization overrides
+ PAY_OFF_THEIR_DEBT_EFFECT: "Purchase their [loan|e] at $VALUE$[gold_i]"
+ WE_PAY_OFF_THEIR_DEBT_EFFECT: "We will purchase their [loan|e] at $VALUE$[gold_i]"
+ THIRD_PAY_OFF_THEIR_DEBT_EFFECT: "[COUNTRY.GetName] will purchase their [loan|e] at $VALUE$[gold_i]"
+ PAST_PAY_OFF_THEIR_DEBT_EFFECT: "Purchased their [loan|e] at $VALUE$[gold_i]"
+ PAST_WE_PAY_OFF_THEIR_DEBT_EFFECT: "We purchased their [loan|e] at $VALUE$[gold_i]"
+ PAST_THIRD_PAY_OFF_THEIR_DEBT_EFFECT: "[COUNTRY.GetName] purchased their [loan|e] at $VALUE$[gold_i]"
 
  #modifiers
  STATIC_MODIFIER_NAME_absorbed_foreign_branch: "Absorbed Foreign Branches"
@@ -59,6 +77,35 @@
  strongarm_into_feess_effect_text_past: "[SCOPE.sCountry('actor').GetName] strong-armed [SCOPE.sCountry('recipient').GetName] into a worse deal."
  PROPOSE_strongarm_into_fees: "Strong-arm $RECIPIENT$?\n$INFO$.""
 
+
+ #Take Over All Loans
+ take_over_all_loans: "Take Over All Loans"
+ dip_take_over_all_loans_CATEGORY: "CATEGORY_ECONOMY_ACTIONS"
+ take_over_all_loans_act: "Purchase all outstanding loans from [SCOPE.sCountry('recipient').GetName]"
+ take_over_all_loans_desc: "By purchasing all outstanding debt owed by [SCOPE.sCountry('recipient').GetName], we assume ownership of every loan at face value. A costly move, but it consolidates their debt entirely in our hands."
+ take_over_all_loans_effect_text: "[SCOPE.sCountry('actor').GetName] purchased all outstanding loans from [SCOPE.sCountry('recipient').GetName]."
+ take_over_all_loans_effect_text_past: "[SCOPE.sCountry('actor').GetName] purchased all outstanding loans from [SCOPE.sCountry('recipient').GetName]."
+ PROPOSE_take_over_all_loans: "Purchase all outstanding loans from $RECIPIENT$?\n\n$INFO$"
+ take_over_all_loans_SELECT_TITLE: "Select a country to purchase all loans from."
+ TAKE_OVER_ALL_LOANS_COUNT_TOOLTIP_EFFECT: "They have $VALUE|0$ outstanding loans"
+ FIRST_TAKE_OVER_ALL_LOANS_COUNT_TOOLTIP_EFFECT: "They have $VALUE|0$ outstanding loans"
+ THIRD_TAKE_OVER_ALL_LOANS_COUNT_TOOLTIP_EFFECT: "They have $VALUE|0$ outstanding loans"
+ PAST_TAKE_OVER_ALL_LOANS_COUNT_TOOLTIP_EFFECT: "They had $VALUE|0$ outstanding loans"
+ PAST_FIRST_TAKE_OVER_ALL_LOANS_COUNT_TOOLTIP_EFFECT: "They had $VALUE|0$ outstanding loans"
+ PAST_THIRD_TAKE_OVER_ALL_LOANS_COUNT_TOOLTIP_EFFECT: "They had $VALUE|0$ outstanding loans"
+ TAKE_OVER_ALL_LOANS_COST_TOOLTIP_EFFECT: "This will cost us: $VALUE|2V$[gold_i]"
+ FIRST_TAKE_OVER_ALL_LOANS_COST_TOOLTIP_EFFECT: "This will cost us: $VALUE|2V$[gold_i]"
+ THIRD_TAKE_OVER_ALL_LOANS_COST_TOOLTIP_EFFECT: "This will cost us: $VALUE|2V$[gold_i]"
+ PAST_TAKE_OVER_ALL_LOANS_COST_TOOLTIP_EFFECT: "This cost us: $VALUE|2V$[gold_i]"
+ PAST_FIRST_TAKE_OVER_ALL_LOANS_COST_TOOLTIP_EFFECT: "This cost us: $VALUE|2V$[gold_i]"
+ PAST_THIRD_TAKE_OVER_ALL_LOANS_COST_TOOLTIP_EFFECT: "This cost us: $VALUE|2V$[gold_i]"
+ TAKE_OVER_ALL_LOANS_DEBT_TOOLTIP_EFFECT: "Total outstanding debt: $VALUE|2V$[gold_i]"
+ FIRST_TAKE_OVER_ALL_LOANS_DEBT_TOOLTIP_EFFECT: "Total outstanding debt: $VALUE|2V$[gold_i]"
+ THIRD_TAKE_OVER_ALL_LOANS_DEBT_TOOLTIP_EFFECT: "Total outstanding debt: $VALUE|2V$[gold_i]"
+ PAST_TAKE_OVER_ALL_LOANS_DEBT_TOOLTIP_EFFECT: "Total outstanding debt was: $VALUE|2V$[gold_i]"
+ PAST_FIRST_TAKE_OVER_ALL_LOANS_DEBT_TOOLTIP_EFFECT: "Total outstanding debt was: $VALUE|2V$[gold_i]"
+ PAST_THIRD_TAKE_OVER_ALL_LOANS_DEBT_TOOLTIP_EFFECT: "Total outstanding debt was: $VALUE|2V$[gold_i]"
+
  #Pressure into a loan
  pressure_into_loan: "Pressure into a loan"
  dip_pressure_into_loan_CATEGORY: "CATEGORY_ECONOMY_ACTIONS"
@@ -67,6 +114,26 @@
  pressure_into_loan_effect_text: "[SCOPE.sCountry('actor').GetName] pressured [SCOPE.sCountry('recipient').GetName] into a new loan."
  pressure_into_loan_effect_text_past: "[SCOPE.sCountry('actor').GetName] pressured-armed [SCOPE.sCountry('recipient').GetName] into a new loan."
  PROPOSE_pressure_into_loan: "Pressure $RECIPIENT$?\n$INFO$.""
+
+ #Install Foreign Branch
+ install_foreign_branch: "Install Foreign Branch"
+ dip_install_foreign_branch_CATEGORY: "CATEGORY_ECONOMY_ACTIONS"
+ install_foreign_branch_act: "Establish a branch in [SCOPE.sCountry('recipient').GetName]"
+ install_foreign_branch_desc: "By investing heavily in [SCOPE.sCountry('recipient').GetName], we can establish a permanent financial presence there. Our agents and contacts will open doors for us across the continent."
+ install_foreign_branch_effect_text: "[SCOPE.sCountry('actor').GetName] established a foreign branch in [SCOPE.sCountry('recipient').GetName]."
+ install_foreign_branch_effect_text_past: "[SCOPE.sCountry('actor').GetName] established a foreign branch in [SCOPE.sCountry('recipient').GetName]."
+ PROPOSE_install_foreign_branch: "Establish a branch in $RECIPIENT$?\n\n$INFO$"
+ install_foreign_branch_SELECT_TITLE: "Select a country to establish a branch in."
+
+ #Foreign branch modifiers
+ STATIC_MODIFIER_NAME_foreign_branch_minor: "Foreign Branch (Minor)"
+ STATIC_MODIFIER_DESC_foreign_branch_minor: "We have established a branch in a minor nation. Our embedded agents and financial contacts provide a trickle of diplomatic reach."
+ STATIC_MODIFIER_NAME_foreign_branch_standard: "Foreign Branch"
+ STATIC_MODIFIER_DESC_foreign_branch_standard: "We have established a branch in a nation of moderate size. Our presence in their financial affairs keeps us well connected."
+ STATIC_MODIFIER_NAME_foreign_branch_major: "Foreign Branch (Major)"
+ STATIC_MODIFIER_DESC_foreign_branch_major: "We have established a branch in a major nation. Our bankers move in the highest circles of their court."
+ STATIC_MODIFIER_NAME_foreign_branch_great_power: "Foreign Branch (Great Power)"
+ STATIC_MODIFIER_DESC_foreign_branch_great_power: "We have established a branch in a great power. Our financial tentacles run deep into their affairs, opening doors across the continent."
 
  #Absorb_Foreign_Branch
  absorb_foreign_branch: "Absorb Foreign Branch"
@@ -78,6 +145,112 @@
  PROPOSE_absorb_foreign_branch: "Absorb $RECIPIENT$?\n$INFO$.""
  WE_PERFORM_absorb_foreign_branch_ACTION: "Test"
  ACTION_absorb_foreign_branch_PERFORMED_ON_US: "test"
+
+ #Creditor's League IO
+ creditors_league: "Creditor's League"
+ diplomatic_status_creditors_league_name: "Member of [ROOT.GetInternationalOrganization.GetName]"
+ diplomatic_status_creditors_league_tooltip: "This nation is a member of [ROOT.GetInternationalOrganization.GetName], a financial alliance headed by [ROOT.GetInternationalOrganization.GetLeaderCountry.GetName]."
+ creditors_league_list_who_tt: "Members of the Creditor's League"
+ creditors_league_desc: "A financial alliance founded by a banking nation to extend its influence over client states. Members enjoy economic benefits while the founding bank gradually tightens its grip."
+
+ #Missing vanilla loc
+ any_loan_count: "$PARAMETERS$ [loans|e]"
+
+ #Banking nation bribe voter (no prestige cost)
+ bank_bribe_voter_for_policy: "Sway Their Vote"
+ bank_bribe_voter_for_policy_desc: "Gold opens more doors than prestige. We may offer a payment to convince another member to vote our way."
+ bank_bribe_voter_for_policy_act: "Offer [SCOPE.sCountry('recipient').GetName] gold to vote our way"
+
+ #Request Credit Line interaction
+ request_credit_line: "Request Credit Line"
+ request_credit_line_desc: "As a member of their Creditor's League, we may call upon the league's founding bank for a line of credit at preferential rates."
+ INCOMING_OFFER_request_credit_line: "Request for Credit Line"
+ request_credit_line_effect_text: "[SCOPE_ACTOR.GetName] requests a line of credit from us."
+ request_credit_line_effect_text_past: "[SCOPE_ACTOR.GetName] requested a line of credit from us."
+ request_credit_line_reject_effect_text: "We decline [SCOPE_ACTOR.GetName]'s request for a line of credit."
+ request_credit_line_reject_effect_text_past: "We declined [SCOPE_ACTOR.GetName]'s request for a line of credit."
+ request_credit_line_tooltip: "Receive a loan from [SCOPE_RECIPIENT.GetName] at their lending rate for 60 months."
+
+ #Hostile Takeover interaction
+ hostile_takeover_into_league: "Compel League Membership"
+ hostile_takeover_into_league_desc: "We hold significant debt from this nation. We may use this leverage to force them into our Creditor's League."
+
+ #Invite to Creditor's League interaction
+ PROPOSE_invite_to_creditors_league: "Would we like to invite $RECIPIENT$ to join our Creditor's League?\n\n$INFO$"
+ invite_to_creditors_league: "Invite to Creditor's League"
+ invite_to_creditors_league_desc: "Extend an invitation for this nation to join our Creditor's League as a member state."
+ INCOMING_OFFER_invite_to_creditors_league: "Invitation to join the Creditor's League"
+ invite_to_creditors_league_effect_text: "[SCOPE_ACTOR.GetName] invites us to join their Creditor's League."
+ invite_to_creditors_league_effect_text_past: "[SCOPE_ACTOR.GetName] invited us to join their Creditor's League."
+ invite_to_creditors_league_reject_effect_text: "We decline the invitation to join [SCOPE_ACTOR.GetName]'s Creditor's League."
+ invite_to_creditors_league_reject_effect_text_past: "We declined the invitation to join [SCOPE_ACTOR.GetName]'s Creditor's League."
+ CREDITORS_LEAGUE_NAME: "Creditor's League"
+ CREDITORS_LEAGUE_NAMED: "[ROOT.GetInternationalOrganization.GetLeaderCountry.GetName] Creditor's League"
+ creditors_league_assembly: "Council of Creditors"
+ CREDITORS_LEAGUE_ECONOMIC_APPEAL: "Economic Benefits of Membership"
+ CREDITORS_LEAGUE_NATION_SIZE: "A powerful nation does not bow easily to creditors"
+ CREDITORS_LEAGUE_JOIN_DEBT_RELIEF: "The bank will absorb our outstanding debts upon joining"
+ CREDITORS_LEAGUE_GROW_LEAGUE: "Grow the League"
+ CREDITORS_LEAGUE_TOO_MANY_MEMBERS: "A large league means more entanglements (per member)"
+ CREDITORS_LEAGUE_JOIN_SUBSIDY: "The bank is subsidising its members"
+ CREDITORS_LEAGUE_JOIN_SMALL_LEVY: "We would owe a levy to the bank"
+ CREDITORS_LEAGUE_JOIN_LARGE_LEVY: "We would owe a heavy levy to the bank"
+ CREDITORS_LEAGUE_JOIN_FULL_LEVY: "The bank extracts the maximum from its members"
+ CREDITORS_LEAGUE_JOIN_BUILD_RIGHTS: "The bank may build within our borders"
+ CREDITORS_LEAGUE_JOIN_RECRUIT_RIGHTS: "The bank may conscript our people"
+ CREDITORS_LEAGUE_JOIN_NAVY_RIGHTS: "The bank may conscript our people and use our ports"
+ CREDITORS_LEAGUE_JOIN_INTERNAL_PEACE: "Members are forbidden from warring each other"
+ CREDITORS_LEAGUE_JOIN_DEFENSIVE: "We may be called to defend other members"
+ CREDITORS_LEAGUE_JOIN_OFFENSIVE: "We may be forced to fight the bank's wars"
+ CREDITORS_LEAGUE_JOIN_RESTRICTED: "Our foreign policy would be curtailed by the bank"
+ CREDITORS_LEAGUE_JOIN_SOVEREIGNTY: "We would be clients of the bank in all but name"
+
+ FINANCE_LAW_CATEGORY: "Financial Terms"
+
+ #Creditor's League — Payment Law
+ creditors_league_payment_law: "Financial Terms"
+ creditors_league_payment_law_desc: "Governs the flow of gold between the banking nation and its client states. As the bank's influence grows, it may demand an ever-greater share of member revenues."
+ cl_subsidy_policy: "Bank Subsidies"
+ cl_subsidy_policy_desc: "The bank extends financial support to member states, paying out a share of their income in exchange for goodwill and access."
+ cl_free_association_policy: "Free Association"
+ cl_free_association_policy_desc: "No gold flows between the bank and its members. Each state operates independently within the league's framework."
+ cl_small_levy_policy: "Client Levy"
+ cl_small_levy_policy_desc: "Member states contribute a small portion of their income to the bank. A modest price for the privileges of membership."
+ cl_large_levy_policy: "Creditor's Tithe"
+ cl_large_levy_policy_desc: "The bank claims a substantial share of each member's revenues. Resistance is penalised through worsened borrowing conditions."
+ cl_full_levy_policy: "Full Extraction"
+ cl_full_levy_policy_desc: "The bank draws maximum revenue from its client states. Those who resist find themselves diplomatically isolated."
+
+ #Payment law vote reasons
+ CL_LEADER_PAYS_SUBSIDY: "We must fund the subsidies ourselves"
+ CL_MEMBER_RECEIVES_SUBSIDY: "We receive financial support from the bank"
+ CL_LEADER_WANTS_CHANGE: "These subsidies cost us gold"
+ CL_MEMBER_WANTS_KEEP: "We benefit from the bank's generosity"
+ CL_NEUTRAL_TERMS: "These terms are equitable"
+ CL_LEADER_GAINS_LEVY: "We will collect revenues from member states"
+ CL_MEMBER_PAYS_LEVY: "We are forced to pay tribute to the bank"
+ CL_MEMBER_INCOME_WEIGHT: "Weighted by our income"
+ CL_LEADER_KEEPS_LEVY: "We profit from this arrangement"
+ CL_MEMBER_RESISTS_LEVY: "We resent paying tribute"
+
+ #Payment descriptions
+ cl_payment_all: "Full share"
+ cl_member_subsidy_payment: "Bank Subsidy"
+ cl_member_subsidy_payment_desc: "The banking nation distributes gold equal to 1% of the combined monthly income of all member states. Each member receives a share proportional to their own income."
+ cl_small_levy_payment: "Client Levy"
+ cl_small_levy_payment_desc: "Each member state pays 2% of their monthly income to the banking nation. Your share of this levy is proportional to your income relative to other members."
+ cl_large_levy_payment: "Creditor's Tithe"
+ cl_large_levy_payment_desc: "Each member state pays 5% of their monthly income to the banking nation. Your share of this levy is proportional to your income relative to other members."
+ cl_full_levy_payment: "Full Extraction"
+ cl_full_levy_payment_desc: "Each member state pays 10% of their monthly income to the banking nation. Your share of this levy is proportional to your income relative to other members."
+
+ #Payment tooltip breakdown keys
+ CL_PRICE_TOTAL_MEMBER_INCOME: "Combined monthly income of member states"
+ CL_PRICE_YOUR_INCOME_SHARE: "Your monthly income (determines your share)"
+ CL_SUBSIDY_RATE: "Subsidy rate (1% of total member income)"
+ CL_SMALL_LEVY_RATE: "Levy rate (2% of total member income)"
+ CL_LARGE_LEVY_RATE: "Levy rate (5% of total member income)"
+ CL_FULL_LEVY_RATE: "Levy rate (10% of total member income)"
 
  #Realm In Arrears
  OFFER_realm_in_arrears_TOOLTIP_HEADER: "Demand that [TARGET_COUNTRY.GetName] makes good on all we have lent them."
@@ -121,3 +294,112 @@
  OFFER_realm_in_arrears_AT_WAR: "$country_is_at_war$"
  REQUEST_realm_in_arrears_AT_WAR: "$country_is_at_war$"
  OFFER_realm_in_arrears_LOWER_IN_SUBJECT_CHAIN: "$country_lower_in_subject_chain$"
+
+ MILITARY_LAW_CATEGORY: "Military Oversight"
+ DIPLOMACY_LAW_CATEGORY: "Diplomatic Relations"
+
+ #Creditor's League — Military Law
+ creditors_league_intelligence_law: "Intelligence Sharing"
+ creditors_league_intelligence_law_desc: "Determines whether the banking nation may maintain a shared intelligence network across league members, granting visibility into their territories."
+ cl_intel_closed_policy: "No Intelligence Sharing"
+ cl_intel_closed_policy_desc: "Member states maintain sovereign control over their own intelligence. The banking nation has no special visibility into member territories."
+ cl_intel_share_policy: "Shared Intelligence Network"
+ cl_intel_share_policy_desc: "The banking nation embeds agents and financial observers across all member states, granting mutual visibility throughout the league."
+ CL_INTEL_MEMBER_WANTS_CLOSED: "We do not wish to be observed"
+ CL_INTEL_MEMBER_KEEPS_CLOSED: "We prefer to keep our affairs private"
+ CL_INTEL_LEADER_WANTS_OPEN: "We want visibility over our investments"
+ CL_INTEL_MEMBER_DISLIKES_OPEN: "The bank is watching our every move"
+ CL_INTEL_LEADER_KEEPS_OPEN: "Intelligence network benefits our operations"
+ CL_INTEL_MEMBER_RESISTS_OPEN: "We resent the bank's surveillance"
+
+ creditors_league_military_law: "Military Oversight"
+ creditors_league_military_law_desc: "Determines the extent to which the banking nation may raise armies, build fortifications, and launch fleets from within its member states."
+ cl_mil_no_access_policy: "Non-Interference"
+ cl_mil_no_access_policy_desc: "The banking nation has no special military rights within member territories. Each state maintains full control of its own defences."
+ cl_mil_recruit_policy: "Recruitment Rights"
+ cl_mil_recruit_policy_desc: "The banking nation may raise regiments from the populations of member states, drawing on their manpower for its own campaigns."
+ cl_mil_navy_policy: "Full Military Access"
+ cl_mil_navy_policy_desc: "The banking nation may recruit regiments and launch warships from member ports at will."
+
+ #Military law vote reasons
+ CL_MIL_MEMBER_NO_ACCESS: "We retain full control of our own territory"
+ CL_MIL_LEADER_WANTS_ACCESS: "We desire greater access to member territories"
+ CL_MIL_MEMBER_KEEPS_FREE: "We wish to keep the bank out of our lands"
+ CL_MIL_LEADER_RECRUIT_ACCESS: "We gain the right to raise armies in member states"
+ CL_MIL_MEMBER_RECRUIT_INTRUSION: "The bank may levy our people for its armies"
+ CL_MIL_LEADER_KEEPS_RECRUIT: "We benefit from access to member manpower"
+ CL_MIL_MEMBER_RESISTS_RECRUIT: "We resent the bank's claim on our soldiers"
+ CL_MIL_LEADER_NAVY_ACCESS: "We gain full military and naval rights across the league"
+ CL_MIL_MEMBER_NAVY_INTRUSION: "The bank may recruit our soldiers and build ships in our ports"
+ CL_MIL_LEADER_KEEPS_NAVY: "Full military access serves our interests well"
+ CL_MIL_MEMBER_RESISTS_NAVY: "We are little more than a source of troops and ships for the bank"
+
+ #Creditor's League — Construction Law
+ creditors_league_construction_law: "Construction Rights"
+ creditors_league_construction_law_desc: "Determines whether the banking nation may fund and build infrastructure within member territories. A subtle but powerful lever of economic control."
+ cl_con_no_build_policy: "No Construction Rights"
+ cl_con_no_build_policy_desc: "The banking nation has no right to build within member territories. Each state controls its own development."
+ cl_con_build_policy: "Construction Rights"
+ cl_con_build_policy_desc: "The banking nation may fund and construct buildings within member states, extending its financial infrastructure across the league."
+
+ #Construction law vote reasons
+ CL_CON_MEMBER_NO_BUILD: "We retain control over our own development"
+ CL_CON_LEADER_WANTS_BUILD: "We desire the right to build in member territories"
+ CL_CON_MEMBER_KEEPS_FREE: "We wish to keep the bank out of our construction"
+ CL_CON_LEADER_BUILD_ACCESS: "We gain the right to build in member territories"
+ CL_CON_MEMBER_BUILD_INTRUSION: "The bank may build in our lands"
+ CL_CON_LEADER_KEEPS_BUILD: "We profit from our construction rights"
+ CL_CON_MEMBER_RESISTS_BUILD: "We resent foreign construction in our territory"
+
+ #Creditor's League — Internal Relations Law
+ creditors_league_internal_law: "Internal Relations"
+ creditors_league_internal_law_desc: "Governs whether member states may wage war against one another. A peaceful league is a stable league — but some banking nations prefer their clients divided."
+ cl_int_open_policy: "Open Competition"
+ cl_int_open_policy_desc: "Member states are free to wage war against one another. The bank takes no position on conflicts within the league."
+ cl_int_peace_policy: "League Peace"
+ cl_int_peace_policy_desc: "Wars between member states are forbidden. The league is to be a zone of financial cooperation, not mutual bloodshed."
+
+ #Internal relations vote reasons
+ CL_INT_MEMBER_WANTS_OPEN: "We prize the freedom to pursue our own quarrels"
+ CL_INT_MEMBER_KEEPS_OPEN: "We wish to retain the right to settle scores within the league"
+ CL_INT_NO_INTERNECINE_WARS: "Peace within the league benefits us all"
+
+ #Creditor's League — External Relations Law
+ creditors_league_external_law: "External Relations"
+ creditors_league_external_law_desc: "Governs the degree of diplomatic independence enjoyed by member states in their dealings with outside powers. At lower tiers members are free; at higher tiers they are bound to the bank's wars and foreign policy."
+ cl_ext_free_policy: "Independent Diplomacy"
+ cl_ext_free_policy_desc: "Member states conduct their own foreign affairs without restriction. The league imposes no obligations on who they fight or favour."
+ cl_ext_defensive_policy: "Mutual Defence"
+ cl_ext_defensive_policy_desc: "When any member of the league is attacked, all others must come to its defence. The bank's credit is underwritten by its members' swords."
+ cl_ext_offensive_policy: "Offensive Alliance"
+ cl_ext_offensive_policy_desc: "Members must join offensive wars declared by the league leader. The bank may now call its clients to war as well as peace."
+ cl_ext_restricted_policy: "Restricted Diplomacy"
+ cl_ext_restricted_policy_desc: "The banking nation assumes broad oversight of member diplomacy. Member states find their independent reach constrained, while the bank's influence grows."
+ cl_ext_sovereignty_policy: "Financial Sovereignty"
+ cl_ext_sovereignty_policy_desc: "The banking nation holds near-complete sway over its clients. Member states are sovereign in name only — their foreign policy is the bank's to command."
+
+ #External relations vote reasons
+ CL_EXT_MEMBER_WANTS_FREEDOM: "We prize our diplomatic independence"
+ CL_EXT_MEMBER_KEEPS_FREEDOM: "We wish to keep our foreign affairs our own"
+ CL_EXT_LEADER_DEFENSIVE_PACT: "Our members will stand with us when attacked"
+ CL_EXT_MEMBER_DEFENSIVE_BURDEN: "We may be drawn into wars not of our choosing"
+ CL_EXT_LEADER_KEEPS_DEFENSIVE: "Mutual defence strengthens our position"
+ CL_EXT_MEMBER_RESISTS_DEFENSIVE: "We do not wish to fight the bank's enemies"
+ CL_EXT_LEADER_OFFENSIVE_PACT: "Our clients will march under our banner"
+ CL_EXT_MEMBER_OFFENSIVE_BURDEN: "We could be dragged into costly offensive wars"
+ CL_EXT_LEADER_KEEPS_OFFENSIVE: "Our members' armies serve our ambitions"
+ CL_EXT_MEMBER_RESISTS_OFFENSIVE: "We refuse to be the bank's sword arm"
+ CL_EXT_LEADER_RESTRICTED: "We exercise broad oversight over member diplomacy"
+ CL_EXT_MEMBER_RESTRICTED: "Our diplomatic reach is curtailed by the bank"
+ CL_EXT_LEADER_KEEPS_RESTRICTED: "This level of control suits our interests"
+ CL_EXT_MEMBER_RESISTS_RESTRICTED: "We chafe under the bank's oversight"
+ CL_EXT_LEADER_SOVEREIGNTY: "We hold near-complete sway over our client states"
+ CL_EXT_MEMBER_SOVEREIGNTY: "We are clients in all but name"
+ CL_EXT_LEADER_KEEPS_SOVEREIGNTY: "Full financial sovereignty serves us well"
+ CL_EXT_MEMBER_RESISTS_SOVEREIGNTY: "We are no better than subjects of the bank"
+
+ #Modifier type cost modifiers (required for price display)
+ MODIFIER_TYPE_NAME_cl_payment_base_cost_modifier: "Creditor's League Payment Modifier"
+ MODIFIER_TYPE_DESC_cl_payment_base_cost_modifier: "This impacts the [costs|e] of payments within the [ROOT.GetInternationalOrganization.GetName]."
+ MODIFIER_TYPE_NAME_realm_in_arrears_cost_cost_modifier: "Realm in Arrears Cost Modifier"
+ MODIFIER_TYPE_DESC_realm_in_arrears_cost_cost_modifier: "This impacts the [costs|e] of establishing a [ShowSubjectTypeName('realm_in_arrears')]."

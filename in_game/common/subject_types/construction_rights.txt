@@ -1,0 +1,102 @@
+construction_rights = {
+	color = subject_tributary
+	level = 1
+
+	join_offensive_wars_always = {
+		always = no
+	}
+	join_defensive_wars_always = {
+		always = no
+	}
+
+	has_overlords_ruler = no
+	can_be_annexed = no
+	subject_can_cancel = yes
+	overlord_can_cancel = yes
+
+	strength_vs_overlord = 0
+
+	diplomatic_capacity_cost_scale = 0
+
+	has_limited_diplomacy = no
+
+	fleet_basing_rights = no
+	food_access = no
+
+	can_change_rank = yes
+	can_change_heir_selection = yes
+	can_overlord_build_buildings = yes
+	can_overlord_build_roads = no
+	can_overlord_build_rgos = no
+	can_overlord_build_ships = no
+	can_overlord_recruit_regiments = no
+
+	great_power_score_transfer = 0
+
+	minimum_opinion_for_offer = 0
+
+	subject_modifier = {
+		bank_interest = -0.005
+	}
+
+	creation_visible = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+			any_international_organizations_member_of = {
+				international_organization_type = international_organization_type:creditors_league
+				international_organization_has_policy = policy:cl_con_build_policy
+			}
+		}
+		scope:target = {
+			is_member_of_international_organization_of_type = { type = creditors_league }
+			NOT = { is_subject_of = scope:actor }
+		}
+	}
+
+	visible_through_diplomacy = {
+		has_reform = government_reform:banking_country
+		any_international_organizations_member_of = {
+			international_organization_type = international_organization_type:creditors_league
+			international_organization_has_policy = policy:cl_con_build_policy
+		}
+		scope:target = {
+			is_member_of_international_organization_of_type = { type = creditors_league }
+			NOT = { is_subject_of = root }
+		}
+	}
+
+	enabled_through_diplomacy = {
+		has_reform = government_reform:banking_country
+		any_international_organizations_member_of = {
+			international_organization_type = international_organization_type:creditors_league
+			international_organization_has_policy = policy:cl_con_build_policy
+		}
+		scope:target = {
+			is_member_of_international_organization_of_type = { type = creditors_league }
+			NOT = { is_subject_of = root }
+		}
+	}
+
+	visible_through_treaty = {
+		has_reform = government_reform:banking_country
+	}
+
+	enabled_through_treaty = {
+		has_reform = government_reform:banking_country
+	}
+
+	on_enable = {
+	}
+
+	on_disable = {
+	}
+
+	diplo_chance_accept_overlord = {
+		base = 0
+	}
+
+	diplo_chance_accept_subject = {
+		base = 30
+		opinion = 0.2
+	}
+}

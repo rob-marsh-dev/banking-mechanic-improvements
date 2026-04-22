@@ -1,4 +1,32 @@
-﻿absorbed_foreign_branch = {
+﻿foreign_branch_minor = {
+	game_data = {
+		category = country
+	}
+	monthly_diplomats = 0.05
+}
+
+foreign_branch_standard = {
+	game_data = {
+		category = country
+	}
+	monthly_diplomats = 0.1
+}
+
+foreign_branch_major = {
+	game_data = {
+		category = country
+	}
+	monthly_diplomats = 0.15
+}
+
+foreign_branch_great_power = {
+	game_data = {
+		category = country
+	}
+	monthly_diplomats = 0.2
+}
+
+absorbed_foreign_branch = {
 	game_data = {
 		category = country
 	}

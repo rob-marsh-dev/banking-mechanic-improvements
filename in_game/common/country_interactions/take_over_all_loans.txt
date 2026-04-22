@@ -1,13 +1,17 @@
-REPLACE_OR_CREATE:take_over_loan =  {
+take_over_all_loans = {
 	category = CATEGORY_ECONOMY_ACTIONS
 	type = diplomacy
-	is_take_over_loan = yes
 
 	potential = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
 	}
 
-
 	allow = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
 	}
 
 	select_trigger = {
@@ -20,28 +24,39 @@ REPLACE_OR_CREATE:take_over_loan =  {
 		visible = {
 			num_loans > 0
 		}
-        enabled = {
+		enabled = {
 			any_loan = {
 				NOT = { exists = owner }
 				months_left > 40
 				loan_interest > scope:actor.modifier:bank_interest
-				scope:actor.gold > remaining_debt
 			}
+			scope:actor.gold > total_debt
 		}
 	}
 
 	effect = {
+		custom_description = {
+			text = take_over_all_loans_count_tooltip
+			value = scope:recipient.num_loans
+			set_local_variable = { name = _loan_count value = 0 }
+		}
+		custom_description = {
+			text = take_over_all_loans_debt_tooltip
+			value = scope:recipient.total_debt
+			set_local_variable = { name = _loan_debt value = 0 }
+		}
+		custom_description = {
+			text = take_over_all_loans_cost_tooltip
+			value = scope:recipient.banking_ownerless_loan_principal
+			set_local_variable = { name = _loan_cost value = 0 }
+		}
 		scope:recipient = {
-			ordered_loan = {
+			every_loan = {
 				limit = {
 					NOT = { exists = owner }
 					months_left > 40
 					loan_interest > scope:actor.modifier:bank_interest
-					scope:actor.gold > remaining_debt
 				}
-				order_by = remaining_debt
-				max = 1
-
 				custom_description = {
 					text = pay_off_their_debt
 					value = loan_amount
@@ -52,14 +67,12 @@ REPLACE_OR_CREATE:take_over_loan =  {
 						}
 					}
 				}
-
 				change_loan_owner = scope:actor
 			}
 		}
 	}
 
 	ai_will_do = {
-		#Ignore smaller countries for performance
 		add = -20
 		add = scope:recipient.country_tax_base
 	}

@@ -1,0 +1,15 @@
+realm_in_arrears_cost_cost_modifier = {
+	color = bad
+	percent = yes
+	game_data = {
+		category = country
+	}
+}
+
+cl_payment_base_cost_modifier = {
+	color = bad
+	percent = yes
+	game_data = {
+		category = country
+	}
+}

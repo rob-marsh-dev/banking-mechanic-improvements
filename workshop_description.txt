@@ -1,0 +1,149 @@
+Banking Nation Improvements
+Version 1.3 | Compatible with EU5 1.1.10 (Rossbach)
+
+This mod significantly expands the Banking Nation government type, giving banking nations a richer toolkit for economic dominance, diplomatic leverage, and debt-based power projection.
+
+---
+
+CORE CHANGES
+
+- Banking Office: Upgraded to 3 levels (vanilla: 1), no longer restricted to towns.
+- Take Over Loan: The bank pays only the principal on purchased loans, not the remaining interest — enabling genuine profit on acquired debt.
+- Bank Maintenance: Production method adjusted to reflect the real costs of running a financial institution.
+
+---
+
+GOVERNMENT SUB-REFORMS
+
+Banking nations may choose one of two specialisations:
+
+Trading-Focused Bank
+  Bonuses to trade income, trade efficiency, and merchant maintenance costs.
+  A smaller footprint among the estates, but fewer foreign earnings.
+
+Financial-Focused Bank
+  Reduced costs for building in foreign territories.
+  Lower building upkeep across all holdings.
+
+---
+
+NEW BUILDINGS
+
+Currency Exchange
+  Generates trade income and influences regional commerce.
+
+Banker's Kontor
+  Deploys bank-owned merchants to trade on the bank's behalf.
+
+Banker Shipyard
+  A bank-owned shipyard in a foreign territory, granting ship construction rights with local permission.
+
+Bank Recruitment Firm
+  A foreign building for recruiting bank-loyal regiments, with local permission required.
+
+Art Emporium
+  Invests in cultural prestige, spreading the bank's name and influence.
+
+Banking Mining Interest
+  Extracts value from resource-producing locations through financial leverage.
+
+---
+
+SUBJECT TYPE: REALM IN ARREARS
+
+When a nation cannot service its debts, the bank may impose direct financial governance. This subject type grants the banking overlord:
+  - The right to recruit regiments in the subject's territory
+  - The right to build ships in the subject's ports
+
+---
+
+DIPLOMATIC INTERACTIONS
+
+Install Foreign Branch
+  Establish a banking presence in a foreign nation's territory.
+
+Absorb Foreign Branch
+  Consolidate an existing foreign branch under direct bank control.
+
+Pressure Into Loan
+  Leverage political influence to push a nation into taking a loan from the bank.
+
+Strongarm Into Fees
+  Extract fees from a nation through financial coercion.
+
+Seize Crown Assets
+  Claim physical assets from a debtor nation as collateral.
+
+Take Over Loan / Take Over All Loans
+  Purchase outstanding debt from other lenders. The bank pays only the principal, keeping the interest as profit.
+
+Compel League Membership (Hostile Takeover)
+  When a nation owes the bank five or more loans, the bank may force them into the Creditor's League.
+
+Sway Their Vote
+  Banking nations may bribe IO parliament members without spending prestige — gold is their instrument of influence.
+
+---
+
+THE CREDITOR'S LEAGUE
+
+A new international organisation available exclusively to banking nations. The founding bank serves as permanent leader. Member nations gain small economic bonuses; the leader gains scaling rewards based on membership size.
+
+Leader bonuses (scale with number of members):
+  - Global merchant capacity
+  - Maximum diplomats
+  - Monthly diplomat generation
+
+Joining the League:
+  - Larger, wealthier nations are more resistant to joining
+  - Each existing member adds to the resistance
+  - Heavily indebted nations are more willing — the bank assumes their outstanding market loans on entry
+  - Active league policies affect acceptance chances
+
+Request Credit Line
+  Member nations may request a loan directly from the banking nation leader at the bank's lending rate.
+
+Invite to Creditor's League
+  The banking nation may invite eligible nations diplomatically. Policy mix, debt levels, and nation size all affect the outcome.
+
+---
+
+CREDITOR'S LEAGUE PARLIAMENT LAWS
+
+The Council of Creditors votes on six areas of policy:
+
+Payment Law
+  Controls whether members receive subsidies or pay levies to the bank.
+  Options: Gold Subsidy / Small Levy / Large Levy / Full Extraction
+
+Construction Law
+  Governs whether the bank may build in member territories.
+  Options: No Rights / Full Build Rights
+
+Military Law
+  Controls recruitment and naval access in member lands.
+  Options: No Access / Recruitment Rights / Naval Rights
+
+Intelligence Law
+  Governs information sharing within the league.
+  Options: Closed / Intelligence Sharing (bonus to spy network construction)
+
+Internal Relations Law
+  Governs conflict between member states.
+  Options: Open Relations (merchant bonuses) / Enforced Internal Peace (no war between members)
+
+External War Law
+  Governs whether members are drawn into the bank's wars.
+  Options: Free / Defensive Pact / Offensive Alliance / Restricted Sovereignty / Full Submission
+
+---
+
+COMPATIBILITY
+
+This mod patches the following vanilla definitions:
+  - banking_country (government reform)
+  - banking_office (building)
+  - take_over_loan (country interaction)
+  - bribe_voter_for_policy (country interaction — banking nations use a prestige-free version)
+
+No other vanilla files are modified. Should be compatible with most other mods unless they also patch the above.

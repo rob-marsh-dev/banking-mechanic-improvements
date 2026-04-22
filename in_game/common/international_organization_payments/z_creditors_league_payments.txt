@@ -1,0 +1,251 @@
+# Tier 1 — leader subsidises members (1% of member income paid out proportionally)
+cl_member_subsidy_payment = {
+	get_payer_list = {
+		leader_country ?= {
+			add_to_local_variable_list = {
+				name = payers
+				target = this
+			}
+		}
+	}
+	get_payee_list = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add_to_local_variable_list = {
+				name = payees
+				target = this
+			}
+		}
+	}
+	price = cl_payment_base
+	uses_maintenance = no
+	price_multiplier = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add = {
+				desc = "CL_PRICE_TOTAL_MEMBER_INCOME"
+				value = monthly_income_trade_and_tax
+			}
+		}
+		multiply = {
+			desc = "CL_SUBSIDY_RATE"
+			value = 0.01
+		}
+	}
+	proportion_for_payer = {
+		add = { desc = "cl_payment_all" value = 1 }
+	}
+	proportion_for_payee = {
+		add = {
+			desc = "CL_PRICE_YOUR_INCOME_SHARE"
+			value = monthly_income_trade_and_tax
+		}
+	}
+}
+
+# Tier 3 — small levy: members pay leader 2% of their income
+cl_small_levy_payment = {
+	get_payer_list = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add_to_local_variable_list = {
+				name = payers
+				target = this
+			}
+		}
+	}
+	get_payee_list = {
+		leader_country ?= {
+			add_to_local_variable_list = {
+				name = payees
+				target = this
+			}
+		}
+	}
+	price = cl_payment_base
+	uses_maintenance = yes
+	maintenance_modifier = {
+		potential_trigger = {
+			"payment_maintenance(scope:recipient|cl_small_levy_payment)" < 0.5
+		}
+		scale = {
+			value = 1
+			subtract = {
+				value = "payment_maintenance(scope:recipient|cl_small_levy_payment)"
+				multiply = 2
+			}
+		}
+		diplomatic_reputation = -1
+	}
+	maintenance_modifier = {
+		potential_trigger = {
+			"payment_maintenance(scope:recipient|cl_small_levy_payment)" > 0.5
+		}
+		scale = {
+			value = "payment_maintenance(scope:recipient|cl_small_levy_payment)"
+			subtract = 0.5
+			multiply = 2
+		}
+		bank_interest = -0.005
+	}
+	price_multiplier = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add = {
+				desc = "CL_PRICE_TOTAL_MEMBER_INCOME"
+				value = monthly_income_trade_and_tax
+			}
+		}
+		multiply = {
+			desc = "CL_SMALL_LEVY_RATE"
+			value = 0.02
+		}
+	}
+	proportion_for_payer = {
+		add = {
+			desc = "CL_PRICE_YOUR_INCOME_SHARE"
+			value = monthly_income_trade_and_tax
+		}
+	}
+	proportion_for_payee = {
+		add = { desc = "cl_payment_all" value = 1 }
+	}
+}
+
+# Tier 4 — large levy: members pay leader 5% of their income
+cl_large_levy_payment = {
+	get_payer_list = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add_to_local_variable_list = {
+				name = payers
+				target = this
+			}
+		}
+	}
+	get_payee_list = {
+		leader_country ?= {
+			add_to_local_variable_list = {
+				name = payees
+				target = this
+			}
+		}
+	}
+	price = cl_payment_base
+	uses_maintenance = yes
+	maintenance_modifier = {
+		potential_trigger = {
+			"payment_maintenance(scope:recipient|cl_large_levy_payment)" < 0.5
+		}
+		scale = {
+			value = 1
+			subtract = {
+				value = "payment_maintenance(scope:recipient|cl_large_levy_payment)"
+				multiply = 2
+			}
+		}
+		diplomatic_reputation = -2
+	}
+	maintenance_modifier = {
+		potential_trigger = {
+			"payment_maintenance(scope:recipient|cl_large_levy_payment)" > 0.5
+		}
+		scale = {
+			value = "payment_maintenance(scope:recipient|cl_large_levy_payment)"
+			subtract = 0.5
+			multiply = 2
+		}
+		bank_interest = -0.005
+	}
+	price_multiplier = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add = {
+				desc = "CL_PRICE_TOTAL_MEMBER_INCOME"
+				value = monthly_income_trade_and_tax
+			}
+		}
+		multiply = {
+			desc = "CL_LARGE_LEVY_RATE"
+			value = 0.05
+		}
+	}
+	proportion_for_payer = {
+		add = {
+			desc = "CL_PRICE_YOUR_INCOME_SHARE"
+			value = monthly_income_trade_and_tax
+		}
+	}
+	proportion_for_payee = {
+		add = { desc = "cl_payment_all" value = 1 }
+	}
+}
+
+# Tier 5 — full levy: members pay leader 10% of their income
+cl_full_levy_payment = {
+	get_payer_list = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add_to_local_variable_list = {
+				name = payers
+				target = this
+			}
+		}
+	}
+	get_payee_list = {
+		leader_country ?= {
+			add_to_local_variable_list = {
+				name = payees
+				target = this
+			}
+		}
+	}
+	price = cl_payment_base
+	uses_maintenance = yes
+	maintenance_modifier = {
+		potential_trigger = {
+			"payment_maintenance(scope:recipient|cl_full_levy_payment)" < 0.5
+		}
+		scale = {
+			value = 1
+			subtract = {
+				value = "payment_maintenance(scope:recipient|cl_full_levy_payment)"
+				multiply = 2
+			}
+		}
+		diplomatic_reputation = -3
+	}
+	maintenance_modifier = {
+		potential_trigger = {
+			"payment_maintenance(scope:recipient|cl_full_levy_payment)" > 0.5
+		}
+		scale = {
+			value = "payment_maintenance(scope:recipient|cl_full_levy_payment)"
+			subtract = 0.5
+			multiply = 2
+		}
+		bank_interest = -0.005
+	}
+	price_multiplier = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add = {
+				desc = "CL_PRICE_TOTAL_MEMBER_INCOME"
+				value = monthly_income_trade_and_tax
+			}
+		}
+		multiply = {
+			desc = "CL_FULL_LEVY_RATE"
+			value = 0.10
+		}
+	}
+	proportion_for_payer = {
+		add = {
+			desc = "CL_PRICE_YOUR_INCOME_SHARE"
+			value = monthly_income_trade_and_tax
+		}
+	}
+	proportion_for_payee = {
+		add = { desc = "cl_payment_all" value = 1 }
+	}
+}

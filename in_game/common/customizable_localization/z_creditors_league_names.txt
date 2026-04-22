@@ -1,0 +1,15 @@
+creditors_league_name = {
+	type = international_organization
+
+	text = {
+		trigger = {
+			exists = leader_country
+		}
+		localization_key = CREDITORS_LEAGUE_NAMED
+	}
+
+	text = {
+		localization_key = CREDITORS_LEAGUE_NAME
+		fallback = yes
+	}
+}

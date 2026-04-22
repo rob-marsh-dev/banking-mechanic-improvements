@@ -1,0 +1,89 @@
+install_foreign_branch = {
+	category = CATEGORY_ECONOMY_ACTIONS
+	type = diplomacy
+
+	potential = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	allow = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			capital = { is_discovered_by = scope:actor }
+			within_diplomatic_range = scope:actor
+			NOT = { has_reform = government_reform:banking_country }
+		}
+		enabled = {
+			scope:actor.gold > { value = country_tax_base multiply = 100 min = 400 }
+			NOT = { has_variable = banking_branch_installed }
+		}
+	}
+
+	effect = {
+		scope:actor = {
+			add_gold = {
+				value = scope:recipient.country_tax_base
+				multiply = -100
+				max = -400
+			}
+		}
+		scope:recipient = {
+			add_gold = {
+				value = scope:recipient.country_tax_base
+				multiply = 100
+				min = 400
+			}
+			set_variable = { name = banking_branch_installed value = yes }
+		}
+
+		if = {
+			limit = { scope:recipient.country_tax_base >= 50 }
+			scope:actor = {
+				add_country_modifier = {
+					modifier = foreign_branch_great_power
+					years = -1
+					mode = add
+				}
+			}
+		} else_if = {
+			limit = { scope:recipient.country_tax_base >= 25 }
+			scope:actor = {
+				add_country_modifier = {
+					modifier = foreign_branch_major
+					years = -1
+					mode = add
+				}
+			}
+		} else_if = {
+			limit = { scope:recipient.country_tax_base >= 10 }
+			scope:actor = {
+				add_country_modifier = {
+					modifier = foreign_branch_standard
+					years = -1
+					mode = add
+				}
+			}
+		} else = {
+			scope:actor = {
+				add_country_modifier = {
+					modifier = foreign_branch_minor
+					years = -1
+					mode = add
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,239 @@
+invite_to_creditors_league = {
+	type = diplomacy
+	category = CATEGORY_FRIENDLY_ACTIONS
+
+	potential = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+			is_member_of_international_organization_of_type = { type = creditors_league }
+		}
+		scope:recipient = {
+			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+			NOT = { has_reform = government_reform:banking_country }
+		}
+	}
+
+	allow = {
+		scope:actor = {
+			is_member_of_international_organization_of_type = { type = creditors_league }
+		}
+	}
+
+	effect = {
+		scope:actor = {
+			every_international_organizations_member_of = {
+				limit = {
+					international_organization_type = international_organization_type:creditors_league
+				}
+				add_country_to_international_organization = scope:recipient
+			}
+		}
+		# Bank assumes responsibility for the new member's outstanding market loans
+		scope:recipient = {
+			every_loan = {
+				limit = {
+					NOT = { exists = owner }
+					months_left > 20
+				}
+				change_loan_borrower = scope:actor
+			}
+		}
+	}
+
+	diplo_chance = {
+		base = -10
+		opinion = 0.15
+		diplomatic_reputation = 1
+	}
+
+	accept = {
+		# Nations with debt are relieved to have it absorbed
+		add = {
+			desc = "CREDITORS_LEAGUE_JOIN_DEBT_RELIEF"
+			value = {
+				value = scope:recipient.num_loans
+				multiply = 10
+			}
+		}
+
+		# Larger nations are more resistant
+		subtract = {
+			desc = "CREDITORS_LEAGUE_NATION_SIZE"
+			value = {
+				value = scope:recipient.monthly_income_trade_and_tax
+				multiply = 4.0
+			}
+		}
+
+		# Per-member malus: -3 per existing member
+		subtract = {
+			desc = "CREDITORS_LEAGUE_TOO_MANY_MEMBERS"
+			scope:actor = {
+				every_international_organizations_member_of = {
+					limit = {
+						international_organization_type = international_organization_type:creditors_league
+					}
+					save_temporary_scope_as = cl_invite_io
+				}
+			}
+			value = {
+				value = scope:cl_invite_io.total_members
+				subtract = 1
+				multiply = 4
+			}
+		}
+
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_subsidy_policy
+					}
+				}
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_SUBSIDY" value = 15 }
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_small_levy_policy
+					}
+				}
+			}
+			subtract = { desc = "CREDITORS_LEAGUE_JOIN_SMALL_LEVY" value = 10 }
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_large_levy_policy
+					}
+				}
+			}
+			subtract = { desc = "CREDITORS_LEAGUE_JOIN_LARGE_LEVY" value = 20 }
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_full_levy_policy
+					}
+				}
+			}
+			subtract = { desc = "CREDITORS_LEAGUE_JOIN_FULL_LEVY" value = 35 }
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_con_build_policy
+					}
+				}
+			}
+			subtract = { desc = "CREDITORS_LEAGUE_JOIN_BUILD_RIGHTS" value = 5 }
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_mil_recruit_policy
+					}
+				}
+			}
+			subtract = { desc = "CREDITORS_LEAGUE_JOIN_RECRUIT_RIGHTS" value = 10 }
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_mil_navy_policy
+					}
+				}
+			}
+			subtract = { desc = "CREDITORS_LEAGUE_JOIN_NAVY_RIGHTS" value = 20 }
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_int_peace_policy
+					}
+				}
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_INTERNAL_PEACE" value = 10 }
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_ext_defensive_policy
+					}
+				}
+			}
+			subtract = { desc = "CREDITORS_LEAGUE_JOIN_DEFENSIVE" value = 5 }
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_ext_offensive_policy
+					}
+				}
+			}
+			subtract = { desc = "CREDITORS_LEAGUE_JOIN_OFFENSIVE" value = 15 }
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_ext_restricted_policy
+					}
+				}
+			}
+			subtract = { desc = "CREDITORS_LEAGUE_JOIN_RESTRICTED" value = 25 }
+		}
+		if = {
+			limit = {
+				scope:actor = {
+					any_international_organizations_member_of = {
+						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_has_policy = policy:cl_ext_sovereignty_policy
+					}
+				}
+			}
+			subtract = { desc = "CREDITORS_LEAGUE_JOIN_SOVEREIGNTY" value = 40 }
+		}
+	}
+
+	ai_will_do = {
+		value = 0
+		if = {
+			limit = {
+				scope:recipient = {
+					monthly_income_trade_and_tax > 10
+				}
+			}
+			add = 30
+		}
+		if = {
+			limit = {
+				scope:recipient = {
+					opinion = { who = scope:actor value >= 50 }
+				}
+			}
+			add = 20
+		}
+	}
+}

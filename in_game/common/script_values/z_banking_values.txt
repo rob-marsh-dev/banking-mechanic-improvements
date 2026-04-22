@@ -1,0 +1,9 @@
+banking_ownerless_loan_principal = {
+	every_loan = {
+		limit = {
+			NOT = { exists = owner }
+			months_left > 40
+		}
+		add = loan_amount
+	}
+}

@@ -1,0 +1,11 @@
+bank_expand_diplomat_network = {
+	ability = dip
+
+	potential = {
+		has_reform = government_reform:banking_country
+	}
+
+	country_modifier = {
+		monthly_diplomats = 0.15
+	}
+}

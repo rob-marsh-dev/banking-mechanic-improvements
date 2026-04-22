@@ -1,0 +1,624 @@
+creditors_league_payment_law = {
+	type = international_organization
+	law_category = finance
+	potential = {
+		international_organization_type = international_organization_type:creditors_league
+	}
+	allow = { always = yes }
+	requires_vote = yes
+	custom_tags = { forbids_no_policy }
+
+	# Tier 1: Leader subsidises members — small gold payment from bank to each member
+	cl_subsidy_policy = {
+		payments_repealed = { cl_small_levy_payment cl_large_levy_payment cl_full_levy_payment }
+		payments_implemented = { cl_member_subsidy_payment }
+		country_modifier = {
+			potential_trigger = {
+				NOT = { is_leader_of_international_organization = scope:recipient }
+			}
+			bank_interest = -0.005
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_LEADER_PAYS_SUBSIDY" value = -10 }
+			}
+			else = {
+				add = { desc = "CL_MEMBER_RECEIVES_SUBSIDY" value = 40 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_LEADER_WANTS_CHANGE" value = -20 }
+			}
+			else = {
+				add = { desc = "CL_MEMBER_WANTS_KEEP" value = 30 }
+			}
+		}
+	}
+
+	# Tier 2: Free association — no payments in either direction
+	cl_free_association_policy = {
+		payments_repealed = { cl_member_subsidy_payment }
+		wants_this_policy_bias = {
+			add = { desc = "CL_NEUTRAL_TERMS" value = 5 }
+		}
+		wants_keep_policy = {
+			add = { desc = "CL_NEUTRAL_TERMS" value = 5 }
+		}
+	}
+
+	# Tier 3: Small levy — members pay 2% of income to leader
+	cl_small_levy_policy = {
+		payments_repealed = { cl_member_subsidy_payment }
+		payments_implemented = { cl_small_levy_payment }
+		country_modifier = {
+			potential_trigger = {
+				is_leader_of_international_organization = scope:recipient
+			}
+			monthly_loan_capacity_investment = 2.5
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_LEADER_GAINS_LEVY" value = 30 }
+			}
+			else = {
+				add = { desc = "CL_MEMBER_PAYS_LEVY" value = -20 }
+				add = {
+					desc = "CL_MEMBER_INCOME_WEIGHT"
+					value = monthly_income_trade_and_tax
+					multiply = -0.1
+				}
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_LEADER_KEEPS_LEVY" value = 30 }
+			}
+			else = {
+				add = { desc = "CL_MEMBER_RESISTS_LEVY" value = -15 }
+			}
+		}
+	}
+
+	# Tier 4: Large levy — members pay 5% of income to leader
+	cl_large_levy_policy = {
+		payments_repealed = { cl_small_levy_payment }
+		payments_implemented = { cl_large_levy_payment }
+		allow = {
+			international_organization_has_policy = policy:cl_small_levy_policy
+		}
+		country_modifier = {
+			potential_trigger = {
+				NOT = { is_leader_of_international_organization = scope:recipient }
+			}
+			bank_interest = 0.005
+		}
+		country_modifier = {
+			potential_trigger = {
+				is_leader_of_international_organization = scope:recipient
+			}
+			monthly_loan_capacity_investment = 5.0
+			global_merchant_capacity_modifier = 0.05
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_LEADER_GAINS_LEVY" value = 50 }
+			}
+			else = {
+				add = { desc = "CL_MEMBER_PAYS_LEVY" value = -40 }
+				add = {
+					desc = "CL_MEMBER_INCOME_WEIGHT"
+					value = monthly_income_trade_and_tax
+					multiply = -0.2
+				}
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_LEADER_KEEPS_LEVY" value = 50 }
+			}
+			else = {
+				add = { desc = "CL_MEMBER_RESISTS_LEVY" value = -30 }
+			}
+		}
+	}
+
+	# Tier 5: Full levy — members pay 10% of income to leader
+	cl_full_levy_policy = {
+		payments_repealed = { cl_large_levy_payment }
+		payments_implemented = { cl_full_levy_payment }
+		allow = {
+			international_organization_has_policy = policy:cl_large_levy_policy
+		}
+		country_modifier = {
+			potential_trigger = {
+				NOT = { is_leader_of_international_organization = scope:recipient }
+			}
+			bank_interest = 0.01
+			trade_efficiency = -0.01
+		}
+		country_modifier = {
+			potential_trigger = {
+				is_leader_of_international_organization = scope:recipient
+			}
+			monthly_loan_capacity_investment = 10.0
+			global_merchant_capacity_modifier = 0.1
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_LEADER_GAINS_LEVY" value = 80 }
+			}
+			else = {
+				add = { desc = "CL_MEMBER_PAYS_LEVY" value = -80 }
+				add = {
+					desc = "CL_MEMBER_INCOME_WEIGHT"
+					value = monthly_income_trade_and_tax
+					multiply = -0.5
+				}
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_LEADER_KEEPS_LEVY" value = 80 }
+			}
+			else = {
+				add = { desc = "CL_MEMBER_RESISTS_LEVY" value = -60 }
+			}
+		}
+	}
+}
+
+creditors_league_military_law = {
+	type = international_organization
+	law_category = military
+	potential = {
+		international_organization_type = international_organization_type:creditors_league
+	}
+	allow = { always = yes }
+	requires_vote = yes
+	custom_tags = { forbids_no_policy }
+
+	# Tier 1: No special military access (default)
+	cl_mil_no_access_policy = {
+		wants_this_policy_bias = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_MIL_MEMBER_NO_ACCESS" value = 20 }
+			}
+			else = {
+				add = { desc = "CL_MIL_LEADER_WANTS_ACCESS" value = -5 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_MIL_MEMBER_KEEPS_FREE" value = 20 }
+			}
+		}
+	}
+
+	# Tier 2: Banking nation may recruit regiments in member territory
+	cl_mil_recruit_policy = {
+		can_recruit_regiments_in_members = yes
+		country_modifier = {
+			potential_trigger = {
+				is_leader_of_international_organization = scope:recipient
+			}
+			global_foreign_build_buildings_cost = -0.1
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_MIL_LEADER_RECRUIT_ACCESS" value = 50 }
+			}
+			else = {
+				add = { desc = "CL_MIL_MEMBER_RECRUIT_INTRUSION" value = -30 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_MIL_LEADER_KEEPS_RECRUIT" value = 50 }
+			}
+			else = {
+				add = { desc = "CL_MIL_MEMBER_RESISTS_RECRUIT" value = -25 }
+			}
+		}
+	}
+
+	# Tier 3: Banking nation may also build ships in member territory
+	cl_mil_navy_policy = {
+		can_recruit_regiments_in_members = yes
+		can_build_ships_in_members = yes
+		allow = {
+			international_organization_has_policy = policy:cl_mil_recruit_policy
+		}
+		country_modifier = {
+			potential_trigger = {
+				is_leader_of_international_organization = scope:recipient
+			}
+			global_foreign_build_buildings_cost = -0.15
+			global_merchant_capacity_modifier = 0.05
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_MIL_LEADER_NAVY_ACCESS" value = 70 }
+			}
+			else = {
+				add = { desc = "CL_MIL_MEMBER_NAVY_INTRUSION" value = -50 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_MIL_LEADER_KEEPS_NAVY" value = 70 }
+			}
+			else = {
+				add = { desc = "CL_MIL_MEMBER_RESISTS_NAVY" value = -40 }
+			}
+		}
+	}
+}
+
+creditors_league_intelligence_law = {
+	type = international_organization
+	law_category = military
+	potential = {
+		international_organization_type = international_organization_type:creditors_league
+	}
+	allow = { always = yes }
+	requires_vote = yes
+	custom_tags = { forbids_no_policy }
+
+	# Tier 1: No intelligence sharing (default)
+	cl_intel_closed_policy = {
+		wants_this_policy_bias = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_INTEL_MEMBER_WANTS_CLOSED" value = 20 }
+			}
+			else = {
+				add = { desc = "CL_INTEL_LEADER_WANTS_OPEN" value = -5 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_INTEL_MEMBER_KEEPS_CLOSED" value = 20 }
+			}
+		}
+	}
+
+	# Tier 2: Intelligence sharing — spy network bonus; fog_of_war_lifted is set on the IO definition
+	cl_intel_share_policy = {
+		country_modifier = {
+			spy_network_construction = 0.1
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_INTEL_LEADER_WANTS_OPEN" value = 40 }
+			}
+			else = {
+				add = { desc = "CL_INTEL_MEMBER_DISLIKES_OPEN" value = -20 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_INTEL_LEADER_KEEPS_OPEN" value = 40 }
+			}
+			else = {
+				add = { desc = "CL_INTEL_MEMBER_RESISTS_OPEN" value = -15 }
+			}
+		}
+	}
+}
+
+creditors_league_construction_law = {
+	type = international_organization
+	law_category = finance
+	potential = {
+		international_organization_type = international_organization_type:creditors_league
+	}
+	allow = { always = yes }
+	requires_vote = yes
+	custom_tags = { forbids_no_policy }
+
+	# Tier 1: No construction rights (default)
+	cl_con_no_build_policy = {
+		wants_this_policy_bias = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_CON_MEMBER_NO_BUILD" value = 20 }
+			}
+			else = {
+				add = { desc = "CL_CON_LEADER_WANTS_BUILD" value = -5 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_CON_MEMBER_KEEPS_FREE" value = 20 }
+			}
+		}
+	}
+
+	# Tier 2: Banking nation may negotiate construction rights with members
+	cl_con_build_policy = {
+		country_modifier = {
+			potential_trigger = {
+				is_leader_of_international_organization = scope:recipient
+			}
+			global_foreign_build_buildings_cost = -0.1
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_CON_LEADER_BUILD_ACCESS" value = 30 }
+			}
+			else = {
+				add = { desc = "CL_CON_MEMBER_BUILD_INTRUSION" value = -15 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_CON_LEADER_KEEPS_BUILD" value = 30 }
+			}
+			else = {
+				add = { desc = "CL_CON_MEMBER_RESISTS_BUILD" value = -10 }
+			}
+		}
+	}
+}
+
+creditors_league_internal_law = {
+	type = international_organization
+	law_category = diplomacy
+	potential = {
+		international_organization_type = international_organization_type:creditors_league
+	}
+	allow = { always = yes }
+	requires_vote = yes
+	custom_tags = { forbids_no_policy }
+
+	# Tier 1: No restrictions on wars between members (default)
+	cl_int_open_policy = {
+		country_modifier = {
+			global_merchant_power = 0.05
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_INT_MEMBER_WANTS_OPEN" value = 30 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_INT_MEMBER_KEEPS_OPEN" value = 20 }
+			}
+		}
+	}
+
+	# Tier 2: Wars between league members are forbidden
+	cl_int_peace_policy = {
+		international_organization_modifier = {
+			enforced_internal_peace = yes
+		}
+		country_modifier = {
+			monthly_diplomats = 0.1
+			bank_interest = -0.003
+		}
+		wants_this_policy_bias = {
+			add = { desc = "CL_INT_NO_INTERNECINE_WARS" value = 15 }
+		}
+		wants_keep_policy = {
+			add = { desc = "CL_INT_NO_INTERNECINE_WARS" value = 10 }
+		}
+	}
+}
+
+creditors_league_external_law = {
+	type = international_organization
+	law_category = diplomacy
+	potential = {
+		international_organization_type = international_organization_type:creditors_league
+	}
+	allow = { always = yes }
+	requires_vote = yes
+	custom_tags = { forbids_no_policy }
+
+	# Tier 1: No joint war obligations (default)
+	cl_ext_free_policy = {
+		wants_this_policy_bias = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_EXT_MEMBER_WANTS_FREEDOM" value = 30 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_EXT_MEMBER_KEEPS_FREEDOM" value = 20 }
+			}
+		}
+	}
+
+	# Tier 2: Members must join defensive wars together
+	cl_ext_defensive_policy = {
+		join_defensive_wars_always = {
+			custom_tooltip = {
+				text = JOIN_WARS_DEFAULT_REASON
+				always = yes
+			}
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_EXT_LEADER_DEFENSIVE_PACT" value = 30 }
+			}
+			else = {
+				add = { desc = "CL_EXT_MEMBER_DEFENSIVE_BURDEN" value = -10 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_EXT_LEADER_KEEPS_DEFENSIVE" value = 30 }
+			}
+			else = {
+				add = { desc = "CL_EXT_MEMBER_RESISTS_DEFENSIVE" value = -5 }
+			}
+		}
+	}
+
+	# Tier 3: Members must also join offensive wars declared by the leader
+	cl_ext_offensive_policy = {
+		join_defensive_wars_always = {
+			custom_tooltip = {
+				text = JOIN_WARS_DEFAULT_REASON
+				always = yes
+			}
+		}
+		join_offensive_wars_always = {
+			custom_tooltip = {
+				text = JOIN_WARS_DEFAULT_REASON
+				always = yes
+			}
+		}
+		allow = {
+			international_organization_has_policy = policy:cl_ext_defensive_policy
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_EXT_LEADER_OFFENSIVE_PACT" value = 50 }
+			}
+			else = {
+				add = { desc = "CL_EXT_MEMBER_OFFENSIVE_BURDEN" value = -30 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_EXT_LEADER_KEEPS_OFFENSIVE" value = 50 }
+			}
+			else = {
+				add = { desc = "CL_EXT_MEMBER_RESISTS_OFFENSIVE" value = -25 }
+			}
+		}
+	}
+
+	# Tier 4: Restricted diplomacy — members lose diplomatic autonomy
+	cl_ext_restricted_policy = {
+		join_defensive_wars_always = {
+			custom_tooltip = {
+				text = JOIN_WARS_DEFAULT_REASON
+				always = yes
+			}
+		}
+		join_offensive_wars_always = {
+			custom_tooltip = {
+				text = JOIN_WARS_DEFAULT_REASON
+				always = yes
+			}
+		}
+		allow = {
+			international_organization_has_policy = policy:cl_ext_offensive_policy
+		}
+		country_modifier = {
+			potential_trigger = {
+				NOT = { is_leader_of_international_organization = scope:recipient }
+			}
+			monthly_diplomats = -0.2
+			spy_network_construction = -0.2
+		}
+		country_modifier = {
+			potential_trigger = {
+				is_leader_of_international_organization = scope:recipient
+			}
+			global_crown_estate_power = 0.1
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_EXT_LEADER_RESTRICTED" value = 70 }
+			}
+			else = {
+				add = { desc = "CL_EXT_MEMBER_RESTRICTED" value = -50 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_EXT_LEADER_KEEPS_RESTRICTED" value = 70 }
+			}
+			else = {
+				add = { desc = "CL_EXT_MEMBER_RESISTS_RESTRICTED" value = -40 }
+			}
+		}
+	}
+
+	# Tier 5: Sovereignty — near-subject control by the banking nation
+	cl_ext_sovereignty_policy = {
+		join_defensive_wars_always = {
+			custom_tooltip = {
+				text = JOIN_WARS_DEFAULT_REASON
+				always = yes
+			}
+		}
+		join_offensive_wars_always = {
+			custom_tooltip = {
+				text = JOIN_WARS_DEFAULT_REASON
+				always = yes
+			}
+		}
+		allow = {
+			international_organization_has_policy = policy:cl_ext_restricted_policy
+		}
+		country_modifier = {
+			potential_trigger = {
+				NOT = { is_leader_of_international_organization = scope:recipient }
+			}
+			monthly_diplomats = -0.4
+			spy_network_construction = -0.4
+			trade_efficiency = -0.05
+		}
+		country_modifier = {
+			potential_trigger = {
+				is_leader_of_international_organization = scope:recipient
+			}
+			global_crown_estate_power = 0.2
+			subject_income_modifier = 0.1
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_EXT_LEADER_SOVEREIGNTY" value = 100 }
+			}
+			else = {
+				add = { desc = "CL_EXT_MEMBER_SOVEREIGNTY" value = -80 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_EXT_LEADER_KEEPS_SOVEREIGNTY" value = 100 }
+			}
+			else = {
+				add = { desc = "CL_EXT_MEMBER_RESISTS_SOVEREIGNTY" value = -70 }
+			}
+		}
+	}
+}
