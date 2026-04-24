@@ -8,6 +8,7 @@ creditors_league = {
 	disband_if_no_leader = yes
 	has_parliament = yes
 	parliament_type = creditors_league_assembly
+	max_active_resolutions = 1
 	subject_limited = no
 	show_on_diplomatic_map = yes
 	leader_color = define:NMapColors|INTERNATIONAL_ORGANIZATION_LEADER_COLOR
@@ -65,6 +66,8 @@ creditors_league = {
 		add_policy_to_international_organization = policy:cl_intel_closed_policy
 		add_policy_to_international_organization = policy:cl_int_open_policy
 		add_policy_to_international_organization = policy:cl_ext_free_policy
+		add_policy_to_international_organization = policy:cl_manpower_no_levy_policy
+		add_policy_to_international_organization = policy:cl_sailor_no_levy_policy
 	}
 
 	on_joined = {
@@ -88,6 +91,7 @@ creditors_league = {
 		global_merchant_capacity_modifier = 0.01
 		max_diplomats = 0.5
 		monthly_diplomats = 0.05
+		research_speed = 0.01
 	}
 
 	ai_desire_to_join = {
@@ -96,6 +100,30 @@ creditors_league = {
 		add = {
 			desc = "CREDITORS_LEAGUE_ECONOMIC_APPEAL"
 			value = 15
+		}
+
+		# Royal marriage with the banking nation
+		if = {
+			limit = {
+				exists = scope:actor
+				has_royal_marriage_with = scope:actor
+			}
+			add = {
+				desc = "CREDITORS_LEAGUE_ROYAL_MARRIAGE"
+				value = 10
+			}
+		}
+
+		# Alliance with the banking nation
+		if = {
+			limit = {
+				exists = scope:actor
+				is_allied_with = { target = scope:actor }
+			}
+			add = {
+				desc = "CREDITORS_LEAGUE_ALLIANCE"
+				value = 5
+			}
 		}
 
 		# Malus per existing member — larger leagues mean more entanglement

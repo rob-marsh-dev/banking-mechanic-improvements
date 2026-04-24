@@ -1,3 +1,11 @@
 cl_payment_base = {
 	gold = 1
 }
+
+cl_manpower_levy_price = {
+	manpower = 1
+}
+
+cl_sailor_levy_price = {
+	sailors = 1
+}

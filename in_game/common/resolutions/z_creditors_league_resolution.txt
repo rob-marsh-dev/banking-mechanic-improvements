@@ -1,0 +1,140 @@
+cl_league_war_declaration = {
+	international_organization_type = creditors_league
+
+	potential = {
+		always = yes
+	}
+
+	allow = {
+		scope:actor ?= {
+			is_member_of_international_organization = scope:recipient
+		}
+		scope:recipient ?= {
+			OR = {
+				leader_country ?= scope:actor
+				resolution_is_active = resolution:cl_league_war_declaration
+			}
+		}
+	}
+
+	can_vote = {
+		scope:actor ?= {
+			is_member_of_international_organization = scope:recipient
+		}
+	}
+
+	votes = {
+		add = { value = 1 }
+	}
+
+	total_votes_needed = {
+		add = {
+			value = scope:total_votes_available
+			multiply = 0.5
+		}
+	}
+
+	months = 6
+
+	cooldown = {
+		type = cl_league_war_declaration_cooldown
+		years = 5
+	}
+
+	select_trigger = {
+		looking_for_a = international_organization
+		target_flag = recipient
+		name = "choose_international_organization"
+		column = { data = name }
+		visible = {
+			international_organization_type = international_organization_type:creditors_league
+		}
+		enabled = { }
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = target
+		name = "cl_war_target_select"
+		none_available_msg_key = "cl_war_no_valid_targets"
+		column = { data = name }
+		column = { data = population }
+		visible = {
+			NOT = { is_member_of_international_organization = scope:recipient }
+			country_exists = this
+		}
+	}
+
+	select_trigger = {
+		looking_for_a = boolean
+		target_flag = vote
+		name = "cl_war_vote_name"
+		column = { data = name }
+		visible = { }
+	}
+
+	effect = {
+		scope:recipient = {
+			leader_country ?= {
+				declare_war_with_cb = {
+					target = scope:target
+					type = casus_belli:cb_creditors_league_mandate
+				}
+			}
+		}
+	}
+
+	reject_effect = {
+		scope:proposer ?= {
+			add_prestige = prestige_large_penalty
+		}
+	}
+
+	ai_will_do = {
+		if = {
+			limit = { exists = scope:target }
+			scope:actor ?= {
+				add = {
+					desc = "CREDITORS_LEAGUE_OPINION_OF_TARGET"
+					value = "opinion(scope:target)"
+					multiply = -0.3
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = scope:proposer
+				scope:actor = scope:proposer
+			}
+			scope:actor ?= {
+				if = {
+					limit = { at_war = no }
+					add = {
+						desc = "CREDITORS_LEAGUE_LEADER_AT_PEACE"
+						value = 15
+					}
+				}
+				else = {
+					subtract = {
+						desc = "CREDITORS_LEAGUE_LEADER_ALREADY_AT_WAR"
+						value = 100
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = scope:proposer
+				scope:vote = no
+			}
+			multiply = {
+				desc = "CREDITORS_LEAGUE_VOTE_AGAINST"
+				value = -1
+			}
+		}
+	}
+
+	ai_proposer_risk = {
+		value = "scope:actor.currency_utility(prestige|-20)"
+	}
+}

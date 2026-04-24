@@ -63,31 +63,7 @@ cl_small_levy_payment = {
 		}
 	}
 	price = cl_payment_base
-	uses_maintenance = yes
-	maintenance_modifier = {
-		potential_trigger = {
-			"payment_maintenance(scope:recipient|cl_small_levy_payment)" < 0.5
-		}
-		scale = {
-			value = 1
-			subtract = {
-				value = "payment_maintenance(scope:recipient|cl_small_levy_payment)"
-				multiply = 2
-			}
-		}
-		diplomatic_reputation = -1
-	}
-	maintenance_modifier = {
-		potential_trigger = {
-			"payment_maintenance(scope:recipient|cl_small_levy_payment)" > 0.5
-		}
-		scale = {
-			value = "payment_maintenance(scope:recipient|cl_small_levy_payment)"
-			subtract = 0.5
-			multiply = 2
-		}
-		bank_interest = -0.005
-	}
+	uses_maintenance = no
 	price_multiplier = {
 		every_international_organization_member = {
 			limit = { NOT = { is_leader_of_international_organization = root } }
@@ -132,31 +108,7 @@ cl_large_levy_payment = {
 		}
 	}
 	price = cl_payment_base
-	uses_maintenance = yes
-	maintenance_modifier = {
-		potential_trigger = {
-			"payment_maintenance(scope:recipient|cl_large_levy_payment)" < 0.5
-		}
-		scale = {
-			value = 1
-			subtract = {
-				value = "payment_maintenance(scope:recipient|cl_large_levy_payment)"
-				multiply = 2
-			}
-		}
-		diplomatic_reputation = -2
-	}
-	maintenance_modifier = {
-		potential_trigger = {
-			"payment_maintenance(scope:recipient|cl_large_levy_payment)" > 0.5
-		}
-		scale = {
-			value = "payment_maintenance(scope:recipient|cl_large_levy_payment)"
-			subtract = 0.5
-			multiply = 2
-		}
-		bank_interest = -0.005
-	}
+	uses_maintenance = no
 	price_multiplier = {
 		every_international_organization_member = {
 			limit = { NOT = { is_leader_of_international_organization = root } }
@@ -174,6 +126,96 @@ cl_large_levy_payment = {
 		add = {
 			desc = "CL_PRICE_YOUR_INCOME_SHARE"
 			value = monthly_income_trade_and_tax
+		}
+	}
+	proportion_for_payee = {
+		add = { desc = "cl_payment_all" value = 1 }
+	}
+}
+
+# Manpower levy — members pay 10% of their monthly manpower to the leader
+cl_manpower_levy_payment = {
+	get_payer_list = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add_to_local_variable_list = {
+				name = payers
+				target = this
+			}
+		}
+	}
+	get_payee_list = {
+		leader_country ?= {
+			add_to_local_variable_list = {
+				name = payees
+				target = this
+			}
+		}
+	}
+	price = cl_manpower_levy_price
+	uses_maintenance = no
+	price_multiplier = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add = {
+				desc = "CL_PRICE_TOTAL_MEMBER_MANPOWER"
+				value = monthly_manpower
+			}
+		}
+		multiply = {
+			desc = "CL_MANPOWER_LEVY_RATE"
+			value = 0.10
+		}
+	}
+	proportion_for_payer = {
+		add = {
+			desc = "CL_PRICE_YOUR_MANPOWER_SHARE"
+			value = monthly_manpower
+		}
+	}
+	proportion_for_payee = {
+		add = { desc = "cl_payment_all" value = 1 }
+	}
+}
+
+# Sailor levy — members pay 10% of their monthly sailors to the leader
+cl_sailor_levy_payment = {
+	get_payer_list = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add_to_local_variable_list = {
+				name = payers
+				target = this
+			}
+		}
+	}
+	get_payee_list = {
+		leader_country ?= {
+			add_to_local_variable_list = {
+				name = payees
+				target = this
+			}
+		}
+	}
+	price = cl_sailor_levy_price
+	uses_maintenance = no
+	price_multiplier = {
+		every_international_organization_member = {
+			limit = { NOT = { is_leader_of_international_organization = root } }
+			add = {
+				desc = "CL_PRICE_TOTAL_MEMBER_SAILORS"
+				value = monthly_sailors
+			}
+		}
+		multiply = {
+			desc = "CL_SAILOR_LEVY_RATE"
+			value = 0.10
+		}
+	}
+	proportion_for_payer = {
+		add = {
+			desc = "CL_PRICE_YOUR_SAILORS_SHARE"
+			value = monthly_sailors
 		}
 	}
 	proportion_for_payee = {
@@ -201,31 +243,7 @@ cl_full_levy_payment = {
 		}
 	}
 	price = cl_payment_base
-	uses_maintenance = yes
-	maintenance_modifier = {
-		potential_trigger = {
-			"payment_maintenance(scope:recipient|cl_full_levy_payment)" < 0.5
-		}
-		scale = {
-			value = 1
-			subtract = {
-				value = "payment_maintenance(scope:recipient|cl_full_levy_payment)"
-				multiply = 2
-			}
-		}
-		diplomatic_reputation = -3
-	}
-	maintenance_modifier = {
-		potential_trigger = {
-			"payment_maintenance(scope:recipient|cl_full_levy_payment)" > 0.5
-		}
-		scale = {
-			value = "payment_maintenance(scope:recipient|cl_full_levy_payment)"
-			subtract = 0.5
-			multiply = 2
-		}
-		bank_interest = -0.005
-	}
+	uses_maintenance = no
 	price_multiplier = {
 		every_international_organization_member = {
 			limit = { NOT = { is_leader_of_international_organization = root } }

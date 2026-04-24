@@ -382,6 +382,120 @@ creditors_league_construction_law = {
 	}
 }
 
+creditors_league_manpower_law = {
+	type = international_organization
+	law_category = military
+	potential = {
+		international_organization_type = international_organization_type:creditors_league
+	}
+	allow = { always = yes }
+	requires_vote = yes
+	custom_tags = { forbids_no_policy }
+
+	# Tier 1: No manpower levy (default)
+	cl_manpower_no_levy_policy = {
+		payments_repealed = { cl_manpower_levy_payment }
+		wants_this_policy_bias = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_MAN_MEMBER_NO_LEVY" value = 20 }
+			}
+			else = {
+				add = { desc = "CL_MAN_LEADER_WANTS_LEVY" value = -5 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_MAN_MEMBER_KEEPS_FREE" value = 20 }
+			}
+		}
+	}
+
+	# Tier 2: Members pay 10% of monthly manpower to the leader
+	cl_manpower_levy_policy = {
+		payments_implemented = { cl_manpower_levy_payment }
+		allow = {
+			international_organization_has_policy = policy:cl_mil_recruit_policy
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_MAN_LEADER_LEVY_ACCESS" value = 50 }
+			}
+			else = {
+				add = { desc = "CL_MAN_MEMBER_LEVY_INTRUSION" value = -40 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_MAN_LEADER_KEEPS_LEVY" value = 50 }
+			}
+			else = {
+				add = { desc = "CL_MAN_MEMBER_RESISTS_LEVY" value = -30 }
+			}
+		}
+	}
+}
+
+creditors_league_sailor_law = {
+	type = international_organization
+	law_category = military
+	potential = {
+		international_organization_type = international_organization_type:creditors_league
+	}
+	allow = { always = yes }
+	requires_vote = yes
+	custom_tags = { forbids_no_policy }
+
+	# Tier 1: No sailor levy (default)
+	cl_sailor_no_levy_policy = {
+		payments_repealed = { cl_sailor_levy_payment }
+		wants_this_policy_bias = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_SAI_MEMBER_NO_LEVY" value = 20 }
+			}
+			else = {
+				add = { desc = "CL_SAI_LEADER_WANTS_LEVY" value = -5 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_SAI_MEMBER_KEEPS_FREE" value = 20 }
+			}
+		}
+	}
+
+	# Tier 2: Members pay 10% of monthly sailors to the leader
+	cl_sailor_levy_policy = {
+		payments_implemented = { cl_sailor_levy_payment }
+		allow = {
+			international_organization_has_policy = policy:cl_mil_navy_policy
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_SAI_LEADER_LEVY_ACCESS" value = 50 }
+			}
+			else = {
+				add = { desc = "CL_SAI_MEMBER_LEVY_INTRUSION" value = -40 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_SAI_LEADER_KEEPS_LEVY" value = 50 }
+			}
+			else = {
+				add = { desc = "CL_SAI_MEMBER_RESISTS_LEVY" value = -30 }
+			}
+		}
+	}
+}
+
 creditors_league_internal_law = {
 	type = international_organization
 	law_category = diplomacy

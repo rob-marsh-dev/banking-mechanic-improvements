@@ -47,6 +47,22 @@ invite_to_creditors_league = {
 	}
 
 	accept = {
+		# Royal marriage with the banking nation
+		if = {
+			limit = {
+				scope:recipient = { has_royal_marriage_with = scope:actor }
+			}
+			add = { desc = "CREDITORS_LEAGUE_ROYAL_MARRIAGE" value = 10 }
+		}
+
+		# Alliance with the banking nation
+		if = {
+			limit = {
+				scope:recipient = { is_allied_with = { target = scope:actor } }
+			}
+			add = { desc = "CREDITORS_LEAGUE_ALLIANCE" value = 5 }
+		}
+
 		# Nations with debt are relieved to have it absorbed
 		add = {
 			desc = "CREDITORS_LEAGUE_JOIN_DEBT_RELIEF"
@@ -79,7 +95,7 @@ invite_to_creditors_league = {
 			value = {
 				value = scope:cl_invite_io.total_members
 				subtract = 1
-				multiply = 4
+				multiply = 3
 			}
 		}
 

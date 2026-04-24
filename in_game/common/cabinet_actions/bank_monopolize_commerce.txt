@@ -1,0 +1,23 @@
+bank_monopolize_commerce = {
+	ability = adm
+	allow_multiple = no
+
+	potential = {
+		has_reform = government_reform:banking_country
+	}
+
+	allow = {
+		has_reform = government_reform:banking_country
+		country_has_estate = estate_type:burghers_estate
+	}
+
+	country_modifier = {
+		global_burghers_estate_power = -0.15
+		burghers_estate_max_tax = 0.05
+		trade_income = 0.05
+	}
+
+	ai_will_do = {
+		value = 1
+	}
+}

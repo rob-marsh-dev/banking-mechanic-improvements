@@ -26,8 +26,8 @@ construction_rights = {
 	can_change_rank = yes
 	can_change_heir_selection = yes
 	can_overlord_build_buildings = yes
-	can_overlord_build_roads = no
-	can_overlord_build_rgos = no
+	can_overlord_build_roads = yes
+	can_overlord_build_rgos = yes
 	can_overlord_build_ships = no
 	can_overlord_recruit_regiments = no
 
@@ -37,6 +37,7 @@ construction_rights = {
 
 	subject_modifier = {
 		bank_interest = -0.005
+		loyalty_to_overlord = 15
 	}
 
 	creation_visible = {
@@ -86,9 +87,11 @@ construction_rights = {
 	}
 
 	on_enable = {
+		scope:target = { set_variable = has_locked_subject_type }
 	}
 
 	on_disable = {
+		scope:target = { remove_variable = has_locked_subject_type }
 	}
 
 	diplo_chance_accept_overlord = {
@@ -96,7 +99,7 @@ construction_rights = {
 	}
 
 	diplo_chance_accept_subject = {
-		base = 30
-		opinion = 0.2
+		base = 50
+		opinion = 0.3
 	}
 }

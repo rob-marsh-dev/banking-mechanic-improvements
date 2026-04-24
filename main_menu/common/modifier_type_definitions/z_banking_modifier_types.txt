@@ -13,3 +13,19 @@ cl_payment_base_cost_modifier = {
 		category = country
 	}
 }
+
+cl_manpower_levy_price_cost_modifier = {
+	color = bad
+	percent = yes
+	game_data = {
+		category = country
+	}
+}
+
+cl_sailor_levy_price_cost_modifier = {
+	color = bad
+	percent = yes
+	game_data = {
+		category = country
+	}
+}
