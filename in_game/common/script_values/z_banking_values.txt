@@ -4,6 +4,6 @@ banking_ownerless_loan_principal = {
 			NOT = { exists = owner }
 			months_left > 40
 		}
-		add = loan_amount
+		add = bank_loan_takeover_cost
 	}
 }

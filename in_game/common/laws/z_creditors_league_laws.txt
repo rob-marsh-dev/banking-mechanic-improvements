@@ -141,7 +141,7 @@ creditors_league_payment_law = {
 				NOT = { is_leader_of_international_organization = scope:recipient }
 			}
 			bank_interest = 0.01
-			trade_efficiency = -0.01
+			selling_efficiency = -0.01
 		}
 		country_modifier = {
 			potential_trigger = {
@@ -707,7 +707,7 @@ creditors_league_external_law = {
 			}
 			monthly_diplomats = -0.4
 			spy_network_construction = -0.4
-			trade_efficiency = -0.05
+			selling_efficiency = -0.05
 		}
 		country_modifier = {
 			potential_trigger = {

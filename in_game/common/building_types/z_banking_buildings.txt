@@ -1,37 +1,42 @@
 REPLACE_OR_CREATE:banking_office = {
-    is_foreign = yes
-    need_good_relation = yes
-    pop_type = burghers
-	expensive = yes
-    
-    category = trade_category
-    
-    max_levels = 3
-    employment_size = 0.2
-    
-    rural_settlement = no
-    town = no
-    city = yes
-    country_potential = {
-        has_reform = government_reform:banking_country
-    }
-    
-    build_time = bank_office_build_time
-    
-    modifier = {
-        merchant_power_from_building = 0.2
-        scaled_gold_to_building_owner = 0.05
-    }
-    
-    unique_production_methods = {
-        bank_maintenance = {
-            paper = 0.5
-			books = 0.5
-            category = building_maintenance
-        }
-    }
+	is_special = yes
+	is_foreign = yes
+	need_good_relation = yes
+	pop_type = burghers
 
-    construction_demand = bank_construction
+	category = trade_category
+
+	max_levels = 5
+	increase_per_level_cost = 0.5
+	employment_size = foreign_trade_employment
+	pop_size_created = foreign_trade_employment
+
+	rural_settlement = no
+	town = yes
+	city = yes
+	megalopolis = yes
+
+	country_potential = {
+		has_reform = government_reform:banking_country
+	}
+
+	build_time = bank_office_build_time
+
+	modifier = {
+		merchant_power_from_building = 0.1
+		scaled_gold_to_building_owner = 0.025
+	}
+
+	unique_production_methods = {
+		rb_bank_maintenance = {
+			paper = 0.1
+			goods_gold = 0.01
+			silver = 0.01
+			category = building_maintenance
+		}
+	}
+
+	construction_demand = bank_construction
 }
 
 currency_exchange = {
@@ -48,6 +53,7 @@ currency_exchange = {
 	rural_settlement = no
 	town = yes
 	city = yes
+	megalopolis = yes
 	country_potential = {
 		has_reform = government_reform:banking_country
 	}
@@ -93,6 +99,7 @@ banker_shipwright_branch = {
 	pop_size_created = dock_employment
 	town = yes
 	city = yes
+	megalopolis = yes
 	build_time = medium_port_building_time
 	expensive = yes
 	possible_production_methods = {
@@ -101,7 +108,7 @@ banker_shipwright_branch = {
 	construction_demand = port_building_construction
 	modifier = {
 		max_ships_built_at_same_time = 1
-		sailors_to_building_owner = 0.01
+		sailors_to_building_owner = 0.0025
 		can_build_ships_in_this_location = yes
 		harbor_suitability = 0.05
 		local_repair_speed = 0.01
@@ -122,6 +129,7 @@ bank_recruitment = {
 	pop_size_created = 0.2
 	town = yes
 	city = yes
+	megalopolis = yes
 	build_time = soldier_building
 	expensive = yes
 	possible_production_methods = {
@@ -149,6 +157,7 @@ banker_art_imporium = {
 	pop_size_created = 0.1
 	town = no
 	city = yes
+	megalopolis = yes
 
 	build_time = 150
 
@@ -227,6 +236,7 @@ bankers_kontor = {
 	rural_settlement = no
 	town = yes
 	city = yes
+	megalopolis = yes
 
 	increase_per_level_cost = 0.5
 

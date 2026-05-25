@@ -30,7 +30,7 @@ take_over_all_loans = {
 				months_left > 40
 				loan_interest > scope:actor.modifier:bank_interest
 			}
-			scope:actor.gold > total_debt
+			scope:actor.gold > banking_ownerless_loan_principal
 		}
 	}
 
@@ -59,12 +59,15 @@ take_over_all_loans = {
 				}
 				custom_description = {
 					text = pay_off_their_debt
-					value = loan_amount
+					value = bank_loan_takeover_cost
 					scope:actor = {
 						add_gold = {
-							value = prev.loan_amount
+							value = prev.bank_loan_takeover_cost
 							multiply = -1
 						}
+					}
+					scope:recipient = {
+						distribute_gold_to_banking_estates = prev.bank_loan_takeover_cost
 					}
 				}
 				change_loan_owner = scope:actor
