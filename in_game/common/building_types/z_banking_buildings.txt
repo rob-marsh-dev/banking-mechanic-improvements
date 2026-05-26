@@ -175,7 +175,7 @@ banker_art_imporium = {
 
 	construction_demand = cardinal_construction
 
-	modifier = {
+	foreign_country_modifier = {
 		cultural_influence = 0.3
 	}
 }
