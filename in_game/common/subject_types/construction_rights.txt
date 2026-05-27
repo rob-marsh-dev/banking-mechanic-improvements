@@ -10,9 +10,11 @@ construction_rights = {
 	}
 
 	has_overlords_ruler = no
+	has_overlords_religion = no
 	can_be_annexed = no
 	subject_can_cancel = yes
 	overlord_can_cancel = yes
+	will_join_independence_wars = no
 
 	strength_vs_overlord = 0
 
@@ -22,6 +24,14 @@ construction_rights = {
 
 	fleet_basing_rights = no
 	food_access = no
+	use_overlord_laws = no
+	use_overlord_map_color = no
+	use_overlord_map_name = no
+
+	overlord_share_exploration = no
+	overlord_protects_external = no
+	overlord_protects_other_subjects = no
+	counts_as_external = yes
 
 	can_change_rank = yes
 	can_change_heir_selection = yes
@@ -32,6 +42,8 @@ construction_rights = {
 	can_overlord_recruit_regiments = no
 
 	great_power_score_transfer = 0
+	institution_spread_to_overlord = 0
+	institution_spread_to_subject = 0
 
 	minimum_opinion_for_offer = 0
 

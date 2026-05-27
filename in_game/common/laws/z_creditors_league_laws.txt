@@ -546,6 +546,64 @@ creditors_league_internal_law = {
 	}
 }
 
+creditors_league_subjugation_law = {
+	type = international_organization
+	law_category = diplomacy
+	potential = {
+		international_organization_type = international_organization_type:creditors_league
+	}
+	allow = { always = yes }
+	requires_vote = yes
+	custom_tags = { forbids_no_policy }
+
+	# Tier 1: No restriction — members may take subjects freely (default)
+	cl_sub_free_policy = {
+		wants_this_policy_bias = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_SUB_MEMBER_WANTS_FREEDOM" value = 30 }
+			}
+			else = {
+				add = { desc = "CL_SUB_LEADER_INDIFFERENT" value = -5 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { NOT = { is_leader_of_international_organization = scope:recipient } }
+				add = { desc = "CL_SUB_MEMBER_KEEPS_FREEDOM" value = 20 }
+			}
+		}
+	}
+
+	# Tier 2: Members forbidden from acquiring new subjects (bank leader exempt)
+	cl_sub_forbidden_policy = {
+		country_modifier = {
+			potential_trigger = {
+				is_leader_of_international_organization = scope:recipient
+			}
+			diplomatic_reputation = 1
+		}
+		wants_this_policy_bias = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_SUB_LEADER_WANTS_DISCIPLINE" value = 40 }
+			}
+			else = {
+				add = { desc = "CL_SUB_MEMBER_RESENTS_DISCIPLINE" value = -25 }
+			}
+		}
+		wants_keep_policy = {
+			if = {
+				limit = { is_leader_of_international_organization = scope:recipient }
+				add = { desc = "CL_SUB_LEADER_KEEPS_DISCIPLINE" value = 40 }
+			}
+			else = {
+				add = { desc = "CL_SUB_MEMBER_RESISTS_DISCIPLINE" value = -20 }
+			}
+		}
+	}
+}
+
 creditors_league_external_law = {
 	type = international_organization
 	law_category = diplomacy

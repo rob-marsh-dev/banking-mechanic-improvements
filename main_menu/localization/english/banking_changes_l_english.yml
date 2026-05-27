@@ -20,6 +20,10 @@
  bankers_kontor: "Bankers Kontor"
  bankers_kontor_desc: "By investing in local infrastructure, we can hire our own merchants to trade for us."
  bankers_kontor_maintenance: "Bankers Kontor"
+ family_factor_house: "Family Factor House"
+ family_factor_house_desc: "Our family stations a senior factor at the court itself, handling the crown's coin alongside its own. The host's treasury and ours grow stout together — and when the throne needs a loan, the conversation happens at supper."
+ family_factor_house_maintenance: "Needs of the Factor House"
+ family_factor_house_min_rank_tt: "Host country must be at least a Duchy"
  #cabinet actions
  bank_expand_diplomat_network: "Expand Diplomatic Network"
  bank_expand_diplomat_network_desc: "By dispatching trusted agents and family members to courts across the continent, we can grow our network of diplomatic contacts."
@@ -480,6 +484,23 @@
  CL_INT_MEMBER_WANTS_OPEN: "We prize the freedom to pursue our own quarrels"
  CL_INT_MEMBER_KEEPS_OPEN: "We wish to retain the right to settle scores within the league"
  CL_INT_NO_INTERNECINE_WARS: "Peace within the league benefits us all"
+
+ #Creditor's League — Subjugation Law
+ creditors_league_subjugation_law: "Subjugation Rights"
+ creditors_league_subjugation_law_desc: "Governs whether members of the league may bind new vassals, tributaries, and other subjects to themselves. A league of equals cannot tolerate its members swallowing their neighbours — but some banks see no profit in restraining ambitious clients."
+ cl_sub_free_policy: "Free Hand"
+ cl_sub_free_policy_desc: "Members may pursue subjugation of foreign powers without league interference. The bank takes no view on the size of its clients' realms."
+ cl_sub_forbidden_policy: "League Discipline"
+ cl_sub_forbidden_policy_desc: "Members are forbidden from acquiring new subjects by any means. Any vassal, tributary or other subject relation a member attempts to establish is immediately annulled by league writ. The banking nation itself is exempt — its dignity must be preserved."
+
+ #Subjugation law vote reasons
+ CL_SUB_MEMBER_WANTS_FREEDOM: "We will not surrender our right to bind our neighbours"
+ CL_SUB_MEMBER_KEEPS_FREEDOM: "We wish to retain the freedom to take our own subjects"
+ CL_SUB_LEADER_INDIFFERENT: "Restraining our clients' ambitions would steady the league"
+ CL_SUB_LEADER_WANTS_DISCIPLINE: "A league of competing empires serves us poorly"
+ CL_SUB_LEADER_KEEPS_DISCIPLINE: "League discipline keeps our clients suitably small"
+ CL_SUB_MEMBER_RESENTS_DISCIPLINE: "The bank would deny us the fruits of conquest"
+ CL_SUB_MEMBER_RESISTS_DISCIPLINE: "We chafe under the bank's restraint on our ambitions"
 
  #Creditor's League — External Relations Law
  creditors_league_external_law: "External Relations"
