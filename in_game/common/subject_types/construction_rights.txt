@@ -41,16 +41,16 @@ construction_rights = {
 	}
 
 	creation_visible = {
-		scope:actor = {
+		scope:actor ?= {
 			has_reform = government_reform:banking_country
 			any_international_organizations_member_of = {
 				international_organization_type = international_organization_type:creditors_league
 				international_organization_has_policy = policy:cl_con_build_policy
 			}
 		}
-		scope:target = {
+		scope:target ?= {
 			is_member_of_international_organization_of_type = { type = creditors_league }
-			NOT = { is_subject_of = scope:actor }
+			NOT = { is_subject_of = root }
 		}
 	}
 
@@ -60,7 +60,7 @@ construction_rights = {
 			international_organization_type = international_organization_type:creditors_league
 			international_organization_has_policy = policy:cl_con_build_policy
 		}
-		scope:target = {
+		scope:target ?= {
 			is_member_of_international_organization_of_type = { type = creditors_league }
 			NOT = { is_subject_of = root }
 		}
@@ -72,7 +72,7 @@ construction_rights = {
 			international_organization_type = international_organization_type:creditors_league
 			international_organization_has_policy = policy:cl_con_build_policy
 		}
-		scope:target = {
+		scope:target ?= {
 			is_member_of_international_organization_of_type = { type = creditors_league }
 			NOT = { is_subject_of = root }
 		}

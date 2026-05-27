@@ -48,23 +48,23 @@
 	}
 
 	creation_visible = {
-		scope:target = {
+		scope:target ?= {
 			is_subject_of = root
 		}
-		scope:actor = {
+		scope:actor ?= {
 			has_reform = government_reform:banking_country
 		}
 	}
 
 	visible_through_diplomacy = {
-		scope:target = {
+		scope:target ?= {
 			is_subject_of = root
 		}
 		has_reform = government_reform:banking_country
 	}
 
 	enabled_through_diplomacy = {
-		scope:target = {
+		scope:target ?= {
 			is_subject_of = root
 		}
 			has_reform = government_reform:banking_country

@@ -17,6 +17,28 @@ hostile_takeover_into_league = {
 		scope:recipient = {
 			any_loan = {
 				count >= 5
+				exists = owner
+				owner = scope:actor
+				months_left > 20
+			}
+		}
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+			NOT = { has_reform = government_reform:banking_country }
+		}
+		enabled = {
+			any_loan = {
+				count >= 5
+				exists = owner
 				owner = scope:actor
 				months_left > 20
 			}
@@ -42,6 +64,7 @@ hostile_takeover_into_league = {
 					monthly_income_trade_and_tax > 10
 					any_loan = {
 						count >= 5
+						exists = owner
 						owner = scope:actor
 					}
 				}

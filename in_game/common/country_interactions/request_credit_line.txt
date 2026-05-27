@@ -3,14 +3,31 @@ request_credit_line = {
 	category = CATEGORY_ECONOMY_ACTIONS
 
 	potential = {
-		scope:actor = {
+		scope:actor ?= {
 			is_member_of_international_organization_of_type = { type = creditors_league }
 			NOT = { has_reform = government_reform:banking_country }
 		}
 	}
 
 	allow = {
-		scope:recipient = {
+		scope:recipient ?= {
+			has_reform = government_reform:banking_country
+			is_leader_of_international_organization = scope:actor
+		}
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			has_reform = government_reform:banking_country
+			is_leader_of_international_organization = scope:actor
+		}
+		enabled = {
 			has_reform = government_reform:banking_country
 			is_leader_of_international_organization = scope:actor
 		}
@@ -26,7 +43,7 @@ request_credit_line = {
 						value = scope:actor.monthly_income_trade_and_tax
 						multiply = 6
 					}
-					interest = scope:recipient.modifier:bank_lending_rate
+					interest = scope:recipient.modifier:bank_interest
 					months = 60
 				}
 			}

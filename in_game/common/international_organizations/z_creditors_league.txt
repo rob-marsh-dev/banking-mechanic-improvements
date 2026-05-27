@@ -18,6 +18,9 @@ creditors_league = {
 	expel_members_who_are_attackers_at_war_with_other_members = no
 	expel_members_who_are_defenders_at_war_with_other_members = no
 
+	# When a defensive policy tier has the leader join as co-belligerent, take over as war leader
+	take_over_wars_when_called = yes
+
 	create_visible_trigger = {
 		has_reform = government_reform:banking_country
 		NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }

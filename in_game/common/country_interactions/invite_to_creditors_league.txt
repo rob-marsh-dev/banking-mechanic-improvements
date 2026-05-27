@@ -19,6 +19,23 @@ invite_to_creditors_league = {
 		}
 	}
 
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+			NOT = { has_reform = government_reform:banking_country }
+		}
+		enabled = {
+			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+			NOT = { has_reform = government_reform:banking_country }
+		}
+	}
+
 	effect = {
 		scope:actor = {
 			every_international_organizations_member_of = {
@@ -246,7 +263,7 @@ invite_to_creditors_league = {
 		if = {
 			limit = {
 				scope:recipient = {
-					opinion = { who = scope:actor value >= 50 }
+					opinion = { target = scope:actor value >= 50 }
 				}
 			}
 			add = 20
