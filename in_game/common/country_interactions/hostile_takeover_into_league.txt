@@ -7,7 +7,7 @@ hostile_takeover_into_league = {
 			has_reform = government_reform:banking_country
 			is_member_of_international_organization_of_type = { type = creditors_league }
 		}
-		scope:recipient = {
+		scope:recipient ?= {
 			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
 			NOT = { has_reform = government_reform:banking_country }
 		}

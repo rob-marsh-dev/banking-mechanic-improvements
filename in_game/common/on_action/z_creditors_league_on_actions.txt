@@ -1,5 +1,9 @@
 # root = subject, scope:overlord = new overlord, scope:subject_type = subject type
 on_subject_created = {
+	on_actions = { cl_on_subject_created }
+}
+
+cl_on_subject_created = {
 	effect = {
 		if = {
 			limit = {

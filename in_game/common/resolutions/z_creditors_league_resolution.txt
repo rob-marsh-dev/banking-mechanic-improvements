@@ -86,7 +86,7 @@ cl_league_war_declaration = {
 
 	reject_effect = {
 		scope:proposer ?= {
-			add_prestige = prestige_large_penalty
+			add_prestige = prestige_severe_penalty
 		}
 	}
 

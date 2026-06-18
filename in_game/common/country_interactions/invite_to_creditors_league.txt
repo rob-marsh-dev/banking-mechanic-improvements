@@ -7,7 +7,7 @@ invite_to_creditors_league = {
 			has_reform = government_reform:banking_country
 			is_member_of_international_organization_of_type = { type = creditors_league }
 		}
-		scope:recipient = {
+		scope:recipient ?= {
 			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
 			NOT = { has_reform = government_reform:banking_country }
 		}
@@ -120,7 +120,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_subsidy_policy
 					}
 				}
@@ -131,7 +131,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_small_levy_policy
 					}
 				}
@@ -142,7 +142,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_large_levy_policy
 					}
 				}
@@ -153,7 +153,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_full_levy_policy
 					}
 				}
@@ -164,7 +164,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_con_build_policy
 					}
 				}
@@ -175,7 +175,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_mil_recruit_policy
 					}
 				}
@@ -186,7 +186,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_mil_navy_policy
 					}
 				}
@@ -197,7 +197,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_int_peace_policy
 					}
 				}
@@ -208,7 +208,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_ext_defensive_policy
 					}
 				}
@@ -219,7 +219,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_ext_offensive_policy
 					}
 				}
@@ -230,7 +230,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_ext_restricted_policy
 					}
 				}
@@ -241,7 +241,7 @@ invite_to_creditors_league = {
 			limit = {
 				scope:actor = {
 					any_international_organizations_member_of = {
-						limit = { international_organization_type = international_organization_type:creditors_league }
+						international_organization_type = international_organization_type:creditors_league
 						international_organization_has_policy = policy:cl_ext_sovereignty_policy
 					}
 				}

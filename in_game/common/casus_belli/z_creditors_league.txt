@@ -1,8 +1,5 @@
 cb_creditors_league_mandate = {
-	visible = {
-		always = no
-	}
-	allow_creation = {
+	create_visible = {
 		always = no
 	}
 	war_goal_type = superiority
