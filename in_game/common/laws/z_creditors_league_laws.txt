@@ -212,7 +212,7 @@ creditors_league_military_law = {
 			potential_trigger = {
 				is_leader_of_international_organization = scope:recipient
 			}
-			global_foreign_build_buildings_cost = -0.1
+			global_foreign_build_buildings_efficiency = 0.1
 		}
 		wants_this_policy_bias = {
 			if = {
@@ -245,7 +245,7 @@ creditors_league_military_law = {
 			potential_trigger = {
 				is_leader_of_international_organization = scope:recipient
 			}
-			global_foreign_build_buildings_cost = -0.15
+			global_foreign_build_buildings_efficiency = 0.15
 			global_merchant_capacity_modifier = 0.05
 		}
 		wants_this_policy_bias = {
@@ -362,7 +362,7 @@ creditors_league_construction_law = {
 			potential_trigger = {
 				is_leader_of_international_organization = scope:recipient
 			}
-			global_foreign_build_buildings_cost = -0.1
+			global_foreign_build_buildings_efficiency = 0.1
 		}
 		wants_this_policy_bias = {
 			if = {

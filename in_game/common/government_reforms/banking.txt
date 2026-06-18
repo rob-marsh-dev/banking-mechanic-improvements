@@ -26,8 +26,8 @@ financial_focus_bank = {
 		NOT = { has_reform = government_reform:trading_focused_bank }
 	}
 	country_modifier = {
-		global_foreign_build_buildings_cost = -0.25
-		building_upkeep_costs = -0.15
+		global_foreign_build_buildings_efficiency = 0.25
+		building_upkeep_efficiency = 0.15
 		bank_interest = -0.02
 		government_reform_slots = 1
 	}
