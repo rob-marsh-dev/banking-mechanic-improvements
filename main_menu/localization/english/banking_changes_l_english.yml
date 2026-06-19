@@ -170,16 +170,6 @@
  bank_bribe_voter_for_policy_desc: "Gold opens more doors than prestige. We may offer a payment to convince another member to vote our way."
  bank_bribe_voter_for_policy_act: "Offer [SCOPE.sCountry('recipient').GetName] gold to vote our way"
 
- #Request Credit Line interaction
- request_credit_line: "Request Credit Line"
- request_credit_line_desc: "As a member of their Creditor's League, we may call upon the league's founding bank for a line of credit at preferential rates."
- INCOMING_OFFER_request_credit_line: "Request for Credit Line"
- request_credit_line_effect_text: "[SCOPE_ACTOR.GetName] requests a line of credit from us."
- request_credit_line_effect_text_past: "[SCOPE_ACTOR.GetName] requested a line of credit from us."
- request_credit_line_reject_effect_text: "We decline [SCOPE_ACTOR.GetName]'s request for a line of credit."
- request_credit_line_reject_effect_text_past: "We declined [SCOPE_ACTOR.GetName]'s request for a line of credit."
- request_credit_line_tooltip: "Receive a loan from [SCOPE_RECIPIENT.GetName] at their lending rate for 60 months."
-
  #Hostile Takeover interaction
  hostile_takeover_into_league: "Compel League Membership"
  hostile_takeover_into_league_desc: "We hold significant debt from this nation. We may use this leverage to force them into our Creditor's League."

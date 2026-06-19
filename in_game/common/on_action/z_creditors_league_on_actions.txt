@@ -21,6 +21,50 @@ cl_on_subject_created = {
 	}
 }
 
+# root = country (borrower), scope:target = loan, scope:owner = lender (if existent)
+# When a Creditor's League member takes a loan, retag the new loan so the league LEADER
+# is the creditor (a country loan) instead of the borrower's own estates. The borrower
+# already received the principal from the estate loan; change_loan_owner only reassigns
+# who collects interest/repayment, so there is no double-gold.
+#
+# UNVERIFIED: whether change_loan_owner works on an estate loan. It no-ops on bonds
+# (see project-bond-buying). If it no-ops here too, fall back to cancel_loan + give_loan
+# with explicit gold handling.
+on_loan_taken = {
+	on_actions = { cl_on_loan_taken }
+}
+
+cl_on_loan_taken = {
+	effect = {
+		if = {
+			limit = {
+				# Borrower is a Creditor's League member whose league has a leader other than itself.
+				any_international_organizations_member_of = {
+					international_organization_type = international_organization_type:creditors_league
+					exists = leader_country
+					NOT = { leader_country = root }
+				}
+				# Only retag an ownerless, non-bond loan (i.e. the estate loan just taken).
+				scope:target = {
+					is_bond = no
+					NOT = { exists = owner }
+				}
+			}
+			random_international_organizations_member_of = {
+				limit = {
+					international_organization_type = international_organization_type:creditors_league
+					exists = leader_country
+					NOT = { leader_country = root }
+				}
+				leader_country = { save_temporary_scope_as = bank_leader }
+			}
+			scope:target = {
+				change_loan_owner = scope:bank_leader
+			}
+		}
+	}
+}
+
 on_international_organization_policy_changed = {
 	effect = {
 		if = {
