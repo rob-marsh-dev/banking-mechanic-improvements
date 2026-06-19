@@ -104,8 +104,8 @@ creditors_league = {
 
 	# Base member benefits - small economic bonuses at all tiers
 	modifier = {
-		bank_interest = -0.01
 		selling_efficiency = 0.02
+		creditworthiness_bonus = 0.1
 	}
 
 	# Base leader benefit - scales with membership

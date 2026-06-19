@@ -28,7 +28,8 @@ financial_focus_bank = {
 	country_modifier = {
 		global_foreign_build_buildings_efficiency = 0.25
 		building_upkeep_efficiency = 0.15
-		bank_interest = -0.02
+		bank_interest = -0.01
+		creditworthiness_bonus = 0.1
 		government_reform_slots = 1
 	}
 	years = 2
