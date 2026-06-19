@@ -1,5 +1,10 @@
 ﻿l_english:
 
+ #Creditor's League — member loan notification
+ banking_cl.1.title: "A League Member Draws on Our Coffers"
+ banking_cl.1.desc: "[SCOPE.sCountry('cl_loan_taker').GetName], as a member of our Creditor's League, has taken out a loan. As the league's financier, we have advanced [ROOT.GetVariable('cl_last_loan_amount').GetValue|0] gold from our own treasury. The debt — and its interest — is now owed to us."
+ banking_cl.1.a: "Our coin is their leash."
+
  banker_shipwright_branch: "Banker Shipyard"
  banker_shipwright_branch_desc: "This building represents a shipyard owned and loyal to the banking family. We will still need permission from the local authority to build ships, however."
  bank_recruitment: "Bank-Owned Recruitment Firm"

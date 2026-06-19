@@ -58,8 +58,24 @@ cl_on_loan_taken = {
 				}
 				leader_country = { save_temporary_scope_as = bank_leader }
 			}
+			# Permanent (not temporary) so it survives into the notification event.
+			save_scope_as = cl_loan_taker
 			scope:target = {
 				change_loan_owner = scope:bank_leader
+			}
+			# The bank actually fronts the principal, so it isn't free money for the league.
+			scope:bank_leader = {
+				add_gold = {
+					value = scope:target.loan_amount
+					multiply = -1
+				}
+				# Notify a human bank that a member just drew on its treasury.
+				# AI leaders skip the popup (a country_event to AI only auto-resolves silently).
+				if = {
+					limit = { is_ai = no }
+					set_variable = { name = cl_last_loan_amount value = scope:target.loan_amount }
+					trigger_event_non_silently = { id = banking_cl.1 }
+				}
 			}
 		}
 	}

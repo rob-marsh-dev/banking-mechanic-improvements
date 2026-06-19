@@ -1,0 +1,21 @@
+namespace = banking_cl
+
+# Notifies the Creditor's League leader (the bank) that a member drew a loan financed
+# from the bank's own treasury. Fired from cl_on_loan_taken in
+# on_action/z_creditors_league_on_actions.txt.
+#   root                  = the bank leader (event recipient)
+#   scope:cl_loan_taker   = the borrowing member
+#   var:cl_last_loan_amount = principal the bank just fronted
+banking_cl.1 = {
+	type = country_event
+	title = banking_cl.1.title
+	desc = banking_cl.1.desc
+	outcome = neutral
+
+	image = "gfx/interface/illustrations/institutions/banking.dds"
+
+	option = {
+		name = banking_cl.1.a
+		remove_variable = cl_last_loan_amount
+	}
+}
