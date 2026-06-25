@@ -353,11 +353,10 @@ creditors_league_construction_law = {
 		}
 	}
 
-	# Tier 2: Banking nation may negotiate construction rights with members
+	# Tier 2: The bank may construct its economic buildings (trade house, counting house,
+	# credit office) in member territory. Members keep the local economic boost; the bank
+	# pays for and profits from the buildings.
 	cl_con_build_policy = {
-		can_build_buildings_in_members = yes
-		can_build_roads_in_members = yes
-		can_build_rgos_in_members = yes
 		country_modifier = {
 			potential_trigger = {
 				is_leader_of_international_organization = scope:recipient
@@ -370,7 +369,7 @@ creditors_league_construction_law = {
 				add = { desc = "CL_CON_LEADER_BUILD_ACCESS" value = 30 }
 			}
 			else = {
-				add = { desc = "CL_CON_MEMBER_BUILD_INTRUSION" value = -15 }
+				add = { desc = "CL_CON_MEMBER_WELCOMES_INVESTMENT" value = 10 }
 			}
 		}
 		wants_keep_policy = {
@@ -379,7 +378,7 @@ creditors_league_construction_law = {
 				add = { desc = "CL_CON_LEADER_KEEPS_BUILD" value = 30 }
 			}
 			else = {
-				add = { desc = "CL_CON_MEMBER_RESISTS_BUILD" value = -10 }
+				add = { desc = "CL_CON_MEMBER_KEEPS_INVESTMENT" value = 10 }
 			}
 		}
 	}

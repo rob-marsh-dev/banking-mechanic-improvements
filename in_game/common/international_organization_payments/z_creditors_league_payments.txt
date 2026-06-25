@@ -29,7 +29,7 @@ cl_member_subsidy_payment = {
 		}
 		multiply = {
 			desc = "CL_SUBSIDY_RATE"
-			value = 0.01
+			value = 0.02
 		}
 	}
 	proportion_for_payer = {
@@ -74,7 +74,7 @@ cl_small_levy_payment = {
 		}
 		multiply = {
 			desc = "CL_SMALL_LEVY_RATE"
-			value = 0.02
+			value = 0.05
 		}
 	}
 	proportion_for_payer = {
@@ -119,7 +119,7 @@ cl_large_levy_payment = {
 		}
 		multiply = {
 			desc = "CL_LARGE_LEVY_RATE"
-			value = 0.05
+			value = 0.10
 		}
 	}
 	proportion_for_payer = {
@@ -164,7 +164,7 @@ cl_manpower_levy_payment = {
 		}
 		multiply = {
 			desc = "CL_MANPOWER_LEVY_RATE"
-			value = 0.10
+			value = 0.15
 		}
 	}
 	proportion_for_payer = {
@@ -209,7 +209,7 @@ cl_sailor_levy_payment = {
 		}
 		multiply = {
 			desc = "CL_SAILOR_LEVY_RATE"
-			value = 0.10
+			value = 0.15
 		}
 	}
 	proportion_for_payer = {
@@ -254,7 +254,7 @@ cl_full_levy_payment = {
 		}
 		multiply = {
 			desc = "CL_FULL_LEVY_RATE"
-			value = 0.10
+			value = 0.20
 		}
 	}
 	proportion_for_payer = {

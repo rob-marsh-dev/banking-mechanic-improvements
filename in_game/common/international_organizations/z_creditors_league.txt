@@ -74,34 +74,6 @@ creditors_league = {
 		add_policy_to_international_organization = policy:cl_sub_free_policy
 	}
 
-	on_joined = {
-		if = {
-			limit = {
-				scope:recipient = {
-					international_organization_has_policy = policy:cl_con_build_policy
-					exists = leader_country
-				}
-				is_subject = no
-				NOT = { this = scope:recipient.leader_country }
-			}
-			make_subject_of = {
-				target = scope:recipient.leader_country
-				type = subject_type:construction_rights
-			}
-		}
-	}
-
-	on_left = {
-		if = {
-			limit = {
-				is_subject_type = construction_rights
-				exists = overlord
-				overlord = { this = scope:recipient.leader_country }
-			}
-			overlord = { cancel_subject = prev }
-		}
-	}
-
 	# Base member benefits - small economic bonuses at all tiers
 	modifier = {
 		selling_efficiency = 0.02

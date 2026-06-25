@@ -1,0 +1,8 @@
+REPLACE:bank_construction = {
+	lumber = 0.5
+	masonry = 0.5
+	tools = 0.5
+	glass = 0.5
+	paper = 0.5
+	category = building_construction
+}

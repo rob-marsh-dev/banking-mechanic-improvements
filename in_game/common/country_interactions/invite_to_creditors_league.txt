@@ -64,6 +64,14 @@ invite_to_creditors_league = {
 	}
 
 	accept = {
+		# Subjects of the league leader cannot refuse
+		if = {
+			limit = {
+				scope:recipient = { is_subject_of = scope:actor }
+			}
+			add = { desc = "CREDITORS_LEAGUE_JOIN_SUBJECT" value = 1000 }
+		}
+
 		# Royal marriage with the banking nation
 		if = {
 			limit = {

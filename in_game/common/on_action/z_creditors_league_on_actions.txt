@@ -7,7 +7,6 @@ cl_on_subject_created = {
 	effect = {
 		if = {
 			limit = {
-				NOT = { scope:subject_type = subject_type:construction_rights }
 				scope:overlord = {
 					any_international_organizations_member_of = {
 						international_organization_type = international_organization_type:creditors_league
@@ -81,39 +80,3 @@ cl_on_loan_taken = {
 	}
 }
 
-on_international_organization_policy_changed = {
-	effect = {
-		if = {
-			limit = {
-				international_organization_type = international_organization_type:creditors_league
-				international_organization_has_policy = policy:cl_con_build_policy
-				exists = leader_country
-			}
-			save_scope_as = cl_io
-			leader_country = { save_scope_as = bank_leader }
-			every_international_organization_member = {
-				limit = {
-					NOT = { this = scope:bank_leader }
-					is_subject = no
-				}
-				make_subject_of = {
-					target = scope:bank_leader
-					type = subject_type:construction_rights
-				}
-			}
-		}
-		if = {
-			limit = {
-				international_organization_type = international_organization_type:creditors_league
-				NOT = { international_organization_has_policy = policy:cl_con_build_policy }
-				exists = leader_country
-			}
-			leader_country = {
-				every_subject = {
-					limit = { is_subject_type = construction_rights }
-					overlord = { cancel_subject = prev }
-				}
-			}
-		}
-	}
-}
