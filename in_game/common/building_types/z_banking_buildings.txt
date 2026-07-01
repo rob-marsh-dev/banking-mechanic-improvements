@@ -6,8 +6,10 @@ REPLACE_OR_CREATE:banking_office = {
 
 	category = trade_category
 
-	max_levels = 5
-	increase_per_level_cost = 0.5
+	expensive = yes
+
+	max_levels = 3
+	increase_per_level_cost = 2
 	employment_size = foreign_trade_employment
 	pop_size_created = foreign_trade_employment
 
@@ -78,8 +80,6 @@ currency_exchange = {
 	}
 
 	construction_demand = bank_construction
-
-
 }
 
 banker_shipwright_branch = {
