@@ -4,7 +4,7 @@
   "version" : "2.1",
   "game_id" : "eu5",
   "picture" : "thumbnail.png",
-  "supported_game_version" : "1.3.4",
+  "supported_game_version" : "1.3.8",
   "short_description" : "Some changes to banking nations. Allows them a way to hire Regulars and Ships via vassals, and changes the take over loan formula to allow for profit.",
   "tags" : [ "Gameplay" ],
   "relationships" : [ ],
