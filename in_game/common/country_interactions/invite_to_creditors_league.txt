@@ -72,6 +72,20 @@ invite_to_creditors_league = {
 			add = { desc = "CREDITORS_LEAGUE_JOIN_SUBJECT" value = 1000 }
 		}
 
+		# Bought into their administration via foreign investment: +5 per level
+		if = {
+			limit = {
+				scope:recipient = { has_variable = foreign_admin_investment_level }
+			}
+			add = {
+				desc = "CREDITORS_LEAGUE_JOIN_FOREIGN_ADMIN"
+				value = {
+					value = scope:recipient.var:foreign_admin_investment_level
+					multiply = 5
+				}
+			}
+		}
+
 		# Royal marriage with the banking nation
 		if = {
 			limit = {
@@ -88,12 +102,13 @@ invite_to_creditors_league = {
 			add = { desc = "CREDITORS_LEAGUE_ALLIANCE" value = 5 }
 		}
 
-		# Nations with debt are relieved to have it absorbed
+		# The more of their debt the bank already holds, the more relieved they are
+		# to have it absorbed — weighted by the gold owed to us, not the loan count.
 		add = {
 			desc = "CREDITORS_LEAGUE_JOIN_DEBT_RELIEF"
 			value = {
-				value = scope:recipient.num_loans
-				multiply = 10
+				value = scope:recipient.banking_debt_owed_to_actor
+				multiply = 0.2
 			}
 		}
 

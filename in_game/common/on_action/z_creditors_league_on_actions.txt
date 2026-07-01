@@ -1,3 +1,46 @@
+# Hook our foreign-investment debt spiral into the base game's monthly country pulse.
+# on_actions lists are additive, so this appends rather than overwrites the base list.
+monthly_country_pulse = {
+	on_actions = { cl_foreign_investment_monthly }
+}
+
+# root = the bought-into country (pulsed monthly). 5% chance each month that the
+# bank's grip on their administration pushes them into a fresh loan owned by the
+# investing bank. give_loan called in the investor's scope makes it the creditor.
+# var:foreign_admin_investor = the bank (set in foreign_investment_in_administration).
+cl_foreign_investment_monthly = {
+	trigger = {
+		has_country_modifier = foreign_admin_investment
+		exists = var:foreign_admin_investor
+	}
+	effect = {
+		random = {
+			# 5% per rank of the debuff — the deeper the bank's grip, the more
+			# often it shoves them into fresh debt (level 1 = 5%, level 2 = 10%, ...).
+			chance = {
+				value = 5
+				multiply = var:foreign_admin_investment_level
+			}
+			# Remember the victim so the bank's notification can name them.
+			save_scope_as = cl_forced_loan_victim
+			var:foreign_admin_investor = {
+				give_loan = {
+					target = root
+					amount = root.monthly_income_trade_and_tax
+					interest = root.modifier:bank_interest
+					months = 60
+				}
+				# Notify the bank its grip snared another loan (human banks only;
+				# an AI bank would just auto-resolve the popup silently).
+				if = {
+					limit = { is_ai = no }
+					trigger_event_non_silently = { id = banking_cl.2 }
+				}
+			}
+		}
+	}
+}
+
 # root = subject, scope:overlord = new overlord, scope:subject_type = subject type
 on_subject_created = {
 	on_actions = { cl_on_subject_created }

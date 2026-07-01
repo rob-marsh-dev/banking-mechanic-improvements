@@ -1,0 +1,114 @@
+buy_sovereignty = {
+	type = diplomacy
+	category = CATEGORY_ECONOMY_ACTIONS
+
+	potential = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+			is_leader_of_international_organization_of_type = { type = creditors_league }
+		}
+		# The overlord we pay must hold a subject that belongs to our league,
+		# and must not be a league member themselves.
+		scope:recipient ?= {
+			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+			any_subject = {
+				any_international_organizations_member_of = {
+					international_organization_type = international_organization_type:creditors_league
+					leader_country = scope:actor
+				}
+			}
+		}
+	}
+
+	# The bank must be able to afford the buyout.
+	allow = {
+		scope:actor = {
+			gold > scope:recipient.banking_buy_sovereignty_cost
+		}
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+			any_subject = {
+				any_international_organizations_member_of = {
+					international_organization_type = international_organization_type:creditors_league
+					leader_country = scope:actor
+				}
+			}
+		}
+		enabled = {
+			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+			any_subject = {
+				any_international_organizations_member_of = {
+					international_organization_type = international_organization_type:creditors_league
+					leader_country = scope:actor
+				}
+			}
+		}
+	}
+
+	effect = {
+		# The bank pays the lump sum; the overlord pockets it in full.
+		scope:actor = {
+			add_gold = {
+				value = scope:recipient.banking_buy_sovereignty_cost
+				multiply = -1
+			}
+		}
+		scope:recipient = {
+			add_gold = banking_buy_sovereignty_cost
+			# Snapshot the league-member subjects first, then release them - never
+			# modify the live subject set while iterating over it.
+			every_subject = {
+				limit = {
+					any_international_organizations_member_of = {
+						international_organization_type = international_organization_type:creditors_league
+						leader_country = scope:actor
+					}
+				}
+				add_to_temporary_list = cl_bought_subjects
+			}
+			every_in_list = {
+				list = cl_bought_subjects
+				overlord = { cancel_subject = prev }
+			}
+		}
+	}
+
+	# The overlord weighs the gold against the pride of holding a vassal.
+	# Tune these values to make the buyout easier or harder to land.
+	accept = {
+		# A fair price, paid in full and up front.
+		add = { desc = "BUY_SOVEREIGNTY_FAIR_PRICE" value = 20 }
+		# Reluctance to surrender a vassal.
+		add = { desc = "BUY_SOVEREIGNTY_PRIDE" value = -30 }
+		# An empty treasury makes the gold hard to refuse.
+		if = {
+			limit = { scope:recipient = { gold < 0 } }
+			add = { desc = "BUY_SOVEREIGNTY_BROKE" value = 40 }
+		}
+	}
+
+	# AI banks only attempt it with comfortable reserves.
+	ai_will_do = {
+		value = 0
+		if = {
+			limit = {
+				scope:actor = {
+					gold > {
+						value = scope:recipient.banking_buy_sovereignty_cost
+						multiply = 2
+					}
+				}
+			}
+			add = 20
+		}
+	}
+}

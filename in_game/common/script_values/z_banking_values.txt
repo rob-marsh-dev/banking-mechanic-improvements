@@ -7,3 +7,31 @@ banking_ownerless_loan_principal = {
 		add = bank_loan_takeover_cost
 	}
 }
+
+# Total principal this scope (the borrower) owes on loans owned by scope:actor.
+# Evaluated on the recipient inside an interaction, where scope:actor = the bank.
+banking_debt_owed_to_actor = {
+	every_loan = {
+		limit = { owner ?= scope:actor }
+		add = loan_amount
+	}
+}
+
+# Lump sum to buy out this overlord's hold over its Creditor's League subjects.
+# Evaluated on the overlord (recipient); scope:actor = the bank buying them free.
+# Flat base plus a premium scaling with each released subject's economic weight.
+banking_buy_sovereignty_cost = {
+	value = 100
+	every_subject = {
+		limit = {
+			any_international_organizations_member_of = {
+				international_organization_type = international_organization_type:creditors_league
+				leader_country = scope:actor
+			}
+		}
+		add = {
+			value = country_economical_base
+			multiply = 20
+		}
+	}
+}

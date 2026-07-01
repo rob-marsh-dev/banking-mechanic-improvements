@@ -74,6 +74,21 @@ creditors_league = {
 		add_policy_to_international_organization = policy:cl_sub_free_policy
 	}
 
+	# A new member's bought-in administration debuff is wiped clean once they
+	# are inside the league - the bank now controls them directly.
+	on_joined = {
+		if = {
+			limit = { has_variable = foreign_admin_investment_level }
+			remove_variable = foreign_admin_investment_level
+			# Also forget the investing bank, so the monthly debt-spiral pulse
+			# (cl_foreign_investment_monthly) stops firing once they're inside.
+			remove_variable = foreign_admin_investor
+		}
+		# Clear the visible marker card too, so it doesn't linger after the
+		# variable (and thus the auto_modifier penalties) are gone.
+		remove_country_modifier = foreign_admin_investment
+	}
+
 	# Base member benefits - small economic bonuses at all tiers
 	modifier = {
 		selling_efficiency = 0.02

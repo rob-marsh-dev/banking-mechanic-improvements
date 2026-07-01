@@ -1,0 +1,91 @@
+foreign_investment_in_administration = {
+	type = diplomacy
+	category = CATEGORY_ECONOMY_ACTIONS
+
+	potential = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+			is_member_of_international_organization_of_type = { type = creditors_league }
+		}
+		scope:recipient ?= {
+			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+			NOT = { has_reform = government_reform:banking_country }
+		}
+	}
+
+	# Bank must be able to afford buying further into the target's administration.
+	# Cost scales with the target's wealth (its overall economic base).
+	allow = {
+		scope:actor = {
+			gold > {
+				value = 300
+				add = {
+					value = scope:recipient.country_economical_base
+					multiply = 15
+				}
+			}
+		}
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+			NOT = { has_reform = government_reform:banking_country }
+		}
+		enabled = {
+			NOT = { is_member_of_international_organization_of_type = { type = creditors_league } }
+			NOT = { has_reform = government_reform:banking_country }
+		}
+	}
+
+	effect = {
+		# Spend the gold (cost scales with the target's overall economic base)
+		scope:actor = {
+			add_gold = {
+				value = 300
+				add = {
+					value = scope:recipient.country_economical_base
+					multiply = 15
+				}
+				multiply = -1
+			}
+		}
+		# Deepen the bank's grip on their government by one level
+		scope:recipient = {
+			if = {
+				limit = { NOT = { has_variable = foreign_admin_investment_level } }
+				set_variable = {
+					name = foreign_admin_investment_level
+					value = 1
+				}
+			}
+			else = {
+				change_variable = {
+					name = foreign_admin_investment_level
+					add = 1
+				}
+			}
+			# Remember which bank bought in, so the monthly debt-spiral pulse
+			# (cl_foreign_investment_monthly) knows who to make the loan owner.
+			# Refreshes to the latest investor if a different bank buys in.
+			set_variable = {
+				name = foreign_admin_investor
+				value = scope:actor
+			}
+			# Visible marker card. Effect-less (the scaling penalties live in the
+			# foreign_admin_investment_debuff auto_modifier); mode = replace keeps a
+			# single permanent card no matter how many times the bank invests.
+			add_country_modifier = {
+				modifier = foreign_admin_investment
+				years = -1
+				mode = replace
+			}
+		}
+	}
+}

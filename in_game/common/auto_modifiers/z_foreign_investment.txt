@@ -1,0 +1,19 @@
+# Foreign Investment in Administration debuff.
+#
+# Applied automatically to any country the bank has bought into via the
+# foreign_investment_in_administration interaction. The penalties scale with
+# the foreign_admin_investment_level variable (one level per purchase), so the
+# corrosion deepens each time the bank invests. The variable is cleared when the
+# country joins the Creditor's League (see z_creditors_league on_joined).
+
+foreign_admin_investment_debuff = {
+	potential_trigger = { has_variable = foreign_admin_investment_level }
+	scales_with = { value = var:foreign_admin_investment_level }
+
+	monthly_inflation = 0.005
+	monthly_devotion = -0.1
+	monthly_legitimacy = -0.1
+	monthly_republican_tradition = -0.1
+	stability_investment = stability_investment_penalty
+	stability_decay = 0.0025
+}

@@ -37,3 +37,13 @@ absorbed_foreign_branch = {
 	selling_efficiency = small_trade_efficiency_bonus
 }
 
+# Cosmetic marker only. The actual penalties scale per level and live in the
+# foreign_admin_investment_debuff auto_modifier (common/auto_modifiers); this
+# card exists purely so the bought-into country can see the bank's grip in its
+# modifier panel. Keep it effect-less so the penalties are never double-counted.
+foreign_admin_investment = {
+	game_data = {
+		category = country
+	}
+}
+

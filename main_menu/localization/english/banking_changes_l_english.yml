@@ -5,6 +5,11 @@
  banking_cl.1.desc: "[SCOPE.sCountry('cl_loan_taker').GetName], as a member of our Creditor's League, has taken out a loan. As the league's financier, we have advanced [ROOT.GetVariable('cl_last_loan_amount').GetValue|0] gold from our own treasury. The debt — and its interest — is now owed to us."
  banking_cl.1.a: "Our coin is their leash."
 
+ #Foreign Investment in Administration — forced loan notification
+ banking_cl.2.title: "Our Grip Tightens"
+ banking_cl.2.desc: "Our agents within [SCOPE.sCountry('cl_forced_loan_victim').GetName]'s administration have steered the treasury into fresh debt — owed, of course, to us. Every coin they borrow binds them closer to our ledgers."
+ banking_cl.2.a: "Let them sink deeper."
+
  banker_shipwright_branch: "Banker Shipyard"
  banker_shipwright_branch_desc: "This building represents a shipyard owned and loyal to the banking family. We will still need permission from the local authority to build ships, however."
  bank_recruitment: "Bank-Owned Recruitment Firm"
@@ -23,6 +28,9 @@
  cl_credit_office: "League Credit Office"
  cl_credit_office_desc: "Cheap credit from the league oils local industry and widens market access. The richer the member grows, the more it leans on the bank."
  cl_credit_office_maintenance: "Credit Office Upkeep"
+ cl_endowed_college: "League Endowed College"
+ cl_endowed_college_desc: "Bankers' money funds chairs and scholarships, hastening the rise of skilled townsfolk. An educated, ambitious populace is one with appetites the bank is glad to finance."
+ cl_endowed_college_maintenance: "Endowed College Upkeep"
 
  currency_exchange: "Currency Exchange"
  currency_exchange_desc: "Here, our bankers swap and change money for a fee. This allows to influence trade in ways that grow our coffers, while collecting a tidy profit."
@@ -158,6 +166,10 @@
  STATIC_MODIFIER_NAME_foreign_branch_great_power: "Foreign Branch (Great Power)"
  STATIC_MODIFIER_DESC_foreign_branch_great_power: "We have established a branch in a great power. Our financial tentacles run deep into their affairs, opening doors across the continent."
 
+ #Foreign Investment in Administration marker (penalties scale via the foreign_admin_investment_debuff auto_modifier)
+ STATIC_MODIFIER_NAME_foreign_admin_investment: "Foreign Investment in Administration"
+ STATIC_MODIFIER_DESC_foreign_admin_investment: "Foreign bankers have bought their way into our administration. Their grip deepens with every further investment, breeding inflation and choking our trade and treasury."
+
  #Absorb_Foreign_Branch
  absorb_foreign_branch: "Absorb Foreign Branch"
  dip_absorb_foreign_branch_CATEGORY: "CATEGORY_SUBJECT_ACTIONS"
@@ -184,9 +196,31 @@
  bank_bribe_voter_for_policy_desc: "Gold opens more doors than prestige. We may offer a payment to convince another member to vote our way."
  bank_bribe_voter_for_policy_act: "Offer [SCOPE.sCountry('recipient').GetName] gold to vote our way"
 
- #Hostile Takeover interaction
- hostile_takeover_into_league: "Compel League Membership"
- hostile_takeover_into_league_desc: "We hold significant debt from this nation. We may use this leverage to force them into our Creditor's League."
+ #Foreign Investment in Administration interaction
+ foreign_investment_in_administration: "Foreign Investment in Administration"
+ dip_foreign_investment_in_administration_CATEGORY: "CATEGORY_ECONOMY_ACTIONS"
+ foreign_investment_in_administration_act: "Buy deeper into the administration of [SCOPE.sCountry('recipient').GetName]"
+ foreign_investment_in_administration_desc: "Pour gold into [SCOPE.sCountry('recipient').GetName]'s ministries and treasury offices. The cost scales with their wealth, and each investment further corrodes their economy with inflation, strangled trade and leaking tax revenue - while leaving them ever more willing to accept a seat in our Creditor's League."
+ foreign_investment_in_administration_effect_text: "[SCOPE.sCountry('actor').GetName] buys deeper into the administration of [SCOPE.sCountry('recipient').GetName]"
+ foreign_investment_in_administration_effect_text_past: "[SCOPE.sCountry('actor').GetName] bought deeper into the administration of [SCOPE.sCountry('recipient').GetName]"
+ PROPOSE_foreign_investment_in_administration: "Buy further into the administration of $RECIPIENT$?\n\n$INFO$"
+ foreign_investment_in_administration_SELECT_TITLE: "Select whose government we will buy into."
+
+ #Buy Sovereignty — bank pays an overlord to release its Creditor's League subject(s)
+ buy_sovereignty: "Buy Sovereignty"
+ dip_buy_sovereignty_CATEGORY: "CATEGORY_ECONOMY_ACTIONS"
+ buy_sovereignty_act: "Buy a subject's freedom from [SCOPE.sCountry('recipient').GetName]"
+ buy_sovereignty_desc: "A member of our Creditor's League still answers to [SCOPE.sCountry('recipient').GetName]. For the right sum, paid straight into their coffers, that bond can be dissolved - and our member freed to serve none but the ledger."
+ buy_sovereignty_effect_text: "[SCOPE.sCountry('actor').GetName] buys out [SCOPE.sCountry('recipient').GetName]'s hold over its league subject"
+ buy_sovereignty_effect_text_past: "[SCOPE.sCountry('actor').GetName] bought out [SCOPE.sCountry('recipient').GetName]'s hold over its league subject"
+ PROPOSE_buy_sovereignty: "Pay $RECIPIENT$ to release their subject?\n\n$INFO$"
+ buy_sovereignty_SELECT_TITLE: "Select an overlord to buy a subject's freedom from."
+ BUY_SOVEREIGNTY_FAIR_PRICE: "A fair price, paid in full and up front"
+ BUY_SOVEREIGNTY_PRIDE: "We are loath to surrender a vassal"
+ BUY_SOVEREIGNTY_BROKE: "Our empty treasury makes the gold hard to refuse"
+
+ #Foreign Investment in Administration debuff (auto modifier)
+ AUTO_MODIFIER_NAME_foreign_admin_investment_debuff: "Foreign Investment in Administration"
 
  #Invite to Creditor's League interaction
  PROPOSE_invite_to_creditors_league: "Would we like to invite $RECIPIENT$ to join our Creditor's League?\n\n$INFO$"
@@ -207,6 +241,7 @@
  CREDITORS_LEAGUE_NATION_SIZE: "Our nation's strength"
  CREDITORS_LEAGUE_JOIN_DEBT_RELIEF: "Debt relief"
  CREDITORS_LEAGUE_JOIN_SUBJECT: "Subject of the bank"
+ CREDITORS_LEAGUE_JOIN_FOREIGN_ADMIN: "Bought into their administration"
  CREDITORS_LEAGUE_GROW_LEAGUE: "Grow the League"
  CREDITORS_LEAGUE_TOO_MANY_MEMBERS: "League size"
  CREDITORS_LEAGUE_JOIN_SUBSIDY: "Member subsidies"

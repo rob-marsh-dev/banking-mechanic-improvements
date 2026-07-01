@@ -19,3 +19,21 @@ banking_cl.1 = {
 		remove_variable = cl_last_loan_amount
 	}
 }
+
+# Notifies the bank that a country it has bought into has been pushed into a fresh
+# loan owed to it. Fired from cl_foreign_investment_monthly in
+# on_action/z_creditors_league_on_actions.txt.
+#   root                     = the bank (event recipient, new loan owner)
+#   scope:cl_forced_loan_victim = the country forced to borrow
+banking_cl.2 = {
+	type = country_event
+	title = banking_cl.2.title
+	desc = banking_cl.2.desc
+	outcome = positive
+
+	image = "gfx/interface/illustrations/institutions/banking.dds"
+
+	option = {
+		name = banking_cl.2.a
+	}
+}
