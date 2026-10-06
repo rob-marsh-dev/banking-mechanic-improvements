@@ -35,10 +35,13 @@
  currency_exchange: "Currency Exchange"
  currency_exchange_desc: "Here, our bankers swap and change money for a fee. This allows to influence trade in ways that grow our coffers, while collecting a tidy profit."
  currency_exchange_maintenance: "Needs of Currency Exchanges"
+ rb_bank_maintenance: "Bank Upkeep"
  banking_mining_interest: "Banker Mining Interest"
  banking_mining_interest_desc: "A series of pawnbrokers, hands-for-hire and brutes ensure we get our pound of flesh from these valuable mines."
+ banking_mining_interest_maintenance: "Mining Interest Upkeep"
  banker_art_imporium: "Art Emporium"
  banker_art_imporium_desc: "Here talented artists, poets, painters and sculptors of every persuasion toil for one thing only - to ensure our family name is on the worlds lips."
+ art_imporium_maintenence: "Needs of the Art Emporium"
  bankers_kontor: "Bankers Kontor"
  bankers_kontor_desc: "By investing in local infrastructure, we can hire our own merchants to trade for us."
  bankers_kontor_maintenance: "Bankers Kontor"
@@ -51,12 +54,17 @@
  bank_expand_diplomat_network_desc: "By dispatching trusted agents and family members to courts across the continent, we can grow our network of diplomatic contacts."
  bank_expand_diplomat_network_active: "Expanding our Diplomatic Network"
  bank_expand_diplomat_network_action: "Expand our Diplomatic Network"
-
+ bank_expand_diplomat_network_action_progress: "[SCOPE.sCountry('actor').GetModifierValue('monthly_diplomats')]"
+ bank_expand_diplomat_network_action_progress_wordier: "Monthly [diplomats|e]: [SCOPE.sCountry('actor').GetModifierValue('monthly_diplomats')]"
+ bank_expand_diplomat_network_action_progress_tooltip: "Monthly [diplomats|e]: [SCOPE.sCountry('actor').GetModifierValue('monthly_diplomats')]"
 
  bank_monopolize_commerce: "Monopolize Local Commerce"
  bank_monopolize_commerce_desc: "By leveraging our financial network, we can quietly undercut local merchant guilds — diverting trade revenues into our coffers while eroding their political standing."
  bank_monopolize_commerce_active: "Monopolizing Local Commerce"
  bank_monopolize_commerce_action: "Monopolize Local Commerce"
+ bank_monopolize_commerce_action_progress: "[SCOPE.sCountry('actor').GetModifierValue('trade_income')]"
+ bank_monopolize_commerce_action_progress_wordier: "[trade_income|e]: [SCOPE.sCountry('actor').GetModifierValue('trade_income')]"
+ bank_monopolize_commerce_action_progress_tooltip: "[trade_income|e]: [SCOPE.sCountry('actor').GetModifierValue('trade_income')] \n\n$MODIFIER_TYPE_NAME_global_burghers_estate_power$: [SCOPE.sCountry('actor').GetModifierValue('global_burghers_estate_power')]"
 
  #advances
  bank_embed_diplomats_in_court: "Embeded Diplomats In Court"
@@ -105,8 +113,8 @@
  strongarm_into_fees_act: "Strong-arm [SCOPE.sCountry('recipient').GetName]"
  strongarm_into_fees_desc: "This will allow increase the amount they owe on loans owed to us."
  strongarm_into_fees_effect_text: "[SCOPE.sCountry('actor').GetName] strong-armed [SCOPE.sCountry('recipient').GetName] into a worse deal."
- strongarm_into_feess_effect_text_past: "[SCOPE.sCountry('actor').GetName] strong-armed [SCOPE.sCountry('recipient').GetName] into a worse deal."
- PROPOSE_strongarm_into_fees: "Strong-arm $RECIPIENT$?\n$INFO$.""
+ strongarm_into_fees_effect_text_past: "[SCOPE.sCountry('actor').GetName] strong-armed [SCOPE.sCountry('recipient').GetName] into a worse deal."
+ PROPOSE_strongarm_into_fees: "Strong-arm $RECIPIENT$?\n$INFO$."
 
 
  #Take Over All Loans
@@ -143,8 +151,12 @@
  pressure_into_loan_act: "Pressure [SCOPE.sCountry('recipient').GetName] into a loan"
  pressure_into_loan_desc: "By calling in some favours, we can ask (force) them to take a loan from our bank."
  pressure_into_loan_effect_text: "[SCOPE.sCountry('actor').GetName] pressured [SCOPE.sCountry('recipient').GetName] into a new loan."
- pressure_into_loan_effect_text_past: "[SCOPE.sCountry('actor').GetName] pressured-armed [SCOPE.sCountry('recipient').GetName] into a new loan."
- PROPOSE_pressure_into_loan: "Pressure $RECIPIENT$?\n$INFO$.""
+ pressure_into_loan_effect_text_past: "[SCOPE.sCountry('actor').GetName] pressured [SCOPE.sCountry('recipient').GetName] into a new loan."
+ PROPOSE_pressure_into_loan: "Pressure $RECIPIENT$?\n$INFO$."
+ INCOMING_OFFER_TITLE_pressure_into_loan: "A Loan We Did Not Ask For"
+ INCOMING_OFFER_pressure_into_loan: "$ACTOR$ are pressing us to take a loan from their bank, whether we need the gold or not. Refusing them may cost us their goodwill. Do we wish to comply?\n\n$INFO$"
+ pressure_into_loan_reject_effect_text: "$generic_reject_demand_effect_string$"
+ pressure_into_loan_reject_effect_text_past: "$generic_reject_demand_effect_string_past$"
 
  #Install Foreign Branch
  install_foreign_branch: "Install Foreign Branch"
@@ -177,7 +189,7 @@
  absorb_foreign_branch_desc: "While having other banks owe us is great, the competition they give us is still a thorn in our side. Let us absorb their branches into ours, and be better of because of it"
  absorb_foreign_branch_effect_text: "[SCOPE.sCountry('actor').GetName] absorbed [SCOPE.sCountry('recipient').GetName]'s banks into theirs."
  absorb_foreign_branch_effect_text_past: "[SCOPE.sCountry('actor').GetName] absorbed [SCOPE.sCountry('recipient').GetName]'s banks into theirs."
- PROPOSE_absorb_foreign_branch: "Absorb $RECIPIENT$?\n$INFO$.""
+ PROPOSE_absorb_foreign_branch: "Absorb $RECIPIENT$?\n$INFO$."
  WE_PERFORM_absorb_foreign_branch_ACTION: "Test"
  ACTION_absorb_foreign_branch_PERFORMED_ON_US: "test"
 
@@ -187,6 +199,7 @@
  diplomatic_status_creditors_league_tooltip: "This nation is a member of [ROOT.GetInternationalOrganization.GetName], a financial alliance headed by [ROOT.GetInternationalOrganization.GetLeaderCountry.GetName]."
  creditors_league_list_who_tt: "Members of the Creditor's League"
  creditors_league_desc: "A financial alliance founded by a banking nation to extend its influence over client states. Members enjoy economic benefits while the founding bank gradually tightens its grip."
+ io_opinion_creditors_league: "Fellow [member|e] of the Creditor's League"
 
  #Missing vanilla loc
  any_loan_count: "$PARAMETERS$ [loans|e]"
@@ -195,6 +208,14 @@
  bank_bribe_voter_for_policy: "Sway Their Vote"
  bank_bribe_voter_for_policy_desc: "Gold opens more doors than prestige. We may offer a payment to convince another member to vote our way."
  bank_bribe_voter_for_policy_act: "Offer [SCOPE.sCountry('recipient').GetName] gold to vote our way"
+ dip_bank_bribe_voter_for_policy_CATEGORY: "CATEGORY_ECONOMY_ACTIONS"
+ PROPOSE_bank_bribe_voter_for_policy: "Offer $RECIPIENT$ gold to vote for the outcome we choose?"
+ bank_bribe_voter_for_policy_effect_text: "[SCOPE.sCountry('recipient').GetName] will receive an offer of [gold|e] to vote for [SCOPE.sPolicy('policy').GetName]."
+ bank_bribe_voter_for_policy_effect_text_past: "[SCOPE.sCountry('recipient').GetName] has received an offer of [gold|e] to vote for [SCOPE.sPolicy('policy').GetName]."
+ INCOMING_OFFER_TITLE_bank_bribe_voter_for_policy: "$bank_bribe_voter_for_policy$"
+ INCOMING_OFFER_bank_bribe_voter_for_policy: "$ACTOR$ offer us a heavy purse of gold if we change our stance in the current resolution. Do we wish to accept?\n\n$INFO$"
+ bank_bribe_voter_for_policy_reject_effect_text: "$generic_reject_offer_effect_string$"
+ bank_bribe_voter_for_policy_reject_effect_text_past: "$generic_reject_offer_effect_string_past$"
 
  #Foreign Investment in Administration interaction
  foreign_investment_in_administration: "Foreign Investment in Administration"
@@ -218,6 +239,10 @@
  BUY_SOVEREIGNTY_FAIR_PRICE: "A fair price, paid in full and up front"
  BUY_SOVEREIGNTY_PRIDE: "We are loath to surrender a vassal"
  BUY_SOVEREIGNTY_BROKE: "Our empty treasury makes the gold hard to refuse"
+ INCOMING_OFFER_TITLE_buy_sovereignty: "An Offer for Our Subjects"
+ INCOMING_OFFER_buy_sovereignty: "$ACTOR$ offer to pay us a handsome sum in [gold|e], in full and up front, if we release those of our subjects who sit in their Creditor's League. Do we wish to accept?\n\n$INFO$"
+ buy_sovereignty_reject_effect_text: "$generic_reject_offer_effect_string$"
+ buy_sovereignty_reject_effect_text_past: "$generic_reject_offer_effect_string_past$"
 
  #Foreign Investment in Administration debuff (auto modifier)
  AUTO_MODIFIER_NAME_foreign_admin_investment_debuff: "Foreign Investment in Administration"
@@ -226,11 +251,14 @@
  PROPOSE_invite_to_creditors_league: "Would we like to invite $RECIPIENT$ to join our Creditor's League?\n\n$INFO$"
  invite_to_creditors_league: "Invite to Creditor's League"
  invite_to_creditors_league_desc: "Extend an invitation for this nation to join our Creditor's League as a member state."
- INCOMING_OFFER_invite_to_creditors_league: "Invitation to join the Creditor's League"
- invite_to_creditors_league_effect_text: "[SCOPE_ACTOR.GetName] invites us to join their Creditor's League."
- invite_to_creditors_league_effect_text_past: "[SCOPE_ACTOR.GetName] invited us to join their Creditor's League."
- invite_to_creditors_league_reject_effect_text: "We decline the invitation to join [SCOPE_ACTOR.GetName]'s Creditor's League."
- invite_to_creditors_league_reject_effect_text_past: "We declined the invitation to join [SCOPE_ACTOR.GetName]'s Creditor's League."
+ dip_invite_to_creditors_league_CATEGORY: "CATEGORY_FRIENDLY_ACTIONS"
+ invite_to_creditors_league_act: "Invite [SCOPE.sCountry('recipient').GetName] to join our Creditor's League"
+ INCOMING_OFFER_TITLE_invite_to_creditors_league: "Invitation to join the Creditor's League"
+ INCOMING_OFFER_invite_to_creditors_league: "$ACTOR$ have invited us to join their Creditor's League. The bank will shoulder our outstanding market loans, but its ledgers will bind us ever closer to its will. Do we wish to accept?\n\n$INFO$"
+ invite_to_creditors_league_effect_text: "[SCOPE.sCountry('actor').GetName] invites [SCOPE.sCountry('recipient').GetName] to join their Creditor's League."
+ invite_to_creditors_league_effect_text_past: "[SCOPE.sCountry('actor').GetName] invited [SCOPE.sCountry('recipient').GetName] to join their Creditor's League."
+ invite_to_creditors_league_reject_effect_text: "[SCOPE.sCountry('recipient').GetName] declines the invitation to join [SCOPE.sCountry('actor').GetName]'s Creditor's League."
+ invite_to_creditors_league_reject_effect_text_past: "[SCOPE.sCountry('recipient').GetName] declined the invitation to join [SCOPE.sCountry('actor').GetName]'s Creditor's League."
  CREDITORS_LEAGUE_NAME: "Creditor's League"
  CREDITORS_LEAGUE_NAMED: "[ROOT.GetInternationalOrganization.GetLeaderCountry.GetName] Creditor's League"
  creditors_league_assembly: "Council of Creditors"
@@ -260,6 +288,8 @@
  # League War Declaration resolution
  cl_league_war_declaration: "Declare League War"
  cl_league_war_declaration_desc: "Propose that the Creditor's League declare war on a chosen nation. A simple majority of members must vote in favour for the resolution to pass. If carried, the league's banking nation will lead the war effort."
+ cl_league_war_declaration_specific: "Declare League War against [SCOPE.sCountry('target').GetName]"
+ cl_league_war_declaration_specific_desc: "Start a debate on the Creditor's League declaring war on [SCOPE.sCountry('target').GetName]. If a simple majority votes in favour, the league's banking nation will lead the war effort."
  cl_league_war_declaration_active: "League War against [SCOPE.sCountry('target').GetName]"
  cl_league_war_declaration_cooldown: "League War Declaration"
  vote_in_cl_league_war_declaration: "Vote on the League War against [SCOPE.sCountry('target').GetName]"
@@ -305,6 +335,7 @@
  CL_MEMBER_RESISTS_LEVY: "We resent paying tribute"
 
  #Payment descriptions
+ cl_payment_base: "Creditor's League Payment"
  cl_payment_all: "Full share"
  cl_member_subsidy_payment: "Bank Subsidy"
  cl_member_subsidy_payment_desc: "The banking nation distributes gold equal to 1% of the combined monthly income of all member states. Each member receives a share proportional to their own income."
@@ -324,6 +355,9 @@
  CL_FULL_LEVY_RATE: "Levy rate (10% of total member income)"
 
  #Realm In Arrears
+ realm_in_arrears_cost: "Realm in Arrears pays Overlord"
+ AM_realm_in_arrears: "[SUBJECT_TYPE.GetName] of $LIST$."
+ LEAD_realm_in_arrears: "$LIST$ is a [SUBJECT_TYPE.GetName]"
  OFFER_realm_in_arrears_TOOLTIP_HEADER: "Demand that [TARGET_COUNTRY.GetName] makes good on all we have lent them."
  OFFER_realm_in_arrears_TOOLTIP_HEADER_NO_TARGET: "Demand that a [country|e] makes good on all we have lent them."
  REQUEST_realm_in_arrears_TOOLTIP_HEADER: "Request to become a Realm In Arrears of [TARGET_COUNTRY.GetName]"
@@ -430,6 +464,7 @@
  cl_manpower_levy_policy: "Manpower Levy"
  cl_manpower_levy_policy_desc: "Member states contribute 10% of their monthly manpower to the banking nation. Requires recruitment rights to be in force."
  cl_manpower_levy_payment: "Manpower Levy"
+ cl_manpower_levy_price: "$cl_manpower_levy_payment$"
  cl_manpower_levy_payment_desc: "Each member state pays 10% of their monthly manpower to the banking nation. Your share is proportional to your manpower income relative to other members."
  CL_MAN_MEMBER_NO_LEVY: "We retain full control of our own manpower"
  CL_MAN_LEADER_WANTS_LEVY: "We desire access to member manpower"
@@ -447,6 +482,7 @@
  cl_sailor_levy_policy: "Sailor Levy"
  cl_sailor_levy_policy_desc: "Member states contribute 10% of their monthly sailors to the banking nation. Requires full military access to be in force."
  cl_sailor_levy_payment: "Sailor Levy"
+ cl_sailor_levy_price: "$cl_sailor_levy_payment$"
  cl_sailor_levy_payment_desc: "Each member state pays 10% of their monthly sailors to the banking nation. Your share is proportional to your sailor income relative to other members."
  CL_SAI_MEMBER_NO_LEVY: "We retain full control of our own sailors"
  CL_SAI_LEADER_WANTS_LEVY: "We desire access to member sailors"
