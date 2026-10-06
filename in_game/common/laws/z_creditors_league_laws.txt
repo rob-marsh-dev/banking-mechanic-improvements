@@ -1,4 +1,4 @@
-creditors_league_payment_law = {
+﻿creditors_league_payment_law = {
 	type = international_organization
 	law_category = finance
 	potential = {

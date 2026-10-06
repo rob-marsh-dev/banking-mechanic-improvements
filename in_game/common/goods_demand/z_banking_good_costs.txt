@@ -1,4 +1,4 @@
-REPLACE:bank_construction = {
+﻿REPLACE:bank_construction = {
 	lumber = 0.5
 	masonry = 0.5
 	tools = 0.5

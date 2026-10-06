@@ -1,4 +1,4 @@
-install_foreign_branch = {
+﻿install_foreign_branch = {
 	category = CATEGORY_ECONOMY_ACTIONS
 	type = diplomacy
 

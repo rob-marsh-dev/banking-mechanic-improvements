@@ -1,4 +1,4 @@
-REPLACE_OR_CREATE:banking_office = {
+﻿REPLACE_OR_CREATE:banking_office = {
 	is_special = yes
 	is_foreign = yes
 	need_good_relation = yes
@@ -43,6 +43,7 @@ REPLACE_OR_CREATE:banking_office = {
 
 currency_exchange = {
 	is_foreign = yes
+	want_foreign_pop_created = no
 	need_good_relation = yes
 	pop_type = burghers
 	expensive = yes
@@ -125,8 +126,8 @@ bank_recruitment = {
 	country_potential = {
 		has_reform = government_reform:banking_country
 	}
-	employment_size = 0.2
-	pop_size_created = 0.2
+	employment_size = 0.4
+	pop_size_created = 0.4
 	town = yes
 	city = yes
 	megalopolis = yes
@@ -182,6 +183,7 @@ banker_art_imporium = {
 
 banking_mining_interest = {
 	is_foreign = yes
+	want_foreign_pop_created = no
 	need_good_relation = yes
 	pop_type = laborers
 
@@ -225,6 +227,7 @@ banking_mining_interest = {
 
 family_factor_house = {
 	is_foreign = yes
+	want_foreign_pop_created = no
 	need_good_relation = yes
 	pop_type = burghers
 
@@ -278,6 +281,7 @@ family_factor_house = {
 
 bankers_kontor = {
 	is_foreign = yes
+	want_foreign_pop_created = no
 	need_good_relation = yes
 	pop_type = burghers
 

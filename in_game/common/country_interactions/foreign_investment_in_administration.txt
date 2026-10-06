@@ -1,4 +1,4 @@
-foreign_investment_in_administration = {
+﻿foreign_investment_in_administration = {
 	type = diplomacy
 	category = CATEGORY_ECONOMY_ACTIONS
 

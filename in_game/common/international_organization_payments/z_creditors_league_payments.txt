@@ -1,4 +1,4 @@
-# Tier 1 — leader subsidises members (1% of member income paid out proportionally)
+﻿# Tier 1 — leader subsidises members (1% of member income paid out proportionally)
 cl_member_subsidy_payment = {
 	get_payer_list = {
 		leader_country ?= {

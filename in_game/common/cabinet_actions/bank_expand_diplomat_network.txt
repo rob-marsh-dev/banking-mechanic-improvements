@@ -1,4 +1,4 @@
-bank_expand_diplomat_network = {
+﻿bank_expand_diplomat_network = {
 	ability = dip
 
 	potential = {

@@ -1,4 +1,4 @@
-# Creditor's League economic buildings.
+﻿# Creditor's League economic buildings.
 #
 # Built BY the league leader (a banking country) IN member territory, as a gold sink that
 # also boosts the member's local economy. Gating:
@@ -9,6 +9,7 @@
 
 cl_trade_house = {
 	is_foreign = yes
+	need_good_relation = yes
 	pop_type = burghers
 	category = trade_category
 
@@ -55,6 +56,7 @@ cl_trade_house = {
 
 cl_counting_house = {
 	is_foreign = yes
+	need_good_relation = yes
 	pop_type = burghers
 	category = trade_category
 
@@ -101,6 +103,7 @@ cl_counting_house = {
 
 cl_credit_office = {
 	is_foreign = yes
+	need_good_relation = yes
 	pop_type = burghers
 	category = trade_category
 
@@ -147,6 +150,7 @@ cl_credit_office = {
 
 cl_endowed_college = {
 	is_foreign = yes
+	need_good_relation = yes
 	pop_type = burghers
 	category = cultural_category
 

@@ -1,4 +1,4 @@
-creditors_league_name = {
+﻿creditors_league_name = {
 	type = international_organization
 
 	text = {

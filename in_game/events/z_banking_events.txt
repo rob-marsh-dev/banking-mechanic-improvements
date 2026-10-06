@@ -1,4 +1,4 @@
-namespace = banking_cl
+﻿namespace = banking_cl
 
 # Notifies the Creditor's League leader (the bank) that a member drew a loan financed
 # from the bank's own treasury. Fired from cl_on_loan_taken in

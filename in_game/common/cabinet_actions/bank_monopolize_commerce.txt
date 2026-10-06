@@ -1,4 +1,4 @@
-bank_monopolize_commerce = {
+﻿bank_monopolize_commerce = {
 	ability = adm
 	allow_multiple = no
 

@@ -1,4 +1,4 @@
-invite_to_creditors_league = {
+﻿invite_to_creditors_league = {
 	type = diplomacy
 	category = CATEGORY_FRIENDLY_ACTIONS
 

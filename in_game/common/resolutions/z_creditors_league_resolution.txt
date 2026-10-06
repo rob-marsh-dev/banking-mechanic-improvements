@@ -1,4 +1,4 @@
-cl_league_war_declaration = {
+﻿cl_league_war_declaration = {
 	international_organization_type = creditors_league
 
 	potential = {

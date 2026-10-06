@@ -1,4 +1,4 @@
-# Hide the vanilla bribe voter from banking nations — they use bank_bribe_voter_for_policy instead
+﻿# Hide the vanilla bribe voter from banking nations — they use bank_bribe_voter_for_policy instead
 REPLACE_OR_CREATE:bribe_voter_for_policy = {
 	type = diplomacy
 	category = CATEGORY_ECONOMY_ACTIONS

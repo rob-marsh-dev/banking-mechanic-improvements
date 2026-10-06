@@ -1,4 +1,4 @@
-take_over_all_loans = {
+﻿take_over_all_loans = {
 	category = CATEGORY_ECONOMY_ACTIONS
 	type = diplomacy
 

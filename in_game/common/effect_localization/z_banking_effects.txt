@@ -1,4 +1,4 @@
-take_over_all_loans_count_tooltip = {
+﻿take_over_all_loans_count_tooltip = {
 	global = TAKE_OVER_ALL_LOANS_COUNT_TOOLTIP_EFFECT
 	first = FIRST_TAKE_OVER_ALL_LOANS_COUNT_TOOLTIP_EFFECT
 	third = THIRD_TAKE_OVER_ALL_LOANS_COUNT_TOOLTIP_EFFECT

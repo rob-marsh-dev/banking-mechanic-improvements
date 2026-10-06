@@ -1,4 +1,4 @@
-creditors_league_assembly = {
+﻿creditors_league_assembly = {
 	type = international_organization
 	potential = {
 		international_organization_type = international_organization_type:creditors_league

@@ -1,4 +1,4 @@
-# Foreign Investment in Administration debuff.
+﻿# Foreign Investment in Administration debuff.
 #
 # Applied automatically to any country the bank has bought into via the
 # foreign_investment_in_administration interaction. The penalties scale with

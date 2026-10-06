@@ -1,4 +1,4 @@
-creditors_league = {
+﻿creditors_league = {
 	has_target = no
 	unique = no
 	has_leader_country = yes

@@ -1,4 +1,4 @@
-cl_payment_base = {
+﻿cl_payment_base = {
 	gold = 1
 }
 

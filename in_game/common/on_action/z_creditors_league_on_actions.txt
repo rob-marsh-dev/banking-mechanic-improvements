@@ -1,4 +1,4 @@
-# Hook our foreign-investment debt spiral into the base game's monthly country pulse.
+﻿# Hook our foreign-investment debt spiral into the base game's monthly country pulse.
 # on_actions lists are additive, so this appends rather than overwrites the base list.
 monthly_country_pulse = {
 	on_actions = { cl_foreign_investment_monthly }

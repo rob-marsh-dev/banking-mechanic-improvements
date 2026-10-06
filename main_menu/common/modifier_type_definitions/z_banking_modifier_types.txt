@@ -1,4 +1,4 @@
-realm_in_arrears_cost_cost_modifier = {
+﻿realm_in_arrears_cost_cost_modifier = {
 	color = bad
 	percent = yes
 	game_data = {

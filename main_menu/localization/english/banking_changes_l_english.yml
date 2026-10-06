@@ -265,7 +265,7 @@
  vote_in_cl_league_war_declaration: "Vote on the League War against [SCOPE.sCountry('target').GetName]"
  vote_in_cl_league_war_declaration_desc: "Decide whether the Creditor's League should declare war on [SCOPE.sCountry('target').GetName]."
  cl_war_target_select: "Select Target Nation"
- cl_war_no_valid_targets: "No valid targets — all eligible nations are already members."
+ cl_war_no_valid_targets: "@trigger_no! No valid targets — all eligible nations are already members."
  cl_war_vote_name: "Cast Your Vote"
  CREDITORS_LEAGUE_OPINION_OF_TARGET: "Opinion of the proposed target"
  CREDITORS_LEAGUE_LEADER_AT_PEACE: "We are at peace and ready to commit"
