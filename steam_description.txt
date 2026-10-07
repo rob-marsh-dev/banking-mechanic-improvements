@@ -1,0 +1,69 @@
+Banking Nation Improvements
+Version 2.1.0 | Compatible with EU5 1.3.8 (Open Beta)
+
+Expands the Banking Nation government into a full playstyle built on economic dominance, diplomatic leverage, and debt-based power projection.
+
+Landless nations are in a rough spot right now, so some liberties and ongoing tuning are needed. Please leave feedback so I can keep improving the mod.
+
+---
+
+CORE CHANGES
+
+- Banking Office: 3 levels (vanilla: 1), buildable outside towns, now an expensive high-impact building with steeper per-level costs.
+- Bank Maintenance: production method retuned to reflect the real cost of running a bank.
+- Two government sub-reforms: Trading-Focused (trade income & efficiency) or Financial-Focused (cheaper foreign building & upkeep).
+
+---
+
+THE CREDITOR'S LEAGUE
+
+A new international organisation exclusive to banking nations. The founding bank is permanent leader; members gain small economic bonuses, the leader gains rewards that scale with membership (merchant capacity, max diplomats, diplomat generation).
+
+- Member market loans are financed from the leader's treasury — the debt, and its interest, is owed to the bank.
+- Invite nations diplomatically; wealth and size raise resistance, while heavy debt (especially debt the bank already holds) and prior investment make them willing.
+- Members may request a credit line directly from the bank.
+
+Parliament — the Council of Creditors votes on nine laws:
+  Payment (subsidies vs. escalating levies), Construction (build League buildings in member lands), Military (recruitment & naval access), Intelligence (spy-network sharing), Manpower Levy, Sailor Levy, Internal Relations (peace vs. open war), Subjugation (restrain members from taking their own subjects), and External War (from free hand up to full submission).
+
+League War: the Council may vote to compel an outside nation by force. On a majority, the bank leads the war. Five-year cooldown per vote.
+
+---
+
+NEW BUILDINGS
+
+- Currency Exchange — trade income and regional commerce influence.
+- Banker's Kontor — bank-owned merchants trading on your behalf.
+- Banker Shipyard — build ships in foreign land (with local permission).
+- Bank Recruitment Firm — recruit bank-loyal regiments abroad (with local permission).
+- Art Emporium — cultural prestige and reach.
+- Banking Mining Interest — squeezes value from resource-rich locations.
+- Family Factor House — a family factor seated at a foreign court, in the room when the throne needs a loan.
+- League Buildings (built in member territory with Construction Rights): Trade House, Counting House, Credit Office, Endowed College.
+
+---
+
+SUBJECT TYPES
+
+Realm in Arrears — a debtor placed under direct financial governance, granting the bank the right to recruit regiments and build ships in its territory.
+
+---
+
+DIPLOMATIC INTERACTIONS
+
+- Absorb Foreign Branch — consolidate another bank's branches into yours.
+- Pressure Into Loan / Strongarm Into Fees — push a nation into debt or worse terms.
+- Seize Crown Assets — claim collateral from a debtor.
+- Take Over Loan / All Loans — buy up debt at principal, keep the interest as profit.
+- Foreign Investment in Administration — buy into a rival's government for a scaling economic penalty and a monthly chance to force them into bank-owned loans, softening them up for League membership.
+- Buy Sovereignty — pay an overlord to release a League member from vassalage.
+- Sway Their Vote — bribe IO parliament members with gold instead of prestige.
+- Cabinet Actions: Expand Diplomatic Network, Monopolize Local Commerce.
+
+---
+
+COMPATIBILITY
+
+Patches these vanilla definitions: banking_country, banking_office, bribe_voter_for_policy, and monthly_country_pulse (on_action, appended not overwritten). No other vanilla files touched — compatible with most mods unless they patch the same.
+
+Github: https://github.com/rob-marsh-dev/banking-mechanic-improvements
