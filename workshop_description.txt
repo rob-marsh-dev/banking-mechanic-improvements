@@ -59,9 +59,6 @@ When a nation cannot service its debts, the bank may impose direct financial gov
 
 DIPLOMATIC INTERACTIONS
 
-Install Foreign Branch
-  Establish a banking presence in a foreign nation's territory.
-
 Absorb Foreign Branch
   Consolidate an existing foreign branch under direct bank control.
 

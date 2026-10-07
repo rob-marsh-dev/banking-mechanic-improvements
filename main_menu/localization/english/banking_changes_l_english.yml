@@ -158,26 +158,6 @@
  pressure_into_loan_reject_effect_text: "$generic_reject_demand_effect_string$"
  pressure_into_loan_reject_effect_text_past: "$generic_reject_demand_effect_string_past$"
 
- #Install Foreign Branch
- install_foreign_branch: "Install Foreign Branch"
- dip_install_foreign_branch_CATEGORY: "CATEGORY_ECONOMY_ACTIONS"
- install_foreign_branch_act: "Establish a branch in [SCOPE.sCountry('recipient').GetName]"
- install_foreign_branch_desc: "By investing heavily in [SCOPE.sCountry('recipient').GetName], we can establish a permanent financial presence there. Our agents and contacts will open doors for us across the continent."
- install_foreign_branch_effect_text: "[SCOPE.sCountry('actor').GetName] established a foreign branch in [SCOPE.sCountry('recipient').GetName]."
- install_foreign_branch_effect_text_past: "[SCOPE.sCountry('actor').GetName] established a foreign branch in [SCOPE.sCountry('recipient').GetName]."
- PROPOSE_install_foreign_branch: "Establish a branch in $RECIPIENT$?\n\n$INFO$"
- install_foreign_branch_SELECT_TITLE: "Select a country to establish a branch in."
-
- #Foreign branch modifiers
- STATIC_MODIFIER_NAME_foreign_branch_minor: "Foreign Branch (Minor)"
- STATIC_MODIFIER_DESC_foreign_branch_minor: "We have established a branch in a minor nation. Our embedded agents and financial contacts provide a trickle of diplomatic reach."
- STATIC_MODIFIER_NAME_foreign_branch_standard: "Foreign Branch"
- STATIC_MODIFIER_DESC_foreign_branch_standard: "We have established a branch in a nation of moderate size. Our presence in their financial affairs keeps us well connected."
- STATIC_MODIFIER_NAME_foreign_branch_major: "Foreign Branch (Major)"
- STATIC_MODIFIER_DESC_foreign_branch_major: "We have established a branch in a major nation. Our bankers move in the highest circles of their court."
- STATIC_MODIFIER_NAME_foreign_branch_great_power: "Foreign Branch (Great Power)"
- STATIC_MODIFIER_DESC_foreign_branch_great_power: "We have established a branch in a great power. Our financial tentacles run deep into their affairs, opening doors across the continent."
-
  #Foreign Investment in Administration marker (penalties scale via the foreign_admin_investment_debuff auto_modifier)
  STATIC_MODIFIER_NAME_foreign_admin_investment: "Foreign Investment in Administration"
  STATIC_MODIFIER_DESC_foreign_admin_investment: "Foreign bankers have bought their way into our administration. Their grip deepens with every further investment, breeding inflation and choking our trade and treasury."
