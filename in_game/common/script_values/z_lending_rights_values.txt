@@ -1,0 +1,23 @@
+﻿# One-off payment the bank makes to the borrower for granting Lending Rights:
+# a year of the BORROWER's trade and tax income.
+# Which of scope:actor / scope:recipient is the borrower differs between contexts
+# in scripted relations, so pick whichever side is NOT the banking country.
+lending_rights_signing_bonus = {
+	value = 0
+	if = {
+		limit = {
+			exists = scope:actor
+			exists = scope:recipient
+			scope:actor = { has_reform = government_reform:banking_country }
+		}
+		add = scope:recipient.monthly_income_trade_and_tax
+	}
+	else_if = {
+		limit = {
+			exists = scope:actor
+			exists = scope:recipient
+		}
+		add = scope:actor.monthly_income_trade_and_tax
+	}
+	multiply = 12
+}

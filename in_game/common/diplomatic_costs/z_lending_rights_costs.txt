@@ -1,0 +1,4 @@
+﻿# Diplomatic cost to request Lending Rights. Intentionally empty: the only price
+# is the gold signing payment (lending_rights_signing_bonus).
+lending_rights_cost = {
+}

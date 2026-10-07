@@ -1,0 +1,35 @@
+﻿# root = country (borrower), scope:target = loan, scope:owner = lender (if existent)
+# If the borrower has granted Lending Rights to a bank, a fresh estate loan is retagged
+# so the bank holds it, and the bank pays the principal (the borrower already got the
+# gold from the estate loan; change_loan_owner only moves who collects).
+# If the bank can't cover the principal, the loan stays with the estates.
+on_loan_taken = {
+	on_actions = { lr_on_loan_taken }
+}
+
+lr_on_loan_taken = {
+	trigger = {
+		exists = var:lending_rights_holder
+		giving_scripted_relation = {
+			type = relation_type:lending_rights
+			target = var:lending_rights_holder
+		}
+		scope:target = {
+			is_bond = no
+			NOT = { exists = owner }
+		}
+		var:lending_rights_holder.gold >= scope:target.loan_amount
+	}
+	effect = {
+		var:lending_rights_holder = { save_scope_as = lr_bank }
+		scope:target = {
+			change_loan_owner = scope:lr_bank
+		}
+		scope:lr_bank = {
+			add_gold = {
+				value = scope:target.loan_amount
+				multiply = -1
+			}
+		}
+	}
+}

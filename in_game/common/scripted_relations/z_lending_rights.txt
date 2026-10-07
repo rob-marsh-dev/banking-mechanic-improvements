@@ -1,0 +1,139 @@
+﻿# Lending Rights: a banking country buys the right to hold another country's
+# estate loans. One way: the BORROWER gives the relation, the BANK receives it.
+# Only the bank can initiate (request); there is no offer.
+#
+# SCOPES: throughout this relation (visible, enabled, effects, AI) the scopes are
+# giver/receiver, NOT requester/target, even though the bank is the one requesting:
+#   scope:actor     = borrower (giver)    = scope:first
+#   scope:recipient = bank (receiver)     = scope:second
+# Either may be missing in untargeted menus.
+#
+# The loan takeover itself happens in lr_on_loan_taken (z_lending_rights_on_actions.txt).
+lending_rights = {
+	type = diplomacy
+	relation_type = oneway
+	break_on_war = yes
+	relation_type_for_ai = friendly
+	diplomatic_cost_request = lending_rights_cost
+	category = {
+		offer = CATEGORY_ECONOMY_ACTIONS
+		request = CATEGORY_ECONOMY_ACTIONS
+		cancellation = CATEGORY_ECONOMY_ACTIONS
+		break = CATEGORY_ECONOMY_ACTIONS
+	}
+
+	# Only banks can buy it, and not from another bank.
+	visible = {
+		OR = {
+			NOT = { exists = scope:recipient }
+			scope:recipient = { has_reform = government_reform:banking_country }
+		}
+		OR = {
+			NOT = { exists = scope:actor }
+			scope:actor = {
+				NOT = { has_reform = government_reform:banking_country }
+			}
+		}
+	}
+
+	offer_visible = { always = no }
+
+	# Roles are resolved by the banking reform rather than by scope name, since
+	# actor/recipient are not consistent across contexts (see header).
+	request_enabled = {
+		exists = scope:actor
+		exists = scope:recipient
+		OR = {
+			AND = {
+				scope:actor = { has_reform = government_reform:banking_country }
+				# One lender per country.
+				scope:recipient = {
+					NOT = { giving_scripted_relation_of_type = relation_type:lending_rights }
+				}
+				scope:actor.gold >= lending_rights_signing_bonus
+			}
+			AND = {
+				scope:recipient = { has_reform = government_reform:banking_country }
+				scope:actor = {
+					NOT = { giving_scripted_relation_of_type = relation_type:lending_rights }
+				}
+				scope:recipient.gold >= lending_rights_signing_bonus
+			}
+		}
+	}
+
+	will_expire_trigger = {
+		scope:second = {
+			NOT = { has_reform = government_reform:banking_country }
+		}
+	}
+
+	request_effect = {
+		# Work out which side is the bank, then pay the borrower for signing.
+		if = {
+			limit = { scope:actor = { has_reform = government_reform:banking_country } }
+			scope:actor = { save_scope_as = lr_bank }
+			scope:recipient = { save_scope_as = lr_borrower }
+		}
+		else = {
+			scope:recipient = { save_scope_as = lr_bank }
+			scope:actor = { save_scope_as = lr_borrower }
+		}
+		# Fix the amount once so both sides see the same number.
+		save_scope_value_as = { name = lr_payment value = lending_rights_signing_bonus }
+		scope:lr_bank = {
+			add_gold = {
+				value = scope:lr_payment
+				multiply = -1
+			}
+		}
+		scope:lr_borrower = {
+			add_gold = scope:lr_payment
+			# Lets lr_on_loan_taken find the bank without scanning every country.
+			set_variable = { name = lending_rights_holder value = scope:lr_bank }
+		}
+	}
+
+	wants_to_give_diplo_chance = {
+		base = -10
+		actor_is_rival = -100
+		trust_in_actor = 0.5
+		positive_opinion = 0.1
+		negative_opinion = -0.5
+	}
+
+	# The borrower (scope:actor) deciding whether to sell its lending rights.
+	wants_to_give = {
+		add = {
+			desc = "BASE"
+			value = -50
+		}
+		# The signing bonus is the sweetener.
+		add = {
+			desc = "lending_rights_signing_bonus_reason"
+			value = 50
+		}
+		add = {
+			desc = "THEIR_OPINION_TOOLTIP"
+			value = "scope:actor.opinion(scope:recipient)"
+			if = {
+				limit = { "scope:actor.opinion(scope:recipient)" > 0 }
+				divide = 5
+			}
+		}
+		add = {
+			desc = "THEIR_TRUST_TOOLTIP"
+			value = "scope:actor.trust(scope:recipient)"
+			divide = 2
+		}
+		if = {
+			limit = {
+				scope:actor = { is_rival_of = scope:recipient }
+			}
+			add = {
+				desc = "game_concept_rival"
+				value = -200
+			}
+		}
+	}
+}
