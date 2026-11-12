@@ -24,7 +24,6 @@
 		visible = {
 			scope:recipient = {
 				is_subject_of = scope:actor
-				is_subject_type = realm_in_arrears
 				has_reform = government_reform:banking_country
 			}
 		}

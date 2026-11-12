@@ -19,6 +19,12 @@
 		monthly_loan_capacity_investment = 10.0
 		monthly_diplomats = 0.4
 		max_diplomats = 4
+		burghers_estate_can_participate_in_parliament = yes
+		# Folded in from the old Trade/Finance focus reforms: the burghers are the
+		# bank's own staff, and trade is its base income.
+		trade_income = 0.15
+		burghers_estate_target_satisfaction = medium_permanent_target_satisfaction
+		global_burghers_estate_power = -0.25
 	}
 	years = 2
 }

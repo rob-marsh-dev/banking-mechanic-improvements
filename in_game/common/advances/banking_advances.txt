@@ -20,16 +20,6 @@ bank_cultural_phenomon = {
 	cultural_influence_modifier = 0.5
 }
 
-bank_art_imporium = {
-	age = age_2_renaissance
-	icon = renaissance_advance
-	potential = {
-		has_reform = government_reform:banking_country
-	}
-	requires = bank_cultural_phenomon
-
-	unlock_building = banker_art_imporium
-}
 
 bank_head_of_the_family = {
 	age = age_2_renaissance
@@ -53,14 +43,4 @@ bank_decentralized_branches = {
 	monthly_diplomats = 0.3
 }
 
-bank_mining_interests = {
-	age = age_2_renaissance
-	icon = fine_metals_mining
-	potential = {
-		has_reform = government_reform:banking_country
-	}
-	requires = bank_decentralized_branches
-    
-	unlock_building = banking_mining_interest
-}
 
