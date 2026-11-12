@@ -1,0 +1,3 @@
+﻿# Intentionally empty: the only price is the gold signing payment.
+bank_tax_farming_cost = {
+}

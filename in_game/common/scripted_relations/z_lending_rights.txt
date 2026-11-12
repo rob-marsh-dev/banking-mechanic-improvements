@@ -16,10 +16,10 @@ lending_rights = {
 	relation_type_for_ai = friendly
 	diplomatic_cost_request = lending_rights_cost
 	category = {
-		offer = CATEGORY_ECONOMY_ACTIONS
-		request = CATEGORY_ECONOMY_ACTIONS
-		cancellation = CATEGORY_ECONOMY_ACTIONS
-		break = CATEGORY_ECONOMY_ACTIONS
+		offer = CATEGORY_BANKING_ACTIONS
+		request = CATEGORY_BANKING_ACTIONS
+		cancellation = CATEGORY_BANKING_ACTIONS
+		break = CATEGORY_BANKING_ACTIONS
 	}
 
 	# Only banks can buy it, and not from another bank.

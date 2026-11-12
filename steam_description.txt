@@ -1,69 +1,54 @@
 Banking Nation Improvements
-Version 2.1.0 | Compatible with EU5 1.3.8 (Open Beta)
+Version 3.0.0 | Compatible with EU5 1.4.7
 
-Expands the Banking Nation government into a full playstyle built on economic dominance, diplomatic leverage, and debt-based power projection.
+Rebuilds the Banking Nation government around one loop: money buys agreements, and agreements bring in more money or influence over the countries you deal with.
 
-Landless nations are in a rough spot right now, so some liberties and ongoing tuning are needed. Please leave feedback so I can keep improving the mod.
-
----
-
-CORE CHANGES
-
-- Banking Office: 3 levels (vanilla: 1), buildable outside towns, now an expensive high-impact building with steeper per-level costs.
-- Bank Maintenance: production method retuned to reflect the real cost of running a bank.
-- Two government sub-reforms: Trading-Focused (trade income & efficiency) or Financial-Focused (cheaper foreign building & upkeep).
+Version 3.0 is a ground-up rework and is NOT compatible with saves from 2.x. The Creditor's League, the Realm in Arrears subject type and most of the old buildings and interactions are gone, replaced by a smaller set of agreements that fit together. More are on the way; please leave feedback.
 
 ---
 
-THE CREDITOR'S LEAGUE
+DEBT
 
-A new international organisation exclusive to banking nations. The founding bank is permanent leader; members gain small economic bonuses, the leader gains rewards that scale with membership (merchant capacity, max diplomats, diplomat generation).
-
-- Member market loans are financed from the leader's treasury — the debt, and its interest, is owed to the bank.
-- Invite nations diplomatically; wealth and size raise resistance, while heavy debt (especially debt the bank already holds) and prior investment make them willing.
-- Members may request a credit line directly from the bank.
-
-Parliament — the Council of Creditors votes on nine laws:
-  Payment (subsidies vs. escalating levies), Construction (build League buildings in member lands), Military (recruitment & naval access), Intelligence (spy-network sharing), Manpower Levy, Sailor Levy, Internal Relations (peace vs. open war), Subjugation (restrain members from taking their own subjects), and External War (from free hand up to full submission).
-
-League War: the Council may vote to compel an outside nation by force. On a majority, the bank leads the war. Five-year cooldown per vote.
+- Take Over All Loans - buy up every estate-held loan a country owes and collect the interest yourself.
+- Buy Out Bonds - pay off a country's government bondholders. Its open-ended bonds become ordinary 10 year loans owed to you, at the same interest.
+- Lending Rights - pay a country a signing sum; from then on every new loan it takes from its estates is held by you instead.
 
 ---
 
-NEW BUILDINGS
+AGREEMENTS
 
-- Currency Exchange — trade income and regional commerce influence.
-- Banker's Kontor — bank-owned merchants trading on your behalf.
-- Banker Shipyard — build ships in foreign land (with local permission).
-- Bank Recruitment Firm — recruit bank-loyal regiments abroad (with local permission).
-- Art Emporium — cultural prestige and reach.
-- Banking Mining Interest — squeezes value from resource-rich locations.
-- Family Factor House — a family factor seated at a foreign court, in the room when the throne needs a loan.
-- League Buildings (built in member territory with Construction Rights): Trade House, Counting House, Credit Office, Endowed College.
+Each agreement is signed with one country, costs a signing sum up front, and lasts until either side ends it or you go to war with each other. You can hold several over the same country.
+
+- Tax Farming - collect a tenth of the country's tax income every month.
+- Trade Factorage - your agents run the country's commerce. It trades more efficiently, and you take a tenth of its trade income every month.
 
 ---
 
-SUBJECT TYPES
+WAR
 
-Realm in Arrears — a debtor placed under direct financial governance, granting the bank the right to recruit regiments and build ships in its territory.
+- Hire War Ally - banks have no armies, but gold buys swords. Pay a country to join one war you are leading. When the war ends, so does the arrangement.
+- Sway Their Vote - bribe international organisation voters with gold alone, with no prestige cost.
 
 ---
 
-DIPLOMATIC INTERACTIONS
+BUILDINGS
 
-- Absorb Foreign Branch — consolidate another bank's branches into yours.
-- Pressure Into Loan / Strongarm Into Fees — push a nation into debt or worse terms.
-- Seize Crown Assets — claim collateral from a debtor.
-- Take Over Loan / All Loans — buy up debt at principal, keep the interest as profit.
-- Foreign Investment in Administration — buy into a rival's government for a scaling economic penalty and a monthly chance to force them into bank-owned loans, softening them up for League membership.
-- Buy Sovereignty — pay an overlord to release a League member from vassalage.
-- Sway Their Vote — bribe IO parliament members with gold instead of prestige.
-- Cabinet Actions: Expand Diplomatic Network, Monopolize Local Commerce.
+- Banking Office - back to its vanilla form.
+- Banker's Kontor - bank-owned merchants trading on your behalf.
+- Banker Shipyard - build ships in a foreign port (with local permission).
+
+---
+
+GOVERNMENT
+
+- The Trading-Focused and Financial-Focused sub-reforms are merged into the base Banking Family reform, which now grants extra trade income and a more content, less powerful burgher estate.
+- Cabinet actions: Expand Diplomatic Network, Monopolize Local Commerce.
+- Absorb Foreign Branch - annex a subject bank and take over its network.
 
 ---
 
 COMPATIBILITY
 
-Patches these vanilla definitions: banking_country, banking_office, bribe_voter_for_policy, and monthly_country_pulse (on_action, appended not overwritten). No other vanilla files touched — compatible with most mods unless they patch the same.
+Patches these vanilla definitions: banking_country and bribe_voter_for_policy. The on_loan_taken on_action is appended to, not overwritten. No other vanilla files are touched, so it should work with most mods unless they patch the same things.
 
 Github: https://github.com/rob-marsh-dev/banking-mechanic-improvements

@@ -1,0 +1,8 @@
+﻿# Every price needs a matching <price>_cost_modifier type for its tooltip.
+bank_hire_war_ally_price_cost_modifier = {
+	color = bad
+	percent = yes
+	game_data = {
+		category = country
+	}
+}

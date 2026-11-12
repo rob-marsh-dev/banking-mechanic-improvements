@@ -8,3 +8,13 @@
 	monthly_inflation = -0.0001
 	selling_efficiency = small_trade_efficiency_bonus
 }
+
+# Applied to the host while it has a Trade Factorage agreement with a bank
+# (the giving_ prefix is how the engine finds a relation's modifier).
+giving_bank_trade_factorage = {
+	game_data = {
+		category = country
+	}
+	export_efficiency = large_trade_efficiency_bonus
+	import_efficiency = large_trade_efficiency_bonus
+}

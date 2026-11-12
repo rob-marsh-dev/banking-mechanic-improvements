@@ -1,11 +1,11 @@
 ﻿{
   "name" : "Banking Nation Improvements",
   "id" : "rob.bankingexpansion",
-  "version" : "2.1",
+  "version" : "3.0",
   "game_id" : "eu5",
   "picture" : "thumbnail.png",
-  "supported_game_version" : "1.4.0",
-  "short_description" : "Some changes to banking nations. Allows them a way to hire Regulars and Ships via vassals, and changes the take over loan formula to allow for profit.",
+  "supported_game_version" : "1.4.7",
+  "short_description" : "Rebuilds banking nations around agreements: buy out loans and bonds, farm a country's taxes, run its trade, and hire allies for your wars.",
   "tags" : [ "Gameplay" ],
   "relationships" : [ ],
   "game_custom_data" : { }

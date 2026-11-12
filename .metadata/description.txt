@@ -1,7 +1,8 @@
-Hi! This is my first mod I hope to develop over time. The
+Rebuilds banking nations around agreements. Money buys agreements, and agreements bring in more money or influence.
 
-Changes included are:
+- Take over a country's loans and buy out its government bonds
+- Lending Rights, Tax Farming and Trade Factorage agreements
+- Hire countries to fight in your wars
+- Banker's Kontor and Banker Shipyard foreign buildings
 
-Added a way for banking nations to get manpower and recruit regiments
-Added a way for banking nations to get sailors and build ships
-Change take over loan to purchase only principal of a loan, not just intrest
+Version 3.0 is a rework and is not compatible with 2.x saves.

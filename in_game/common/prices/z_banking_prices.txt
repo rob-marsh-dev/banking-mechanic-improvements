@@ -1,0 +1,8 @@
+﻿# Gold the bank pays a country to join one of its wars (bank_hire_war_ally).
+# Scales mostly with the hired country's economy: bigger allies cost more.
+bank_hire_war_ally_price = {
+	scaled_recipient_gold = 48
+	scaled_gold = 4
+	min_scale = 20
+	max_scale = 2000
+}

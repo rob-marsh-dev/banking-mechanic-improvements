@@ -1,0 +1,88 @@
+﻿# Buy Out Bonds: the bank buys every government bond a country has issued.
+#
+# change_loan_owner does nothing on bonds, so each bond is replaced instead:
+#   1. the bank gives the country a fixed-term loan for the bond's face value, at
+#      the bond's own interest rate (give_loan moves the principal bank -> country)
+#   2. that principal is taken straight back off the country: it is what pays off
+#      the old bondholders
+#   3. the bond is cancelled
+# Net: the bank is down the face value, the country's treasury is unchanged, and
+# the perpetual bond has become an ordinary loan owed to the bank that has to be
+# repaid within bank_bond_buyout_months.
+buy_out_bonds = {
+	category = CATEGORY_BANKING_ACTIONS
+	type = diplomacy
+
+	potential = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	allow = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			num_bonds > 0
+		}
+		enabled = {
+			scope:actor.gold > current_bonds
+		}
+	}
+
+	effect = {
+		custom_description = {
+			text = buy_out_bonds_count_tooltip
+			value = scope:recipient.num_bonds
+		}
+		custom_description = {
+			text = buy_out_bonds_cost_tooltip
+			value = scope:recipient.current_bonds
+		}
+		custom_tooltip = buy_out_bonds_term_tooltip
+
+		hidden_effect = {
+			# Collect first: the loop below adds and removes loans on this country.
+			scope:recipient = {
+				every_loan = {
+					limit = { is_bond = yes }
+					add_to_list = bank_bonds_to_buy
+				}
+			}
+			every_in_list = {
+				list = bank_bonds_to_buy
+				save_scope_as = bank_bond
+				scope:actor = {
+					give_loan = {
+						target = scope:recipient
+						amount = scope:bank_bond.loan_amount
+						interest = scope:bank_bond.loan_interest
+						months = bank_bond_buyout_months
+					}
+				}
+				scope:recipient = {
+					add_gold = {
+						value = scope:bank_bond.loan_amount
+						multiply = -1
+					}
+				}
+				cancel_loan = this
+			}
+		}
+	}
+
+	ai_will_do = {
+		add = -20
+		add = scope:recipient.country_tax_base
+	}
+}

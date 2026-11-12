@@ -45,7 +45,7 @@
 
  #Take Over All Loans
  take_over_all_loans: "Take Over All Loans"
- dip_take_over_all_loans_CATEGORY: "CATEGORY_ECONOMY_ACTIONS"
+ dip_take_over_all_loans_CATEGORY: "CATEGORY_BANKING_ACTIONS"
  take_over_all_loans_act: "Purchase all outstanding loans from [SCOPE.sCountry('recipient').GetName]"
  take_over_all_loans_desc: "By purchasing all outstanding debt owed by [SCOPE.sCountry('recipient').GetName], we assume ownership of every loan at face value. A costly move, but it consolidates their debt entirely in our hands."
  take_over_all_loans_effect_text: "[SCOPE.sCountry('actor').GetName] purchased all outstanding loans from [SCOPE.sCountry('recipient').GetName]."
@@ -97,3 +97,51 @@
  INCOMING_OFFER_bank_bribe_voter_for_policy: "$ACTOR$ offer us a heavy purse of gold if we change our stance in the current resolution. Do we wish to accept?\n\n$INFO$"
  bank_bribe_voter_for_policy_reject_effect_text: "$generic_reject_offer_effect_string$"
  bank_bribe_voter_for_policy_reject_effect_text_past: "$generic_reject_offer_effect_string_past$"
+
+ #Buy Out Bonds
+ buy_out_bonds: "Buy Out Bonds"
+ dip_buy_out_bonds_CATEGORY: "CATEGORY_BANKING_ACTIONS"
+ buy_out_bonds_act: "Buy out every [government_bond|e] issued by [SCOPE.sCountry('recipient').GetName]"
+ buy_out_bonds_desc: "We pay off the holders of every [government_bond|e] [SCOPE.sCountry('recipient').GetName] has issued. In exchange their open-ended bonds become ordinary [loans|e] owed to us, at the same [interest|e], which must be repaid in full."
+ buy_out_bonds_effect_text: "[SCOPE.sCountry('actor').GetName] buys out the government bonds of [SCOPE.sCountry('recipient').GetName]."
+ buy_out_bonds_effect_text_past: "[SCOPE.sCountry('actor').GetName] bought out the government bonds of [SCOPE.sCountry('recipient').GetName]."
+ PROPOSE_buy_out_bonds: "Buy out the government bonds of $RECIPIENT$?
+
+$INFO$"
+ buy_out_bonds_SELECT_TITLE: "Select a country whose bonds we will buy out."
+ buy_out_bonds_term_tooltip: "Each [government_bond|e] becomes a 10 year [loan|e] owed to us, at the same [interest|e]"
+ BUY_OUT_BONDS_COUNT_TOOLTIP_EFFECT: "They have $VALUE|0$ outstanding [government_bonds|e]"
+ FIRST_BUY_OUT_BONDS_COUNT_TOOLTIP_EFFECT: "They have $VALUE|0$ outstanding [government_bonds|e]"
+ THIRD_BUY_OUT_BONDS_COUNT_TOOLTIP_EFFECT: "They have $VALUE|0$ outstanding [government_bonds|e]"
+ PAST_BUY_OUT_BONDS_COUNT_TOOLTIP_EFFECT: "They had $VALUE|0$ outstanding [government_bonds|e]"
+ PAST_FIRST_BUY_OUT_BONDS_COUNT_TOOLTIP_EFFECT: "They had $VALUE|0$ outstanding [government_bonds|e]"
+ PAST_THIRD_BUY_OUT_BONDS_COUNT_TOOLTIP_EFFECT: "They had $VALUE|0$ outstanding [government_bonds|e]"
+ BUY_OUT_BONDS_COST_TOOLTIP_EFFECT: "This will cost us: $VALUE|2V$[gold_i]"
+ FIRST_BUY_OUT_BONDS_COST_TOOLTIP_EFFECT: "This will cost us: $VALUE|2V$[gold_i]"
+ THIRD_BUY_OUT_BONDS_COST_TOOLTIP_EFFECT: "This will cost us: $VALUE|2V$[gold_i]"
+ PAST_BUY_OUT_BONDS_COST_TOOLTIP_EFFECT: "This cost us: $VALUE|2V$[gold_i]"
+ PAST_FIRST_BUY_OUT_BONDS_COST_TOOLTIP_EFFECT: "This cost us: $VALUE|2V$[gold_i]"
+ PAST_THIRD_BUY_OUT_BONDS_COST_TOOLTIP_EFFECT: "This cost us: $VALUE|2V$[gold_i]"
+
+ #Hire War Ally
+ bank_hire_war_ally: "Hire War Ally"
+ dip_bank_hire_war_ally_CATEGORY: "CATEGORY_BANKING_ACTIONS"
+ bank_hire_war_ally_act: "Pay [SCOPE.sCountry('recipient').GetName] to fight alongside us in a [war|e]."
+ bank_hire_war_ally_desc: "We have no armies of our own, but gold buys swords. They join this one war on our side; once it ends, they owe us nothing further."
+ bank_hire_war_ally_effect_text: "[SCOPE.sCountry('actor').GetName] pay [SCOPE.sCountry('recipient').GetName] to join [SCOPE.sWar('war').GetName]."
+ bank_hire_war_ally_effect_text_past: "[SCOPE.sCountry('actor').GetName] paid [SCOPE.sCountry('recipient').GetName] to join [SCOPE.sWar('war').GetName]."
+ PROPOSE_bank_hire_war_ally: "Pay $RECIPIENT$ to join us in [SCOPE.sWar('war').GetName]?
+
+$INFO$"
+ INCOMING_OFFER_bank_hire_war_ally: "$ACTOR$ offer us gold to fight on their side in [SCOPE.sWar('war').GetName]. Do we accept?
+
+$INFO$"
+ INCOMING_OFFER_TITLE_bank_hire_war_ally: "$bank_hire_war_ally$"
+ bank_hire_war_ally_reject_effect_text: "$generic_reject_effect_string$"
+ bank_hire_war_ally_reject_effect_text_past: "$generic_reject_effect_string_past$"
+ bank_hire_war_ally_price: "Hire War Ally"
+ MODIFIER_TYPE_NAME_bank_hire_war_ally_price_cost_modifier: "Hire War Ally Cost"
+ MODIFIER_TYPE_DESC_bank_hire_war_ally_price_cost_modifier: "Changes how much gold we pay to hire a country into one of our wars."
+
+ #Diplomatic action folder for the bank's own agreements
+ CATEGORY_BANKING_ACTIONS: "Banking Actions"

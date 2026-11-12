@@ -6,7 +6,7 @@
  lending_rights_effect_text_past: "Granted Lending Rights"
 
  request_lending_rights: "Purchase Lending Rights"
- request_lending_rights_CATEGORY: "CATEGORY_ECONOMY_ACTIONS"
+ request_lending_rights_CATEGORY: "CATEGORY_BANKING_ACTIONS"
  request_lending_rights_cta: "Purchase Lending Rights from [SCOPE.sCountry('recipient').GetName]"
  request_lending_rights_desc: "We pay them a one-off sum. From then on, every loan they take from their [estates|e] is held by us instead, and we front the money."
  request_lending_rights_cta_to_unknown: "Purchase Lending Rights from a [country|e]"
@@ -18,7 +18,7 @@
  request_lending_rights_incoming_proposal_question: "[COUNTRY.GetName] offers to buy the rights to every loan we take from now on, paying us a one-off sum. Do we accept?"
 
  cancel_lending_rights: "Release Lending Rights"
- cancel_lending_rights_CATEGORY: "CATEGORY_ECONOMY_ACTIONS"
+ cancel_lending_rights_CATEGORY: "CATEGORY_BANKING_ACTIONS"
  cancel_lending_rights_cta: "Release [SCOPE.sCountry('recipient').GetName] from our Lending Rights"
  cancel_lending_rights_desc: "Their future loans will come from their own [estates|e] again."
  cancel_lending_rights_cta_to_unknown: "Release a [country|e] from our Lending Rights"
@@ -28,7 +28,7 @@
  cancel_lending_rights_proposal_question: "Release [TARGET_COUNTRY.GetName] from our Lending Rights?\n$INFO$"
 
  break_lending_rights: "Revoke Lending Rights"
- break_lending_rights_CATEGORY: "CATEGORY_ECONOMY_ACTIONS"
+ break_lending_rights_CATEGORY: "CATEGORY_BANKING_ACTIONS"
  break_lending_rights_cta: "Revoke the Lending Rights of [SCOPE.sCountry('recipient').GetName]"
  break_lending_rights_desc: "Our future loans will come from our own [estates|e] again."
  break_lending_rights_cta_to_unknown: "Revoke a [country|e]'s Lending Rights"

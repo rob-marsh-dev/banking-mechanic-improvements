@@ -1,0 +1,321 @@
+﻿# Banking Nation Improvements
+# Overrides ONE vanilla gui type, diplomatic_actions_content (from
+# in_game/gui/diplomacy_macrobuilder_lateralview.gui, EU5 1.4.7), to give the
+# mod's "Banking Actions" diplomatic folder an icon. The only change is the icon
+# block marked below; everything else is copied from vanilla and must be
+# re-synced when vanilla changes this type.
+types BankingDiplomaticActions {
+	type diplomatic_actions_content = filtered_sorted_list {
+		block "diplomatic_actions_content_datacontext" {
+			datacontext = "[DiplomacyMacrobuilderLateralView.GetDiploCategoriesSortSearch]"
+		}
+
+		blockoverride "scroll_list_is_empty" {
+			block "diplomatic_actions_content_empty_visible" {
+				visible = "[IsDataModelEmpty(DiplomacyMacrobuilderLateralView.GetCategoryItems)]"
+			}
+		}
+
+		blockoverride "scroll_list_is_empty_text" {
+			text = "DIPLOMACY_MACROBUILDER_LIST_EMPTY"
+		}
+
+		blockoverride "scroll_list_layout" {
+			dynamicgridbox = {
+				layoutpolicy_horizontal = expanding
+				datamodel_reuse_widgets = yes
+				resizetofit = yes
+				block "diplomatic_actions_content_empty_datamodel" {
+					datamodel = "[DiplomacyMacrobuilderLateralView.GetCategoryItems]"
+				}
+				item = {
+					flowcontainer = {
+						margin = { 0 3 }
+						block "extra_diplo_macro_margin" {
+							margin_left = 10
+						}
+						
+						flowcontainer = {
+							ignoreinvisible = yes
+							direction = vertical								
+							using = bg_paper_card
+							spacing = 6
+
+							widget = {
+								block "diplomatic_actions_content_items_size" {
+									size = { 516 40 }
+								}
+
+								using = bg_card_header_01_diplomacy
+								blockoverride "header_pattern_texture_density" {texture_density = 1.5}
+								
+								card_header_button_01 = {
+									size = { 100% 100% }
+									action_tooltip = {
+										click_type = right
+										click_mode = single
+										title = "TOGGLE_ALL_LIST"
+										visible = "[FilteredSortedList.ToggleAllEnabled]"
+										on_action = "[FilteredSortedList.ToggleAll]"
+									}
+
+									action_tooltip = {
+										click_type = left
+										click_mode = single
+										title = "DIPLOMACY_MACROBUILDER_LATERAL_VIEW_TOGGLE_TOOLTIP"
+										enabled = "[DiplomaticActionCategory.HasActions]"
+										on_action = "[DiplomaticActionCategory.OnClick]"
+									}
+									enabled = "[Or(DiplomaticActionCategory.HasActions, FilteredSortedList.ToggleAllEnabled)]"
+									tooltipwidget = { BasicFunctionalTooltip = {} }
+								}
+
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									ignoreinvisible = yes
+									spacing = 5
+									margin_left = 1
+									margin_right = 5
+
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/friendly_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_FRIENDLY_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/hostile_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_HOSTILE_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/influence_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_INFLUENCE_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/union_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_UNION_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/covert_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_COVERT_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/economy_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_ECONOMY_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/access_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_ACCESS_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/subject_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_SUBJECT_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/hre_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_HRE_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/papal_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_PAPAL_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/celestial_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_CHINA_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+									# Banking Nation Improvements: icon for the mod's Banking Actions folder.
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/offer_loan.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_BANKING_ACTIONS')]"
+
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+
+									icon = {
+										size = { 40 40 }
+										texture = "gfx/interface/icons/diplomatic_actions/military_actions.dds"
+										visible = "[EqualTo_string(DiplomaticActionCategory.GetNameKey, 'CATEGORY_MILITARY_ACTIONS')]"
+				
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.5
+										}
+									}
+
+									text_single = {
+										layoutpolicy_horizontal = expanding
+										autoresize = no
+										size = {-1 18}
+										align = left|nobaseline
+										text = "[DiplomaticActionCategory.GetName]"
+									}
+
+									text_single = {
+										size = { 60 20 }
+										autoresize = no
+										align = center|nobaseline
+										text = "[DiplomaticActionCategory.GetNumActions|Y]"
+									}
+
+									icon = {
+										visible = "[Not(DiplomaticActionCategory.HasActions)]"
+										size = { 22 22 }
+										texture = "gfx/interface/buttons/flats/button_simple_right.dds"
+										using = color_dark_blue
+										modify_texture = {
+											using = overlay_window_texture
+											blend_mode = overlay
+											alpha = 1
+										}
+									}
+									
+
+									icon = {
+										visible = "[And(DiplomaticActionCategory.HasActions, Not(DiplomaticActionCategory.IsExpanded))]"
+										size = { 22 22 }
+										texture = "gfx/interface/buttons/flats/button_simple_right.dds"
+										using = color_gold
+										modify_texture = {
+											using = overlay_window_texture
+											blend_mode = overlay
+											alpha = 1
+										}
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.4
+										}
+									}
+
+									icon = {
+										visible = "[And(DiplomaticActionCategory.HasActions, DiplomaticActionCategory.IsExpanded)]"
+										size = { 22 22 }
+										texture = "gfx/interface/buttons/flats/button_simple_down.dds"
+										using = color_gold
+										modify_texture = {
+											using = overlay_window_texture
+											blend_mode = overlay
+											alpha = 1
+										}
+										glow = {
+											name = "drop_shadow"
+											glow_radius = 3
+											color = {0.0 0.0 0.0 1.0}
+											alpha = 0.4
+										}
+									}
+								}
+							}
+
+							diplomatic_actions = {}
+						}
+					}
+				}
+			}
+		}
+	}
+}

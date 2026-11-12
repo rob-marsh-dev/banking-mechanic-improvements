@@ -1,0 +1,25 @@
+﻿# Share of the host's monthly trade income the bank collects under Trade Factorage.
+bank_trade_factorage_share = 0.1
+
+# One-off payment the bank makes to the host for signing Trade Factorage: six
+# months of the host's trade income.
+bank_trade_factorage_signing_bonus = {
+	value = 0
+	if = {
+		limit = {
+			exists = scope:actor
+			exists = scope:recipient
+			scope:actor = { has_reform = government_reform:banking_country }
+		}
+		add = scope:recipient.monthly_trade_income
+	}
+	else_if = {
+		limit = {
+			exists = scope:actor
+			exists = scope:recipient
+		}
+		add = scope:actor.monthly_trade_income
+	}
+	multiply = 6
+	min = 0
+}

@@ -1,9 +1,14 @@
 ﻿banking_ownerless_loan_principal = {
 	every_loan = {
 		limit = {
+			is_bond = no
 			NOT = { exists = owner }
 			months_left > 40
 		}
 		add = bank_loan_takeover_cost
 	}
 }
+
+# Term, in months, of the loan that replaces a bond the bank has bought out
+# (see buy_out_bonds). This is the longest the country can take to repay.
+bank_bond_buyout_months = 120

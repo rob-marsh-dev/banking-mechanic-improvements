@@ -1,0 +1,26 @@
+﻿# Share of the host's monthly tax income the bank collects under Tax Farming.
+bank_tax_farming_share = 0.1
+
+# One-off payment the bank makes to the host for signing Tax Farming: six months
+# of the host's trade and tax income. At a 10% cut of tax alone that takes the bank at least
+# five years to earn back.
+bank_tax_farming_signing_bonus = {
+	value = 0
+	if = {
+		limit = {
+			exists = scope:actor
+			exists = scope:recipient
+			scope:actor = { has_reform = government_reform:banking_country }
+		}
+		add = scope:recipient.monthly_income_trade_and_tax
+	}
+	else_if = {
+		limit = {
+			exists = scope:actor
+			exists = scope:recipient
+		}
+		add = scope:actor.monthly_income_trade_and_tax
+	}
+	multiply = 6
+	min = 0
+}
