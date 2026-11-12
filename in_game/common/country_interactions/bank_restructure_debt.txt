@@ -1,0 +1,85 @@
+﻿# Restructure Debt: a one-off favour to a country that owes the bank money. The
+# bank knocks a point of interest off every loan it holds over that country and
+# is repaid in opinion and trust instead (bank_restructured_debt biases in
+# common/biases/z_banking_biases.txt). An influence purchase: it costs the bank
+# future interest, not gold up front.
+#
+# Once per host every bank_restructure_debt_years (tracked by a timed variable on
+# the host, so the bank can still restructure other countries in the meantime).
+# The mirror of vanilla renegotiate_loan, which RAISES interest for an opinion hit.
+bank_restructure_debt = {
+	category = CATEGORY_BANKING_ACTIONS
+	type = diplomacy
+
+	potential = {
+		scope:actor = {
+			has_reform = government_reform:banking_country
+		}
+	}
+
+	allow = {
+	}
+
+	select_trigger = {
+		looking_for_a = country
+		interaction_source_list = {
+			scope:actor = {
+				every_country_lent_to = {
+					add_to_list = source
+				}
+			}
+		}
+		target_flag = recipient
+		name = "choose_country"
+		show_why_not_enabled = yes
+		none_available_msg_key = "bank_restructure_debt_no_debtors"
+		column = {
+			data = country_diplomacy_info_loan
+		}
+		visible = {
+		}
+		enabled = {
+			custom_tooltip = {
+				text = bank_restructure_debt_recent_tooltip
+				NOT = { has_variable = bank_debt_restructured }
+			}
+		}
+	}
+
+	effect = {
+		custom_tooltip = bank_restructure_debt_interest_tooltip
+		hidden_effect = {
+			scope:actor = {
+				every_loan_lent_to_country = {
+					limit = {
+						borrower = scope:recipient
+						# Never push a loan to zero or negative interest.
+						loan_interest > 0.01
+					}
+					change_loan_interest = -0.01
+				}
+			}
+			scope:recipient = {
+				set_variable = {
+					name = bank_debt_restructured
+					value = yes
+					years = bank_restructure_debt_years
+				}
+			}
+		}
+		scope:recipient = {
+			add_opinion = {
+				target = scope:actor
+				modifier = opinion_bank_restructured_debt
+			}
+			add_trust_equilibrium = {
+				target = scope:actor
+				modifier = trust_bank_restructured_debt
+			}
+		}
+	}
+
+	ai_will_do = {
+		add = -100
+	}
+}

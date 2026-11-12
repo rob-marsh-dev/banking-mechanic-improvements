@@ -1,0 +1,40 @@
+﻿# Opinion and trust from the bank's agreements.
+#
+# The opinion_/trust_ + giving_/receiving_ + <relation> names are picked up by the
+# engine automatically for as long as the relation exists (see vanilla
+# scripted_relations/readme.txt). "giving" is the host's view of the bank,
+# "receiving" is the bank's view of the host.
+
+# Marriage Alliance
+opinion_giving_bank_marriage_alliance = {
+	value = 25
+}
+
+opinion_receiving_bank_marriage_alliance = {
+	value = 25
+}
+
+# Trust starts modest and grows the longer the two houses stay joined.
+trust_giving_bank_marriage_alliance = {
+	value = 5
+	yearly_gain = 0.25
+	max = 15
+}
+
+trust_receiving_bank_marriage_alliance = {
+	value = 5
+	yearly_gain = 0.25
+	max = 15
+}
+
+# Restructure Debt (added by the bank_restructure_debt interaction)
+opinion_bank_restructured_debt = {
+	value = 30
+	max = 60
+	yearly_decay = 2
+}
+
+trust_bank_restructured_debt = {
+	value = 5
+	years = 20
+}

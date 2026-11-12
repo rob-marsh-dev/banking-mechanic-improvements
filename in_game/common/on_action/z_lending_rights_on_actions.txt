@@ -1,8 +1,16 @@
 ﻿# root = country (borrower), scope:target = loan, scope:owner = lender (if existent)
-# If the borrower has granted Lending Rights to a bank, a fresh estate loan is retagged
-# so the bank holds it, and the bank pays the principal (the borrower already got the
-# gold from the estate loan; change_loan_owner only moves who collects).
-# If the bank can't cover the principal, the loan stays with the estates.
+# If the borrower has granted Lending Rights to a bank, its new debt goes to the
+# bank, as long as the bank can cover the principal. Otherwise nothing changes.
+#
+# Estate loan: retagged so the bank holds it, and the bank pays the principal (the
+# borrower already got the gold from the estate loan; change_loan_owner only moves
+# who collects).
+#
+# Government bond: change_loan_owner does nothing on bonds, so the bond is
+# replaced the same way buy_out_bonds does it: the bank gives a fixed-term loan
+# for the face value at the bond's interest, that principal is taken back off the
+# borrower (it already has the bond money), and the bond is cancelled. The
+# replacement loan has an owner and is not a bond, so it does not re-trigger this.
 on_loan_taken = {
 	on_actions = { lr_on_loan_taken }
 }
@@ -15,20 +23,42 @@ lr_on_loan_taken = {
 			target = var:lending_rights_holder
 		}
 		scope:target = {
-			is_bond = no
-			NOT = { exists = owner }
+			OR = {
+				is_bond = yes
+				NOT = { exists = owner }
+			}
 		}
 		var:lending_rights_holder.gold >= scope:target.loan_amount
 	}
 	effect = {
 		var:lending_rights_holder = { save_scope_as = lr_bank }
-		scope:target = {
-			change_loan_owner = scope:lr_bank
-		}
-		scope:lr_bank = {
+		if = {
+			limit = { scope:target = { is_bond = yes } }
+			save_scope_value_as = { name = lr_bond_amount value = scope:target.loan_amount }
+			save_scope_value_as = { name = lr_bond_interest value = scope:target.loan_interest }
+			scope:lr_bank = {
+				give_loan = {
+					target = root
+					amount = scope:lr_bond_amount
+					interest = scope:lr_bond_interest
+					months = bank_bond_buyout_months
+				}
+			}
 			add_gold = {
-				value = scope:target.loan_amount
+				value = scope:lr_bond_amount
 				multiply = -1
+			}
+			cancel_loan = scope:target
+		}
+		else = {
+			scope:target = {
+				change_loan_owner = scope:lr_bank
+			}
+			scope:lr_bank = {
+				add_gold = {
+					value = scope:target.loan_amount
+					multiply = -1
+				}
 			}
 		}
 	}

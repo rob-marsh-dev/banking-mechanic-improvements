@@ -1,0 +1,119 @@
+﻿# Standing Retainer: the permanent counterpart to Hire War Ally. The bank pays a
+# country a monthly fee, and that country is called into the bank's wars, both
+# when the bank declares and when it is attacked.
+#
+# One way: the HOST gives the relation, the BANK receives it. Only the bank can
+# initiate (request). Lasts until cancelled or broken by war.
+# Built on the Lending Rights relation; see z_lending_rights.txt for the notes on
+# why roles are resolved by the banking reform instead of by scope name.
+# In gold_to_first: scope:first = host (giver, gets paid), scope:second = bank.
+bank_standing_retainer = {
+	type = diplomacy
+	relation_type = oneway
+	break_on_war = yes
+	relation_type_for_ai = friendly
+	# Same convention as vanilla guarantee: "giving" = the giver answers the call.
+	called_in_defensively = giving
+	called_in_offensively = giving
+	# The retainer: a slice of the host's own income, paid by the bank each month.
+	gold_to_first = {
+		value = scope:first.monthly_income_trade_and_tax
+		multiply = bank_standing_retainer_share
+		min = 0
+	}
+	diplomatic_cost_request = bank_standing_retainer_cost
+	category = {
+		offer = CATEGORY_BANKING_ACTIONS
+		request = CATEGORY_BANKING_ACTIONS
+		cancellation = CATEGORY_BANKING_ACTIONS
+		break = CATEGORY_BANKING_ACTIONS
+	}
+
+	# Only banks can buy it, and not from another bank.
+	visible = {
+		OR = {
+			NOT = { exists = scope:recipient }
+			scope:recipient = { has_reform = government_reform:banking_country }
+		}
+		OR = {
+			NOT = { exists = scope:actor }
+			scope:actor = {
+				NOT = { has_reform = government_reform:banking_country }
+			}
+		}
+	}
+
+	offer_visible = { always = no }
+
+	# The bank must hold a year of the fee in reserve before a country signs on.
+	request_enabled = {
+		exists = scope:actor
+		exists = scope:recipient
+		OR = {
+			AND = {
+				scope:actor = { has_reform = government_reform:banking_country }
+				# One retainer per host.
+				scope:recipient = {
+					NOT = { giving_scripted_relation_of_type = relation_type:bank_standing_retainer }
+				}
+				scope:actor.gold >= bank_standing_retainer_reserve
+			}
+			AND = {
+				scope:recipient = { has_reform = government_reform:banking_country }
+				scope:actor = {
+					NOT = { giving_scripted_relation_of_type = relation_type:bank_standing_retainer }
+				}
+				scope:recipient.gold >= bank_standing_retainer_reserve
+			}
+		}
+	}
+
+	will_expire_trigger = {
+		scope:second = {
+			NOT = { has_reform = government_reform:banking_country }
+		}
+	}
+
+	wants_to_give_diplo_chance = {
+		base = -20
+		actor_is_rival = -100
+		trust_in_actor = 0.5
+		positive_opinion = 0.1
+		negative_opinion = -0.5
+	}
+
+	# The host (scope:actor) deciding whether to take the bank's coin.
+	wants_to_give = {
+		add = {
+			desc = "BASE"
+			value = -50
+		}
+		# The monthly fee is the sweetener.
+		add = {
+			desc = "bank_standing_retainer_fee_reason"
+			value = 50
+		}
+		add = {
+			desc = "THEIR_OPINION_TOOLTIP"
+			value = "scope:actor.opinion(scope:recipient)"
+			if = {
+				limit = { "scope:actor.opinion(scope:recipient)" > 0 }
+				divide = 5
+			}
+		}
+		add = {
+			desc = "THEIR_TRUST_TOOLTIP"
+			value = "scope:actor.trust(scope:recipient)"
+			divide = 2
+		}
+		if = {
+			limit = {
+				scope:actor = { is_rival_of = scope:recipient }
+			}
+			add = {
+				desc = "game_concept_rival"
+				value = -200
+			}
+		}
+	}
+}

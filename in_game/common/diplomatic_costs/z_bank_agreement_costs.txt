@@ -1,0 +1,9 @@
+﻿# Intentionally empty: these agreements are paid for in gold only.
+bank_marriage_alliance_cost = {
+}
+
+bank_standing_retainer_cost = {
+}
+
+bank_mint_contract_cost = {
+}

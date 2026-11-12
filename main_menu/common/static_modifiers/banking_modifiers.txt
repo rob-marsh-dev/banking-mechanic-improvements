@@ -18,3 +18,12 @@ giving_bank_trade_factorage = {
 	export_efficiency = large_trade_efficiency_bonus
 	import_efficiency = large_trade_efficiency_bonus
 }
+
+# Applied to the host while a bank runs its mint under a Mint Contract.
+giving_bank_mint_contract = {
+	game_data = {
+		category = country
+	}
+	minting_income_factor = 0.1
+	minting_inflation_threshold = 0.02
+}

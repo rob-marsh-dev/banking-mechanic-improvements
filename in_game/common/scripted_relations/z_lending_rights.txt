@@ -1,5 +1,5 @@
 ﻿# Lending Rights: a banking country buys the right to hold another country's
-# estate loans. One way: the BORROWER gives the relation, the BANK receives it.
+# new estate loans and new government bonds. One way: the BORROWER gives the relation, the BANK receives it.
 # Only the bank can initiate (request); there is no offer.
 #
 # SCOPES: throughout this relation (visible, enabled, effects, AI) the scopes are
